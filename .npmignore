@@ -1,0 +1,10 @@
+test/
+e2e/
+node_modules/
+resources/
+docs/
+.swagger-codegen
+.nyc_output
+.idea
+coverage
+out
