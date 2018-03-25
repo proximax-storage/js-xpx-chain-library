@@ -1,3 +1,4 @@
+src/
 test/
 e2e/
 node_modules/
@@ -8,3 +9,8 @@ docs/
 .idea
 coverage
 out
+licenses/
+.swagger-codegen-ignore
+.travis.yml
+git_push.sh
+Jenkinsfile

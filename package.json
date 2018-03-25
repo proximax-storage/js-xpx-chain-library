@@ -8,8 +8,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --recursive --timeout 10000",
     "test:cov": "nyc --reporter=lcov --reporter=text-lcov npm t && nyc report --reporter=lcov",
-    "build": "babel ./src -d ./dist --source-maps --copy-files",
-    "postinstall": "npm run build"
+    "build": "babel ./src -d ./dist --source-maps --copy-files"
   },
   "contributors": [
     {
@@ -27,10 +26,6 @@
     "url": "https://github.com/nemtech/nem2-library-js.git"
   },
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-stage-0": "6.24.1",
     "bufferutil": "^3.0.2",
     "crypto-js": "^3.1.9-1",
     "flatbuffers": "^1.7.0",
@@ -42,6 +37,10 @@
     "ws": "^3.2.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "6.24.1",
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.7.0",
