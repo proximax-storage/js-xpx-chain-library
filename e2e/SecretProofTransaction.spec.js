@@ -42,11 +42,11 @@ describe('SecretProofTransaction E2E', () => {
 	};
 
 	it('should announce the transaction to the network successfully', done => {
-		new TransactionStatusListener(CONF.DOMAIN, 3000).given(account1.address, res => {
+		new TransactionStatusListener(CONF.DOMAIN, CONF.PORT).given(account1.address, res => {
 			console.log(res);
 		});
 
-		new TransactionStatusListener(CONF.DOMAIN, 3000).given(account2.address, res => {
+		new TransactionStatusListener(CONF.DOMAIN, CONF.PORT).given(account2.address, res => {
 			console.log(res);
 		});
 		const random = nacl.randomBytes(10);
@@ -64,9 +64,9 @@ describe('SecretProofTransaction E2E', () => {
 			.addRecipient(account2.address)
 			.build();
 
-		const transactionRoutesAPI = new TransactionRoutesApi(CONF.URL);
+		const transactionRoutesAPI = new TransactionRoutesApi(CONF.SERVER);
 
-		new ConfirmedTransactionsListener(CONF.DOMAIN, 3000).given(account1.address, res => {
+		new ConfirmedTransactionsListener(CONF.DOMAIN, CONF.PORT).given(account1.address, res => {
 			const secretProofTransaction = new SecretProofTransaction.Builder()
 				.addDeadline(deadline())
 				.addHashAlgorithm(0)
@@ -74,7 +74,7 @@ describe('SecretProofTransaction E2E', () => {
 				.addProof(seedSecret)
 				.build();
 
-			new UnconfirmedTransactionsListener(CONF.DOMAIN, 3000).addedToAccount(account2.address, res => {
+			new UnconfirmedTransactionsListener(CONF.DOMAIN, CONF.PORT).addedToAccount(account2.address, res => {
 				console.log(res);
 				done();
 			});

@@ -22,7 +22,7 @@ describe('PartialTransactionsListener', () => {
 	it('should create partial transactions listener added to account', done => {
 		const account = 'SBE6CS7LZKJXLDVTNAC3VZ3AUVZDTF3PACNFIXFN';
 
-		new PartialTransactionsListener(CONF.DOMAIN, 3000).addedToAccount(account, res => {
+		new PartialTransactionsListener(CONF.DOMAIN, CONF.PORT).addedToAccount(account, res => {
 			console.log(res);
 			done();
 		});
@@ -35,7 +35,7 @@ describe('PartialTransactionsListener', () => {
 	it('should create partial transactions listener removed to account', done => {
 		const account = 'SBE6CS7LZKJXLDVTNAC3VZ3AUVZDTF3PACNFIXFN';
 
-		new PartialTransactionsListener(CONF.DOMAIN, 3000).removedFromAccount(account, res => {
+		new PartialTransactionsListener(CONF.DOMAIN, CONF.PORT).removedFromAccount(account, res => {
 			console.log(res);
 			done();
 		});

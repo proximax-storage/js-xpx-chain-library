@@ -74,13 +74,13 @@ describe('MultisigTransferTransaction E2E', () => {
 		const payload = verifiableTransaction.signTransactionWithCosigners(aliceKeyPair, [bobKeyPair]);
 		console.log(payload);
 
-		new PartialTransactionsListener(CONF.URL).addedToAccount(aliceKeyPair.address, res => {
+		new PartialTransactionsListener(CONF.DOMAIN, CONF.PORT).addedToAccount(aliceKeyPair.address, res => {
 			console.log(res);
 			done();
 		});
 
 		setTimeout(() => {
-			const transactionRoutesAPI = new TransactionRoutesApi(CONF.URL);
+			const transactionRoutesAPI = new TransactionRoutesApi(CONF.SERVER);
 			transactionRoutesAPI
 				.announcePartialTransaction(payload)
 				.then(x => {

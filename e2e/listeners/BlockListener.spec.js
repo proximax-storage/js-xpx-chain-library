@@ -20,7 +20,7 @@ import CONF from '../conf/conf';
 
 describe('BlockListener', () => {
 	it('should create block listener', done => {
-		new BlockListener(CONF.DOMAIN, 3000).newBlock(res => {
+		new BlockListener(CONF.DOMAIN, CONF.PORT).newBlock(res => {
 			console.log(res);
 			done();
 		});

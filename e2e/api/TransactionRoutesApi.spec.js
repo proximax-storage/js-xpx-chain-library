@@ -15,6 +15,7 @@
  */
 
 import { expect } from 'chai';
+import CONF from '../conf/conf';
 
 const { TransactionRoutesApi } = require('../../src/index');
 
@@ -59,7 +60,7 @@ describe('TransactionRoutesApi', () => {
 	/* eslint-enable */
 
 	beforeEach(() => {
-		transactionRoutesApi = new TransactionRoutesApi();
+		transactionRoutesApi = new TransactionRoutesApi(CONF.SERVER);
 	});
 
 

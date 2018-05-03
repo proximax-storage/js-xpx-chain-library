@@ -22,7 +22,7 @@ describe('UnconfirmedTransactionsListener', () => {
 	it('should create unconfirmed transactions listener added to account', done => {
 		const account = 'SDUP5PLHDXKBX3UU5Q52LAY4WYEKGEWC6IB3VBFM';
 
-		new UnconfirmedTransactionsListener(CONF.DOMAIN, 3000).addedToAccount(account, res => {
+		new UnconfirmedTransactionsListener(CONF.DOMAIN, CONF.PORT).addedToAccount(account, res => {
 			console.log(res);
 			done();
 		});
@@ -34,7 +34,7 @@ describe('UnconfirmedTransactionsListener', () => {
 	it('should create unconfirmed transactions listener removed to account', done => {
 		const account = 'SBILTA367K2LX2FEXG5TFWAS7GEFYAGY7QLFBYKC';
 
-		new UnconfirmedTransactionsListener(CONF.DOMAIN, 3000).removedFromAccount(account, res => {
+		new UnconfirmedTransactionsListener(CONF.DOMAIN, CONF.PORT).removedFromAccount(account, res => {
 			console.log(res);
 			done();
 		});

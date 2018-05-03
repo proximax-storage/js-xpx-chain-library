@@ -22,7 +22,7 @@ describe('ConfirmedTransactionsListener', () => {
 	it('should create account listener', done => {
 		const account = 'SDUP5PLHDXKBX3UU5Q52LAY4WYEKGEWC6IB3VBFM';
 
-		new ConfirmedTransactionsListener(CONF.DOMAIN, 3000).given(account, res => {
+		new ConfirmedTransactionsListener(CONF.DOMAIN, CONF.PORT).given(account, res => {
 			console.log(res);
 			done();
 		});

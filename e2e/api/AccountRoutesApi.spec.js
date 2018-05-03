@@ -15,6 +15,7 @@
  */
 
 import { expect } from 'chai';
+import CONF from '../conf/conf';
 
 const { AccountRoutesApi } = require('../../src/index');
 
@@ -29,7 +30,7 @@ describe('AccountRoutesApi', () => {
 	const multisig = 'B694186EE4AB0558CA4AFCFDD43B42114AE71094F5A1FC4A913FE9971CACD21D';
 
 	beforeEach(() => {
-		accountRoutesApi = new AccountRoutesApi();
+		accountRoutesApi = new AccountRoutesApi(CONF.SERVER);
 	});
 	/* eslint-disable no-unused-expressions */
 	const checkAccountInfo = accountInfo => {

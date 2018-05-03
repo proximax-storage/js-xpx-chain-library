@@ -91,13 +91,13 @@ describe('AggregatePullTransferTransaction E2E', () => {
 		console.log('PAYLOAD', payload);
 
 
-		new PartialTransactionsListener(CONF.URL).addedToAccount(carolKeyPair.address, res => {
+		new PartialTransactionsListener(CONF.DOMAIN, CONF.PORT).addedToAccount(carolKeyPair.address, res => {
 			console.log(res);
 			done();
 		});
 
 		setTimeout(() => {
-			const transactionRoutesAPI = new TransactionRoutesApi(CONF.URL);
+			const transactionRoutesAPI = new TransactionRoutesApi(CONF.SERVER);
 			transactionRoutesAPI
 				.announcePartialTransaction(payload)
 				.then(x => {

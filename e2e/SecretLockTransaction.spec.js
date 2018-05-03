@@ -34,17 +34,17 @@ describe('SecretLockTransaction E2E', () => {
 	it('should announce the transaction to the network successfully', done => {
 		const account = 'SBILTA367K2LX2FEXG5TFWAS7GEFYAGY7QLFBYKC';
 
-		new TransactionStatusListener(CONF.DOMAIN, 3000).given(account, res => {
+		new TransactionStatusListener(CONF.DOMAIN, CONF.PORT).given(account, res => {
 			console.log(res);
 			done();
 		});
 
-		new ConfirmedTransactionsListener(CONF.DOMAIN, 3000).given(account, res => {
+		new ConfirmedTransactionsListener(CONF.DOMAIN, CONF.PORT).given(account, res => {
 			console.log(res);
 			done();
 		});
 
-		new UnconfirmedTransactionsListener(CONF.DOMAIN, 3000).addedToAccount(account, res => {
+		new UnconfirmedTransactionsListener(CONF.DOMAIN, CONF.PORT).addedToAccount(account, res => {
 			console.log(res);
 			done();
 		});
@@ -73,7 +73,7 @@ describe('SecretLockTransaction E2E', () => {
 
 		const payload = verifiableTransaction.signTransaction(keyPair);
 		console.log('PAYLOAD', payload);
-		const transactionRoutesAPI = new TransactionRoutesApi(CONF.URL);
+		const transactionRoutesAPI = new TransactionRoutesApi(CONF.SERVER);
 		setTimeout(() => {
 			transactionRoutesAPI
 				.announceTransaction(payload)

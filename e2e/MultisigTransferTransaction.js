@@ -74,7 +74,7 @@ describe('MultisigTransferTransaction E2E', () => {
 		});
 
 		setTimeout(() => {
-			const transactionRoutesAPI = new TransactionRoutesApi(CONF.URL);
+			const transactionRoutesAPI = new TransactionRoutesApi(CONF.SERVER);
 			transactionRoutesAPI
 				.announcePartialTransaction(payload)
 				.then(x => {

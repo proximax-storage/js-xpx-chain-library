@@ -53,7 +53,7 @@ describe('TransferTransaction E2E', () => {
 
 		const payload = verifiableTransaction.signTransaction(keyPair);
 		console.log('PAYLOAD', payload);
-		const transactionRoutesAPI = new TransactionRoutesApi(CONF.URL);
+		const transactionRoutesAPI = new TransactionRoutesApi(CONF.SERVER);
 		transactionRoutesAPI
 			.announceTransaction(payload)
 			.then(x => {

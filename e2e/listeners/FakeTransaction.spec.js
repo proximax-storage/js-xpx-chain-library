@@ -53,7 +53,7 @@ export default class FakeTransaction {
 
 		const payload = verifiableTransaction.signTransaction(this.keyPair);
 
-		const transactionRoutesAPI = new TransactionRoutesApi(CONF.URL);
+		const transactionRoutesAPI = new TransactionRoutesApi(CONF.SERVER);
 		transactionRoutesAPI
 			.announceTransaction(payload)
 			.then(x => {
@@ -80,7 +80,7 @@ export default class FakeTransaction {
 
 		const payload = verifiableTransaction.signTransaction(this.keyPair);
 
-		const transactionRoutesAPI = new TransactionRoutesApi(CONF.URL);
+		const transactionRoutesAPI = new TransactionRoutesApi(CONF.SERVER);
 		transactionRoutesAPI
 			.announceTransaction(payload)
 			.then(x => {
@@ -119,7 +119,7 @@ export default class FakeTransaction {
 
 		const payload = verifiableTransaction.signTransaction(this.aliceKeyPair);
 
-		const transactionRoutesAPI = new TransactionRoutesApi(CONF.URL);
+		const transactionRoutesAPI = new TransactionRoutesApi(CONF.SERVER);
 		transactionRoutesAPI
 			.announcePartialTransaction(payload)
 			.then(x => {

@@ -15,6 +15,7 @@
  */
 
 import { expect } from 'chai';
+import CONF from '../conf/conf';
 
 const { MosaicRoutesApi } = require('../../src/index');
 
@@ -29,7 +30,7 @@ describe('MosaicRoutesApi', () => {
 	const namespaceId = '84b3552d375ffa4b';
 
 	beforeEach(() => {
-		mosaicRoutesApi = new MosaicRoutesApi();
+		mosaicRoutesApi = new MosaicRoutesApi(CONF.SERVER);
 	});
 
 	const checkMosaicInfo = mosaicInfo => {

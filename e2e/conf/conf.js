@@ -14,8 +14,15 @@
  * limitations under the License.
  */
 
+import ApiClient from "../../src/ApiClient";
+
 const CONF = {
-	URL: 'http://localhost:3000',
-	DOMAIN: 'localhost'
+    PROTOCOL: 'http',
+    DOMAIN: 'localhost',
+    PORT: 3000,
+    SERVER: new ApiClient()
 };
+
+CONF.SERVER.basePath = CONF.PROTOCOL + '://' + CONF.DOMAIN + ':' + CONF.PORT;
+
 export default CONF;

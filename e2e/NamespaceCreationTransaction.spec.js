@@ -43,7 +43,7 @@ describe('NamespaceCreationTransaction E2E', () => {
 
 		const payload = verifiableTransaction.signTransaction(keyPair);
 
-		const transactionRoutesAPI = new TransactionRoutesApi(CONF.URL);
+		const transactionRoutesAPI = new TransactionRoutesApi(CONF.SERVER);
 		transactionRoutesAPI
 			.announceTransaction(payload)
 			.then(x => {

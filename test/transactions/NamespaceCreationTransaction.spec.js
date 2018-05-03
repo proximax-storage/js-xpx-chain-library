@@ -18,7 +18,7 @@ import expect from 'expect.js';
 import NamespaceCreationTransaction from '../../src/transactions/NamespaceCreationTransaction';
 import deadline from '../../src/transactions/Deadline';
 import { namespaceId, subnamespaceNamespaceId, subnamespaceParentId } from '../../src/transactions/NamespaceMosaicId';
-import uint64 from "../../src/coders/uint64";
+import uint64 from '../../src/coders/uint64';
 
 describe('NamespaceCreationTransaction', () => {
 	const keyPair = {

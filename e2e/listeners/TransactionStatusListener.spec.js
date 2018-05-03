@@ -22,7 +22,7 @@ describe('TransactionStatusListener', () => {
 	it('should create transaction status listener', done => {
 		const account = 'SDUP5PLHDXKBX3UU5Q52LAY4WYEKGEWC6IB3VBFM';
 
-		new TransactionStatusListener(CONF.DOMAIN, 3000).given(account, res => {
+		new TransactionStatusListener(CONF.DOMAIN, CONF.PORT).given(account, res => {
 			console.log(res);
 			done();
 		});

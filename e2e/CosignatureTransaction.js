@@ -51,7 +51,7 @@ describe('CosignatureTransaction E2E', () => {
 		});
 
 		setTimeout(() => {
-			const transactionRoutesAPI = new TransactionRoutesApi(CONF.URL);
+			const transactionRoutesAPI = new TransactionRoutesApi(CONF.SERVER);
 			transactionRoutesAPI
 				.announceCosignatureTransaction(payload)
 				.then(x => {

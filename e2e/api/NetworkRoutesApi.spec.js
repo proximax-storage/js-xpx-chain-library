@@ -15,6 +15,7 @@
  */
 
 import { expect } from 'chai';
+import CONF from '../conf/conf';
 
 const { NetworkRoutesApi } = require('../../src/index');
 
@@ -22,7 +23,7 @@ describe('NetworkRoutesApi', () => {
 	let networkRoutesApi;
 
 	beforeEach(() => {
-		networkRoutesApi = new NetworkRoutesApi();
+		networkRoutesApi = new NetworkRoutesApi(CONF.SERVER);
 	});
 
 

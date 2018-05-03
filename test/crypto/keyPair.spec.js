@@ -17,7 +17,7 @@
 import { expect } from 'chai';
 import { createKeyPairFromPrivateKeyString, deriveSharedKey, sign, verify } from '../../src/crypto/keyPair';
 import convert from '../../src/coders/convert';
-import test from '../testUtils';
+import test from '../testUtils.spec';
 
 describe('key pair', () => {
 	const Private_Key_Size = 32;

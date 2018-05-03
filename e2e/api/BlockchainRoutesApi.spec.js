@@ -15,6 +15,7 @@
  */
 
 import { expect } from 'chai';
+import CONF from '../conf/conf';
 
 const { BlockchainRoutesApi } = require('../../src/index');
 
@@ -40,7 +41,7 @@ describe('BlockRoutesApi', () => {
 	};
 
 	beforeEach(() => {
-		blockchainRoutesApi = new BlockchainRoutesApi();
+		blockchainRoutesApi = new BlockchainRoutesApi(CONF.SERVER);
 	});
 
 	describe('getBlockByHeight', () => {

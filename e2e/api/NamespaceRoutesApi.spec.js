@@ -15,6 +15,7 @@
  */
 
 import { expect } from 'chai';
+import CONF from '../conf/conf';
 
 const { NamespaceRoutesApi } = require('../../src/index');
 
@@ -31,7 +32,7 @@ describe('NamespaceRoutesApi', () => {
 	};
 
 	beforeEach(() => {
-		namespaceRoutesApi = new NamespaceRoutesApi();
+		namespaceRoutesApi = new NamespaceRoutesApi(CONF.SERVER);
 	});
 
 	/* eslint-disable no-unused-expressions */
