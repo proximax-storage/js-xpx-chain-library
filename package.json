@@ -55,6 +55,9 @@
     "nyc": "^11.6.0",
     "sinon": "1.17.3"
   },
+  "optionalDependencies": {
+    "crypto-browserify": "3.12.0"
+  },
   "nyc": {
     "exclude": [
       "**/*.spec.js"

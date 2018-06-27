@@ -2575,6 +2575,17 @@
 					for (i = 0; i < n; i++) x[i] = v[i];
 					cleanup(v);
 				});
+			} 
+			// browser. requires crypto-browserify added as require dependency
+			else if (require('crypto-browserify') !== undefined) {
+				crypto = require('crypoto-browserify');
+				if (crypto && crypto.randomBytes) {
+					nacl.setPRNG(function (x, n) {
+						var i, v = crypto.randomBytes(n);
+						for (i = 0; i < n; i++) x[i] = v[i];
+						cleanup(v);
+					});
+				} 
 			}
 		}
 	})();
