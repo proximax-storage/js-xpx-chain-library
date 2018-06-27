@@ -2578,7 +2578,7 @@
 			} 
 			// browser. requires crypto-browserify added as require dependency
 			else if (require('crypto-browserify') !== undefined) {
-				crypto = require('crypoto-browserify');
+				crypto = require('crypto-browserify');
 				if (crypto && crypto.randomBytes) {
 					nacl.setPRNG(function (x, n) {
 						var i, v = crypto.randomBytes(n);
