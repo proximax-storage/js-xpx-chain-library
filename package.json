@@ -1,6 +1,6 @@
 {
   "name": "nem2-library",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "nem2-library-js",
   "license": "APACHE-2.0",
   "main": "dist/index.js",
@@ -31,16 +31,16 @@
     "crypto-js": "^3.1.9-1",
     "flatbuffers": "^1.7.0",
     "js-sha3": "^0.6.1",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.10",
     "ripemd160": "^2.0.1",
-    "superagent": "3.5.2",
+    "superagent": "^3.8.3",
     "utf-8-validate": "^4.0.2",
     "ws": "^5.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-core": "6.26.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-stage-0": "6.24.1",
     "chai": "^4.1.2",
     "coveralls": "^3.0.0",
