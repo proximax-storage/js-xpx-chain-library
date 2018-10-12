@@ -12,6 +12,11 @@ It is used by [nem2-sdk-typescript-javascript](https://github.com/nemtech/nem2-s
 
 This project is developed and maintained by NEM Foundation. 
 
+FIX SOME NEM ISSUES
+- Added crypto_shared_key_hash
+- Added nemencrypt
+- Added nemdecrypt
+
 ## License
 
 Copyright (c) 2018 NEM

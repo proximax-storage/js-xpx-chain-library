@@ -1,6 +1,6 @@
 {
   "name": "@thomas.tran/nem2-library",
-  "version": "0.9.6",
+  "version": "0.9.",
   "description": "nem2-library-js",
   "license": "Apache-2.0",
   "main": "dist/index.js",
