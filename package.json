@@ -1,8 +1,8 @@
 {
-  "name": "nem2-library",
-  "version": "0.9.5",
+  "name": "@thomas.tran/nem2-library",
+  "version": "0.9.6",
   "description": "nem2-library-js",
-  "license": "APACHE-2.0",
+  "license": "Apache-2.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
@@ -12,19 +12,16 @@
     "build": "babel ./src -d ./dist --source-maps --copy-files"
   },
   "contributors": [
-    {
-      "name": "Aleix",
-      "email": "aleix@nemeurope.eu"
-    },
-    {
-      "name": "Guillem",
-      "email": "guillem@nemeurope.eu"
-    }
+    "Aleix <aleix@nemeurope.eu>",
+    "Guillem <guillem@nemeurope.eu>",
+    "Thomas Tran <tldinteractive@gmail.com>"
   ],
-  "bugs": "https://github.com/nemtech/nem2-library-js/issues",
+  "bugs": {
+    "url": "https://github.com/thomas-tran/nem2-library-js/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nemtech/nem2-library-js.git"
+    "url": "git+https://github.com/thomas-tran/nem2-library-js.git"
   },
   "dependencies": {
     "bufferutil": "^3.0.5",
@@ -35,7 +32,8 @@
     "ripemd160": "^2.0.1",
     "superagent": "^3.8.3",
     "utf-8-validate": "^4.0.2",
-    "ws": "^5.2.0"
+    "ws": "^5.2.0",
+    "crypto-browserify": "3.12.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -62,5 +60,14 @@
     "exclude": [
       "**/*.spec.js"
     ]
-  }
+  },
+  "homepage": "https://github.com/thomas-tran/nem2-library-js#readme",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "nem2",
+    "library"
+  ],
+  "author": "Nem"
 }

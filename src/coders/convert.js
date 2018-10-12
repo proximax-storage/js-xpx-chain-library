@@ -223,7 +223,27 @@ const convert = {
 		}
 
 		return output;
+	}, 
+	ab2hex: input => {
+		if (typeof input !== 'object' || input === null || typeof input.byteLength !== 'number') {
+			throw new TypeError('Expected input to be an ArrayBuffer')
+		  }
+		
+		  var view = new Uint8Array(input)
+		  var result = ''
+		  var value
+		
+		  for (var i = 0; i < view.length; i++) {
+			value = view[i].toString(16)
+			result += (value.length === 1 ? '0' + value : value)
+		  }
+		
+		  return result;
+	},
+	ab2str: input => {
+		return String.fromCharCode.apply(null, new Uint16Array(input));
 	}
+	
 };
 
 export default convert;

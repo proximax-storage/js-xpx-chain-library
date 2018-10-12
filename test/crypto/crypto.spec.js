@@ -16,6 +16,7 @@
 
 import { expect } from 'chai';
 import convert from '../../src/coders/convert';
+import { createKeyPairFromPrivateKeyString } from '../../src/crypto/keyPair';
 import Crypto from '../../src/crypto/crypto';
 import CryptoJS from 'crypto-js';
 
@@ -347,8 +348,8 @@ describe('crypto tests', function() {
 		});
 
 	});
-/*
-    it("Can encode message with sender private key", function() {
+
+    /*it("Can encode message with sender private key", function() {
         // Arrange:
         let senderPriv = "2a91e1d5c110a8d0105aad4683f962c2a56663a3cad46666b16d243174673d90";
         let recipientPublic = "5aae0b521c59cfc8c2114dc74d2f652359a68e377657c3f6bd6091f16f72e1ec";
@@ -362,8 +363,31 @@ describe('crypto tests', function() {
 
         // Assert:
         expect(encryptedHex).equal(expectedHex);
-    });
+	});*/
+	
+	it("Can encode decode data with sender private key and recipient public key", function() {
+        // Arrange:
+		let senderPriv = "2a91e1d5c110a8d0105aad4683f962c2a56663a3cad46666b16d243174673d90";
+        let sender = createKeyPairFromPrivateKeyString(senderPriv);
+        let recipientPriv = "2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9";
+		let recipient = createKeyPairFromPrivateKeyString(recipientPriv);
+		
+		let expectedMsg = "NEM is awesome !";
+		let msgBuffer = Buffer.from(expectedMsg);
+		let msgBytes = new Uint8Array(msgBuffer);
+		//console.log('Input bytes ' + arrayMessage);
 
+        // Act:
+		let encrypted = Crypto.nemencrypt(senderPriv, convert.uint8ToHex(recipient.publicKey.toString()), msgBytes);
+		
+		let decrypted = Crypto.nemdecrypt(recipientPriv, convert.uint8ToHex(recipient.publicKey.toString()), encrypted);
+		
+		let plainMsg = convert.ab2str(decrypted);
+		// console.log(plain);
+	    // Assert:
+        expect(plainMsg).equal(expectedMsg);
+    });
+/*
     it("Can decode message with recipient private key", function() {
         // Arrange:
         let senderPublic = "9291abb3c52134be9d20ef21a796743497df7776d2661237bda9cadade34e44c";

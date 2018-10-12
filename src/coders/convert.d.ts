@@ -36,4 +36,8 @@ export declare module convert {
     function utf8ToHex(input: string): string;
 
     function rstr2utf8(input: string): string;
+
+    function ab2hex(input: ArrayBuffer): string;
+
+    function ab2str(input: ArrayBuffer): string;
 }
