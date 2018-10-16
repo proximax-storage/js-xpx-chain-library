@@ -17,6 +17,7 @@
 import convert from '../coders/convert';
 import nacl from './nacl_catapult';
 import CryptoJS from 'crypto-js';
+import sha3Hasher from './sha3Hasher';
 
 /**
  * Encrypt a private key for mobile apps (AES_PBKF2)
@@ -140,11 +141,17 @@ let passwordToPrivatekey = function (common, walletAccount, algo) {
 
 
 function hashfunc(dest, data, dataLength) {
-    let convertedData = ua2words(data, dataLength);
-    let hash = CryptoJS.SHA3(convertedData, {
-        outputLength: 512
-    });
-    words2ua(dest, hash);
+    // OLD sha3 that uses keccak algo
+    // let convertedData = ua2words(data, dataLength);
+    // let hash = CryptoJS.SHA3(convertedData, {
+    //     outputLength: 512
+    // });
+    // words2ua(dest, hash);
+
+    const sha3_512 = sha3Hasher.createHasher(64);
+    sha3_512.reset();
+    sha3_512.update(data);
+    sha3_512.finalize(dest);
 }
 
 function key_derive(shared, salt, sk, pk) {
@@ -152,10 +159,19 @@ function key_derive(shared, salt, sk, pk) {
     for (let i = 0; i < salt.length; i++) {
         shared[i] ^= salt[i];
     }
-    let hash = CryptoJS.SHA3(ua2words(shared, 32), {
-        outputLength: 256
-    });
-    return hash;
+
+    // OLD sha3 that uses keccak algo
+    // let hash = CryptoJS.SHA3(ua2words(shared, 32), {
+    //     outputLength: 256
+    // });
+    // return hash;
+
+    const hash = new Uint8Array(32);
+    const sha3_256 = sha3Hasher.createHasher(32);
+    sha3_256.reset();
+    sha3_256.update(shared);
+    sha3_256.finalize(hash);
+    return ua2words(hash, 32);
 }
 
 /**
@@ -267,12 +283,12 @@ let _encode = function (senderPriv, recipientPub, msg, iv, salt) {
 };
 
 /**
- * 
- * @param {string} senderPriv 
- * @param {string} recipientPub 
- * @param {Uint8Array} bytes 
- * @param {Uint8Array} iv 
- * @param {Uint8Array} salt 
+ *
+ * @param {string} senderPriv
+ * @param {string} recipientPub
+ * @param {Uint8Array} bytes
+ * @param {Uint8Array} iv
+ * @param {Uint8Array} salt
  */
 let _nemencode = function (senderPriv, recipientPub, bytes, iv, salt) {
     if (!senderPriv || !recipientPub || !bytes || !iv || !salt) throw new Error('Missing argument !');
@@ -322,7 +338,9 @@ let nemencrypt = function (senderPriv, recipientPub, bytes) {
     let iv = nacl.randomBytes(16);
     let salt = nacl.randomBytes(32);
 
-    let sk = convert.hexToUint8Reverse(senderPriv);
+    // OLD - no need to reverse private key
+    // let sk = convert.hexToUint8Reverse(senderPriv);
+    let sk = convert.hexToUint8(senderPriv);
     let pk = convert.hexToUint8(recipientPub);
     let shared = new Uint8Array(32);
     let r = key_derive(shared, salt, sk, pk);
@@ -341,25 +359,27 @@ let nemencrypt = function (senderPriv, recipientPub, bytes) {
 };
 
 /**
- * 
+ *
  * @param {string} recipientPrivate the recipient private key
  * @param {string} senderPublic the recipient public key
  * @param {Uint8Array} bytes the array of bytes in Uint8Array
  */
-let nemdecrypt = function (recipientPrivate, recipientPubic, bytes) {
+let nemdecrypt = function (recipientPrivate, senderPublic, bytes) {
     // Errorsp
-    if (!recipientPrivate || !recipientPubic || !bytes) throw new Error('Missing argument !');
+    if (!recipientPrivate || !senderPublic || !bytes) throw new Error('Missing argument !');
 
     // Processing
     let salt = bytes.slice(0, 32);
     let iv = bytes.slice(32, 48);
     let payload = bytes.slice(48, bytes.length);
 
-    let sk = convert.hexToUint8Reverse(recipientPrivate);
-    let pk = convert.hexToUint8(recipientPubic);
+    // OLD - no need to reverse private key
+    // let sk = convert.hexToUint8Reverse(recipientPrivate);
+    let sk = convert.hexToUint8(recipientPrivate);
+    let pk = convert.hexToUint8(senderPublic);
     let shared = new Uint8Array(32);
     let r = key_derive(shared, salt, sk, pk);
-    
+
     let encKey = r;
     let encIv = {
         iv: ua2words(iv, 16)
@@ -370,7 +390,6 @@ let nemdecrypt = function (recipientPrivate, recipientPubic, bytes) {
     };
 
     let plain = CryptoJS.AES.decrypt(encrypted, encKey, encIv);
-
 
     let result = words2ua(new Uint8Array(plain.sigBytes), plain);
 

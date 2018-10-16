@@ -1,7 +1,7 @@
 {
-  "name": "@thomas.tran/nem2-library",
+  "name": "proximax-nem2-library",
   "version": "0.9.8",
-  "description": "nem2-library-js",
+  "description": "proximax-nem2-library-js",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -17,11 +17,14 @@
     "Thomas Tran <tldinteractive@gmail.com>"
   ],
   "bugs": {
-    "url": "https://github.com/thomas-tran/nem2-library-js/issues"
+    "url": "https://github.com/proximax-storage/proximax-nem2-library-js/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thomas-tran/nem2-library-js.git"
+    "url": "git+https://github.com/proximax-storage/proximax-nem2-library-js"
+  },
+  "publishConfig": {
+    "registry": "https://nexus.internal.proximax.io/repository/npm-private/"
   },
   "dependencies": {
     "bufferutil": "^3.0.5",

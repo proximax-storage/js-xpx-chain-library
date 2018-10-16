@@ -364,29 +364,99 @@ describe('crypto tests', function() {
         // Assert:
         expect(encryptedHex).equal(expectedHex);
 	});*/
-	
-	it("Can encode decode data with sender private key and recipient public key", function() {
-        // Arrange:
-		let senderPriv = "2a91e1d5c110a8d0105aad4683f962c2a56663a3cad46666b16d243174673d90";
-        let sender = createKeyPairFromPrivateKeyString(senderPriv);
-        let recipientPriv = "2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9";
-		let recipient = createKeyPairFromPrivateKeyString(recipientPriv);
-		
-		let expectedMsg = "NEM is awesome !";
-		let msgBuffer = Buffer.from(expectedMsg);
-		let msgBytes = new Uint8Array(msgBuffer);
-		//console.log('Input bytes ' + arrayMessage);
 
-        // Act:
-		let encrypted = Crypto.nemencrypt(senderPriv, convert.uint8ToHex(recipient.publicKey.toString()), msgBytes);
-		
-		let decrypted = Crypto.nemdecrypt(recipientPriv, convert.uint8ToHex(recipient.publicKey.toString()), encrypted);
-		
-		let plainMsg = convert.ab2str(decrypted);
-		// console.log(plain);
-	    // Assert:
-        expect(plainMsg).equal(expectedMsg);
-    });
+	it('Can encode decode data with sender private key and recipient public key', () => {
+	  // Arrange:
+		const senderPriv = '2a91e1d5c110a8d0105aad4683f962c2a56663a3cad46666b16d243174673d90';
+		const recipientPriv = '2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9';
+		const recipient = createKeyPairFromPrivateKeyString(recipientPriv);
+
+		const expectedMsg = 'NEM is awesome !';
+		const msgBuffer = Buffer.from(expectedMsg);
+		const msgBytes = new Uint8Array(msgBuffer);
+
+		// Act:
+		const encrypted = Crypto.nemencrypt(senderPriv, convert.uint8ToHex(recipient.publicKey), msgBytes);
+		const decrypted = Crypto.nemdecrypt(senderPriv, convert.uint8ToHex(recipient.publicKey), encrypted);
+
+		const secureMsg = convert.ab2str(encrypted);
+		const plainMsg = convert.ab2str(decrypted);
+
+		// Assert:
+		expect(secureMsg).not.equal(expectedMsg);
+		expect(plainMsg).equal(expectedMsg);
+	});
+
+	it('Can encode decode data with receiver private key and sender public key', () => {
+		// Arrange:
+		const senderPriv = '2a91e1d5c110a8d0105aad4683f962c2a56663a3cad46666b16d243174673d90';
+		const sender = createKeyPairFromPrivateKeyString(senderPriv);
+		const recipientPriv = '2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9';
+		const recipient = createKeyPairFromPrivateKeyString(recipientPriv);
+
+		const expectedMsg = 'NEM is awesome !';
+		const msgBuffer = Buffer.from(expectedMsg);
+		const msgBytes = new Uint8Array(msgBuffer);
+		// console.log('Input bytes ' + arrayMessage);
+
+		// Act:
+		const encrypted = Crypto.nemencrypt(senderPriv, convert.uint8ToHex(recipient.publicKey), msgBytes);
+		const decrypted = Crypto.nemdecrypt(recipientPriv, convert.uint8ToHex(sender.publicKey), encrypted);
+
+		const secureMsg = convert.ab2str(encrypted);
+		const plainMsg = convert.ab2str(decrypted);
+
+		// Assert:
+		expect(secureMsg).not.equal(expectedMsg);
+		expect(plainMsg).equal(expectedMsg);
+	});
+
+	it('Error when decoding with different private key', () => {
+		// Arrange:
+		const senderPriv = '2a91e1d5c110a8d0105aad4683f962c2a56663a3cad46666b16d243174673d90';
+		const sender = createKeyPairFromPrivateKeyString(senderPriv);
+		const recipientPriv = '2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9';
+		const recipient = createKeyPairFromPrivateKeyString(recipientPriv);
+		const otherPriv = 'd19edbf7c5f4665bbb168f8bff3dc1ca85766080b10aabd60dde5d6d7e893d5b';
+
+		const msg = 'NEM is awesome !';
+		const msgBuffer = Buffer.from(msg);
+		const msgBytes = new Uint8Array(msgBuffer);
+
+		// Act:
+		const encrypted = Crypto.nemencrypt(senderPriv, convert.uint8ToHex(recipient.publicKey), msgBytes);
+		const decryptedMsg = () => {
+			const decrypted = Crypto.nemdecrypt(otherPriv, convert.uint8ToHex(sender.publicKey), encrypted);
+			return convert.ab2str(decrypted);
+		};
+
+		// Assert:
+		expect(decryptedMsg).to.satisfy(decrypted => decrypted === Error || decrypted !== msg);
+	});
+
+	it('Error when decoding with different public key', () => {
+		// Arrange:
+		const senderPriv = '2a91e1d5c110a8d0105aad4683f962c2a56663a3cad46666b16d243174673d90';
+		const recipientPriv = '2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9';
+		const recipient = createKeyPairFromPrivateKeyString(recipientPriv);
+		const otherPriv = 'd19edbf7c5f4665bbb168f8bff3dc1ca85766080b10aabd60dde5d6d7e893d5b';
+		const other = createKeyPairFromPrivateKeyString(otherPriv);
+
+		const msg = 'NEM is awesome !';
+		const msgBuffer = Buffer.from(msg);
+		const msgBytes = new Uint8Array(msgBuffer);
+
+		// Act:
+		const encrypted = Crypto.nemencrypt(senderPriv, convert.uint8ToHex(recipient.publicKey), msgBytes);
+		const decryptedMsg = () => {
+			const decrypted = Crypto.nemdecrypt(senderPriv, convert.uint8ToHex(other.publicKey), encrypted);
+			return convert.ab2str(decrypted);
+		};
+
+		// Assert:
+	  	expect(decryptedMsg).to.satisfy(decrypted => decrypted === Error || decrypted !== msg);
+	});
+
 /*
     it("Can decode message with recipient private key", function() {
         // Arrange:
