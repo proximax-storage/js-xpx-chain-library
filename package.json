@@ -64,7 +64,7 @@
       "**/*.spec.js"
     ]
   },
-  "homepage": "https://github.com/thomas-tran/nem2-library-js#readme",
+  "homepage": "https://github.com/proximax-storage/proximax-nem2-library-js#readme",
   "directories": {
     "test": "test"
   },
