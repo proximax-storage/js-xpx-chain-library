@@ -100,7 +100,7 @@ const convert = {
 
 		const output = new Uint8Array(input.length / 2);
 		for (let i = 0; i < input.length; i += 2)
-			output[output.lenght - 1 - (i / 2)] = convert.toByte(input[i], input[i + 1]);
+			output[output.length - 1 - (i / 2)] = convert.toByte(input[i], input[i + 1]);
 
 		return output;
 	},
