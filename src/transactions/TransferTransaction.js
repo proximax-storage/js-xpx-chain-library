@@ -81,7 +81,7 @@ export default class TransferTransaction extends VerifiableTransaction {
 				// Constants
 
 				// Create message
-				const bytePayload = convert.hexToUint8(convert.utf8ToHex(this.message.payload));
+				const bytePayload = convert.hexToUint8(this.message.hexEncodedPayload || convert.utf8ToHex(this.message.payload));
 				const payload = MessageBuffer.createPayloadVector(builder, bytePayload);
 				MessageBuffer.startMessageBuffer(builder);
 				MessageBuffer.addType(builder, this.message.type);

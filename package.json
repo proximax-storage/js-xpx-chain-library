@@ -1,6 +1,6 @@
 {
   "name": "proximax-nem2-library",
-  "version": "0.9.9",
+  "version": "0.9.10",
   "description": "proximax-nem2-library-js",
   "license": "Apache-2.0",
   "main": "dist/index.js",
