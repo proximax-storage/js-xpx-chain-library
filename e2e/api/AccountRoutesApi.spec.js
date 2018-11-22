@@ -42,10 +42,6 @@ describe('AccountRoutesApi', () => {
 		expect(accountInfo.account.publicKeyHeight[0]).to.not.be.undefined;
 		expect(accountInfo.account.publicKeyHeight[1]).to.not.be.undefined;
 		expect(accountInfo.account.mosaics).to.not.be.undefined;
-		expect(accountInfo.account.importanceHeight[0]).to.not.be.undefined;
-		expect(accountInfo.account.importanceHeight[1]).to.not.be.undefined;
-		expect(accountInfo.account.importance[0]).to.not.be.undefined;
-		expect(accountInfo.account.importance[1]).to.not.be.undefined;
 	};
 	/* eslint-enable */
 

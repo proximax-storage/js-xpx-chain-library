@@ -48,14 +48,12 @@ export default class AccountDTO {
 	 * @param publicKey {String}
 	 * @param publicKeyHeight {module:model/UInt64DTO}
 	 * @param mosaics {Array.<module:model/MosaicDTO>}
-	 * @param importance {module:model/UInt64DTO}
-	 * @param importanceHeight {module:model/UInt64DTO}
 	 */
 
-	constructor(address, addressHeight, publicKey, publicKeyHeight, mosaics, importance, importanceHeight) {
+	constructor(address, addressHeight, publicKey, publicKeyHeight, mosaics) {
 
 
-		this['address'] = address;this['addressHeight'] = addressHeight;this['publicKey'] = publicKey;this['publicKeyHeight'] = publicKeyHeight;this['mosaics'] = mosaics;this['importance'] = importance;this['importanceHeight'] = importanceHeight;
+		this['address'] = address;this['addressHeight'] = addressHeight;this['publicKey'] = publicKey;this['publicKeyHeight'] = publicKeyHeight;this['mosaics'] = mosaics;
 
 
 	}
@@ -87,12 +85,6 @@ export default class AccountDTO {
 			if (data.hasOwnProperty('mosaics')) {
 				obj['mosaics'] = ApiClient.convertToType(data['mosaics'], [MosaicDTO]);
 			}
-			if (data.hasOwnProperty('importance')) {
-				obj['importance'] = UInt64DTO.constructFromObject(data['importance']);
-			}
-			if (data.hasOwnProperty('importanceHeight')) {
-				obj['importanceHeight'] = UInt64DTO.constructFromObject(data['importanceHeight']);
-			}
 		}
 		return obj;
 	}
@@ -117,14 +109,6 @@ export default class AccountDTO {
 	 * @member {Array.<module:model/MosaicDTO>} mosaics
 	 */
 	mosaics = undefined;
-	/**
-	 * @member {module:model/UInt64DTO} importance
-	 */
-	importance = undefined;
-	/**
-	 * @member {module:model/UInt64DTO} importanceHeight
-	 */
-	importanceHeight = undefined;
 
 
 }
