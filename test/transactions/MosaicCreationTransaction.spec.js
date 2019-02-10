@@ -18,7 +18,7 @@ import expect from 'expect.js';
 import convert from '../../src/coders/convert';
 import MosaicCreationTransaction from '../../src/transactions/MosaicCreationTransaction';
 import deadline from '../../src/transactions/Deadline';
-import { mosaicId, generateRandomMosaicNonce } from '../../src/transactions/NamespaceMosaicId';
+import { mosaicId } from '../../src/transactions/NamespaceMosaicId';
 import uint64 from '../../src/coders/uint64';
 
 describe('MosaicCreationTransaction', () => {
@@ -28,7 +28,7 @@ describe('MosaicCreationTransaction', () => {
 	};
 
 	it('should create mosaic definition transaction', () => {
-		const nonce = generateRandomMosaicNonce();
+		const nonce = [0xE6, 0xDE, 0x84, 0xB8];
 		const mosaicCreationTransaction = {
 			deadline: deadline(),
 			duration: uint64.fromUint(10000),
@@ -48,7 +48,7 @@ describe('MosaicCreationTransaction', () => {
 
 		const transactionPayload = verifiableTransaction.signTransaction(keyPair);
 		expect(transactionPayload.payload.substring(240, transactionPayload.payload.length))
-			.to.be.equal('9B8A161CF5092390159911AEA72EBD3C070101046D6F7361696373021027000000000000');
+			.to.be.equal('8675F65ED72E4B430101040210270000');
 	});
 });
 

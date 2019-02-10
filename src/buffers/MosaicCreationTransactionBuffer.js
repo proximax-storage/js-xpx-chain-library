@@ -188,28 +188,11 @@ Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.deadlineArray = funct
 };
 
 /**
- * @param {number} index
  * @returns {number}
  */
-Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.parentId = function (index) {
+Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.mosaicNonce = function () {
 	var offset = this.bb.__offset(this.bb_pos, 18);
-	return offset ? this.bb.readUint32(this.bb.__vector(this.bb_pos + offset) + index * 4) : 0;
-};
-
-/**
- * @returns {number}
- */
-Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.parentIdLength = function () {
-	var offset = this.bb.__offset(this.bb_pos, 18);
-	return offset ? this.bb.__vector_len(this.bb_pos + offset) : 0;
-};
-
-/**
- * @returns {Uint32Array}
- */
-Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.parentIdArray = function () {
-	var offset = this.bb.__offset(this.bb_pos, 18);
-	return offset ? new Uint32Array(this.bb.bytes().buffer, this.bb.bytes().byteOffset + this.bb.__vector(this.bb_pos + offset), this.bb.__vector_len(this.bb_pos + offset)) : null;
+	return offset ? this.bb.readUint32(this.bb_pos + offset) : 0;
 };
 
 /**
@@ -240,7 +223,7 @@ Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.mosaicIdArray = funct
 /**
  * @returns {number}
  */
-Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.mosaicNameLength = function () {
+Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.numOptionalProperties = function () {
 	var offset = this.bb.__offset(this.bb_pos, 22);
 	return offset ? this.bb.readUint8(this.bb_pos + offset) : 0;
 };
@@ -248,7 +231,7 @@ Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.mosaicNameLength = fu
 /**
  * @returns {number}
  */
-Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.numOptionalProperties = function () {
+Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.flags = function () {
 	var offset = this.bb.__offset(this.bb_pos, 24);
 	return offset ? this.bb.readUint8(this.bb_pos + offset) : 0;
 };
@@ -256,7 +239,7 @@ Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.numOptionalProperties
 /**
  * @returns {number}
  */
-Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.flags = function () {
+Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.divisibility = function () {
 	var offset = this.bb.__offset(this.bb_pos, 26);
 	return offset ? this.bb.readUint8(this.bb_pos + offset) : 0;
 };
@@ -264,25 +247,8 @@ Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.flags = function () {
 /**
  * @returns {number}
  */
-Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.divisibility = function () {
-	var offset = this.bb.__offset(this.bb_pos, 28);
-	return offset ? this.bb.readUint8(this.bb_pos + offset) : 0;
-};
-
-/**
- * @param {flatbuffers.Encoding=} optionalEncoding
- * @returns {string|Uint8Array|null}
- */
-Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.mosaicName = function (optionalEncoding) {
-	var offset = this.bb.__offset(this.bb_pos, 30);
-	return offset ? this.bb.__string(this.bb_pos + offset, optionalEncoding) : null;
-};
-
-/**
- * @returns {number}
- */
 Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.indicateDuration = function () {
-	var offset = this.bb.__offset(this.bb_pos, 32);
+	var offset = this.bb.__offset(this.bb_pos, 28);
 	return offset ? this.bb.readUint8(this.bb_pos + offset) : 0;
 };
 
@@ -291,7 +257,7 @@ Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.indicateDuration = fu
  * @returns {number}
  */
 Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.duration = function (index) {
-	var offset = this.bb.__offset(this.bb_pos, 34);
+	var offset = this.bb.__offset(this.bb_pos, 30);
 	return offset ? this.bb.readUint32(this.bb.__vector(this.bb_pos + offset) + index * 4) : 0;
 };
 
@@ -299,7 +265,7 @@ Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.duration = function (
  * @returns {number}
  */
 Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.durationLength = function () {
-	var offset = this.bb.__offset(this.bb_pos, 34);
+	var offset = this.bb.__offset(this.bb_pos, 30);
 	return offset ? this.bb.__vector_len(this.bb_pos + offset) : 0;
 };
 
@@ -307,7 +273,7 @@ Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.durationLength = func
  * @returns {Uint32Array}
  */
 Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.durationArray = function () {
-	var offset = this.bb.__offset(this.bb_pos, 34);
+	var offset = this.bb.__offset(this.bb_pos, 30);
 	return offset ? new Uint32Array(this.bb.bytes().buffer, this.bb.bytes().byteOffset + this.bb.__vector(this.bb_pos + offset), this.bb.__vector_len(this.bb_pos + offset)) : null;
 };
 
@@ -315,7 +281,7 @@ Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.durationArray = funct
  * @param {flatbuffers.Builder} builder
  */
 Catapult.Buffers.MosaicCreationTransactionBuffer.startMosaicCreationTransactionBuffer = function (builder) {
-	builder.startObject(16);
+	 builder.startObject(14);
 };
 
 /**
@@ -323,7 +289,7 @@ Catapult.Buffers.MosaicCreationTransactionBuffer.startMosaicCreationTransactionB
  * @param {number} size
  */
 Catapult.Buffers.MosaicCreationTransactionBuffer.addSize = function (builder, size) {
-	builder.addFieldInt32(0, size, 0);
+	 builder.addFieldInt32(0, size, 0);
 };
 
 /**
@@ -331,7 +297,7 @@ Catapult.Buffers.MosaicCreationTransactionBuffer.addSize = function (builder, si
  * @param {flatbuffers.Offset} signatureOffset
  */
 Catapult.Buffers.MosaicCreationTransactionBuffer.addSignature = function (builder, signatureOffset) {
-	builder.addFieldOffset(1, signatureOffset, 0);
+	 builder.addFieldOffset(1, signatureOffset, 0);
 };
 
 /**
@@ -460,31 +426,10 @@ Catapult.Buffers.MosaicCreationTransactionBuffer.startDeadlineVector = function 
 
 /**
  * @param {flatbuffers.Builder} builder
- * @param {flatbuffers.Offset} parentIdOffset
+ * @param {number} mosaicNonce
  */
-Catapult.Buffers.MosaicCreationTransactionBuffer.addParentId = function (builder, parentIdOffset) {
-	builder.addFieldOffset(7, parentIdOffset, 0);
-};
-
-/**
- * @param {flatbuffers.Builder} builder
- * @param {Array.<number>} data
- * @returns {flatbuffers.Offset}
- */
-Catapult.Buffers.MosaicCreationTransactionBuffer.createParentIdVector = function (builder, data) {
-	builder.startVector(4, data.length, 4);
-	for (var i = data.length - 1; i >= 0; i--) {
-		builder.addInt32(data[i]);
-	}
-	return builder.endVector();
-};
-
-/**
- * @param {flatbuffers.Builder} builder
- * @param {number} numElems
- */
-Catapult.Buffers.MosaicCreationTransactionBuffer.startParentIdVector = function (builder, numElems) {
-	builder.startVector(4, numElems, 4);
+Catapult.Buffers.MosaicCreationTransactionBuffer.addMosaicNonce = function (builder, mosaicNonce) {
+	builder.addFieldInt32(7, mosaicNonce, 0);
 };
 
 /**
@@ -518,18 +463,10 @@ Catapult.Buffers.MosaicCreationTransactionBuffer.startMosaicIdVector = function 
 
 /**
  * @param {flatbuffers.Builder} builder
- * @param {number} mosaicNameLength
- */
-Catapult.Buffers.MosaicCreationTransactionBuffer.addMosaicNameLength = function (builder, mosaicNameLength) {
-	builder.addFieldInt8(9, mosaicNameLength, 0);
-};
-
-/**
- * @param {flatbuffers.Builder} builder
  * @param {number} numOptionalProperties
  */
 Catapult.Buffers.MosaicCreationTransactionBuffer.addNumOptionalProperties = function (builder, numOptionalProperties) {
-	builder.addFieldInt8(10, numOptionalProperties, 0);
+	builder.addFieldInt8(9, numOptionalProperties, 0);
 };
 
 /**
@@ -537,7 +474,7 @@ Catapult.Buffers.MosaicCreationTransactionBuffer.addNumOptionalProperties = func
  * @param {number} flags
  */
 Catapult.Buffers.MosaicCreationTransactionBuffer.addFlags = function (builder, flags) {
-	builder.addFieldInt8(11, flags, 0);
+	builder.addFieldInt8(10, flags, 0);
 };
 
 /**
@@ -545,15 +482,7 @@ Catapult.Buffers.MosaicCreationTransactionBuffer.addFlags = function (builder, f
  * @param {number} divisibility
  */
 Catapult.Buffers.MosaicCreationTransactionBuffer.addDivisibility = function (builder, divisibility) {
-	builder.addFieldInt8(12, divisibility, 0);
-};
-
-/**
- * @param {flatbuffers.Builder} builder
- * @param {flatbuffers.Offset} mosaicNameOffset
- */
-Catapult.Buffers.MosaicCreationTransactionBuffer.addMosaicName = function (builder, mosaicNameOffset) {
-	builder.addFieldOffset(13, mosaicNameOffset, 0);
+	builder.addFieldInt8(11, divisibility, 0);
 };
 
 /**
@@ -561,7 +490,7 @@ Catapult.Buffers.MosaicCreationTransactionBuffer.addMosaicName = function (build
  * @param {number} indicateDuration
  */
 Catapult.Buffers.MosaicCreationTransactionBuffer.addIndicateDuration = function (builder, indicateDuration) {
-	builder.addFieldInt8(14, indicateDuration, 0);
+	builder.addFieldInt8(12, indicateDuration, 0);
 };
 
 /**
@@ -569,7 +498,7 @@ Catapult.Buffers.MosaicCreationTransactionBuffer.addIndicateDuration = function 
  * @param {flatbuffers.Offset} durationOffset
  */
 Catapult.Buffers.MosaicCreationTransactionBuffer.addDuration = function (builder, durationOffset) {
-	builder.addFieldOffset(15, durationOffset, 0);
+	builder.addFieldOffset(13, durationOffset, 0);
 };
 
 /**
