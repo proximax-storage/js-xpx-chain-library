@@ -17,8 +17,7 @@
 import expect from 'expect.js';
 import MosaicSupplyChangeTransaction from '../../src/transactions/MosaicSupplyChangeTransaction';
 import deadline from '../../src/transactions/Deadline';
-import { mosaicId } from '../../src/transactions/NamespaceMosaicId';
-import uint64 from "../../src/coders/uint64";
+import uint64 from '../../src/coders/uint64';
 
 describe('MosaicSupplyChangeTransaction', () => {
 	const keyPair = {
@@ -29,11 +28,10 @@ describe('MosaicSupplyChangeTransaction', () => {
 	it('should create mosaic supply change transaction', () => {
 		const mosaicSupplyChangeTransaction = {
 			deadline: deadline(),
-			mosaicId: mosaicId('sname', 'mosaics3'),
-			direction: 1, // direction 1 add direction 0 delete
-			delta: uint64.fromUint(10),
+			mosaicId: [0xC0AFC518, 0x3AD842A8],
+			direction: 1, // 1=add, 0=delete
+			delta: uint64.fromUint(10)
 		};
-
 
 		const transaction = new MosaicSupplyChangeTransaction.Builder()
 			.addDeadline(mosaicSupplyChangeTransaction.deadline)
@@ -44,6 +42,6 @@ describe('MosaicSupplyChangeTransaction', () => {
 
 		const transactionPayload = transaction.signTransaction(keyPair);
 		expect(transactionPayload.payload.substring(240, transactionPayload.payload.length))
-			.to.be.equal('8869746E9B1A7057010A00000000000000');
+			.to.be.equal('18C5AFC0A842D83A010A00000000000000');
 	});
 });

@@ -15,9 +15,14 @@
  */
 
 import IdGenerator from '../coders/idGenerator';
+import nacl from '../crypto/nacl_catapult';
 
-export function mosaicId(namespaceName, mosaicName) {
-	return IdGenerator.generateMosaicId(`${namespaceName}:${mosaicName}`);
+export function mosaicId(nonce, ownerPublicId) {
+	return IdGenerator.generateMosaicId(nonce, ownerPublicId);
+}
+
+export function generateRandomMosaicNonce() {
+	return nacl.randomBytes(4);
 }
 
 export function namespaceId(namespaceName) {

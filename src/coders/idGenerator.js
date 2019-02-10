@@ -16,33 +16,26 @@
 
 import { sha3_256 } from 'js-sha3';
 
+import uint64 from '../coders/uint64';
+import convert from '../coders/convert';
+
 const constants = {
 	namespace_base_id: [0, 0],
 	namespace_max_depth: 3,
 	name_pattern: /^[a-z0-9][a-z0-9-_]*$/
 };
 
-function generateId(parentId, name) {
+const generateNamespaceId = (parentId, name) => {
 	const hash = sha3_256.create();
 	hash.update(Uint32Array.from(parentId).buffer);
 	hash.update(name);
 	const result = new Uint32Array(hash.arrayBuffer());
-	return [result[0], result[1]];
+	// right zero-filling required to keep unsigned number representation
+	return [result[0], (result[1] | 0x80000000) >>> 0];
 }
 
 function throwInvalidFqn(reason, name) {
 	throw Error(`fully qualified id is invalid due to ${reason} (${name})`);
-}
-
-function findMosaicSeparatorIndex(name) {
-	const mosaicSeparatorIndex = name.lastIndexOf(':');
-	if (0 > mosaicSeparatorIndex)
-		throwInvalidFqn('missing mosaic', name);
-
-	if (0 === mosaicSeparatorIndex)
-		throwInvalidFqn('empty part', name);
-
-	return mosaicSeparatorIndex;
 }
 
 function extractPartName(name, start, size) {
@@ -78,24 +71,17 @@ function split(name, processor) {
 /** @exports coders/idGenerator */
 const idGenerator = {
 	/**
-	 * Generates a mosaic id given a unified mosaic name.
-	 * @param {string} name The unified mosaic name.
+	 * Generates a mosaic id given a nonce and a public id.
+	 * @param {object} nonce The mosaic nonce.
+	 * @param {object} name The public id.
 	 * @returns {module:coders/uint64~uint64} The mosaic id.
 	 */
-	generateMosaicId: name => {
-		if (0 >= name.length)
-			throwInvalidFqn('having zero length', name);
-
-		const mosaicSeparatorIndex = findMosaicSeparatorIndex(name);
-
-		const namespaceName = name.substr(0, mosaicSeparatorIndex);
-		const namespacePath = idGenerator.generateNamespacePath(namespaceName);
-		const namespaceId = namespacePath[namespacePath.length - 1];
-
-		return generateId(
-			namespaceId,
-			extractPartName(name, mosaicSeparatorIndex + 1, name.length - mosaicSeparatorIndex - 1)
-		);
+	generateMosaicId: (nonce, ownerPublicId) => {
+		const hash = sha3_256.create();
+		hash.update(nonce);
+		hash.update(ownerPublicId);
+		const result = new Uint32Array(hash.arrayBuffer());
+		return [result[0], result[1] & 0x7FFFFFFF];
 	},
 
 	/**
@@ -110,11 +96,11 @@ const idGenerator = {
 		let namespaceId = constants.namespace_base_id;
 		const path = [];
 		const start = split(name, (substringStart, size) => {
-			namespaceId = generateId(namespaceId, extractPartName(name, substringStart, size));
+			namespaceId = generateNamespaceId(namespaceId, extractPartName(name, substringStart, size));
 			append(path, namespaceId, name);
 		});
 
-		namespaceId = generateId(namespaceId, extractPartName(name, start, name.length - start));
+		namespaceId = generateNamespaceId(namespaceId, extractPartName(name, start, name.length - start));
 		append(path, namespaceId, name);
 		return path;
 	}
