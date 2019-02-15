@@ -19,54 +19,55 @@ import ApiClient from '../ApiClient';
 
 
 /**
-* The Addresses model module.
-* @module model/Addresses
+* The AccountPropertiesMetaDTO model module.
+* @module model/AccountPropertiesMetaDTO
 * @version 1.0.11
 */
-export default class Addresses {
+export default class AccountPropertiesMetaDTO {
     /**
-    * Constructs a new <code>Addresses</code>.
-    * @alias module:model/Addresses
+    * Constructs a new <code>AccountPropertiesMetaDTO</code>.
+    * @alias module:model/AccountPropertiesMetaDTO
     * @class
+    * @param id {String} 
     */
 
-    constructor() {
+    constructor(id) {
         
 
         
         
 
-        
+        this['id'] = id;
 
         
     }
 
     /**
-    * Constructs a <code>Addresses</code> from a plain JavaScript object, optionally creating a new instance.
+    * Constructs a <code>AccountPropertiesMetaDTO</code> from a plain JavaScript object, optionally creating a new instance.
     * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
     * @param {Object} data The plain JavaScript object bearing properties of interest.
-    * @param {module:model/Addresses} obj Optional instance to populate.
-    * @return {module:model/Addresses} The populated <code>Addresses</code> instance.
+    * @param {module:model/AccountPropertiesMetaDTO} obj Optional instance to populate.
+    * @return {module:model/AccountPropertiesMetaDTO} The populated <code>AccountPropertiesMetaDTO</code> instance.
     */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new Addresses();
+            obj = obj || new AccountPropertiesMetaDTO();
 
             
             
             
 
-            if (data.hasOwnProperty('addresses')) {
-                obj['addresses'] = ApiClient.convertToType(data['addresses'], ['String']);
+            if (data.hasOwnProperty('id')) {
+                obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
         }
         return obj;
     }
 
     /**
-    * @member {Array.<String>} addresses
+    * @member {String} id
     */
-    addresses = undefined;
+    id = undefined;
 
 
 
