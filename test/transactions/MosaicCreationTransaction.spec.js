@@ -31,9 +31,8 @@ describe('MosaicCreationTransaction', () => {
 			deadline: deadline(),
 			duration: uint64.fromUint(10000),
 			divisibility: 4,
-			parentId: namespaceId('sname'),
-			mosaicId: mosaicId('sname','mosaics'),
-			mosaicName: 'mosaics'
+			mosaicNonce: uint64.fromUint(1),
+			mosaicId: uint64.fromUint(1)
 		};
 
 		const verifiableTransaction = new MosaicCreationTransaction.Builder()
@@ -41,14 +40,13 @@ describe('MosaicCreationTransaction', () => {
 			.addSupplyMutable()
 			.addDivisibility(mosaicCreationTransaction.divisibility)
 			.addDuration(mosaicCreationTransaction.duration)
-			.addParentId(mosaicCreationTransaction.parentId)
+			.addNonce(mosaicCreationTransaction.mosaicNonce)
 			.addMosaicId(mosaicCreationTransaction.mosaicId)
-			.addMosaicName(mosaicCreationTransaction.mosaicName)
 			.build();
 
 		const transactionPayload = verifiableTransaction.signTransaction(keyPair);
 		expect(transactionPayload.payload.substring(240, transactionPayload.payload.length))
-			.to.be.equal('9B8A161CF5092390159911AEA72EBD3C070101046D6F7361696373021027000000000000');
+			.to.be.equal('010000000000000001000000000000000001010400021027000000000000');
 	});
 });
 
