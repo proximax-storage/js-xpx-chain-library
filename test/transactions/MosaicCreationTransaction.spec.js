@@ -15,10 +15,11 @@
  */
 
 import expect from 'expect.js';
+import convert from '../../src/coders/convert';
 import MosaicCreationTransaction from '../../src/transactions/MosaicCreationTransaction';
 import deadline from '../../src/transactions/Deadline';
-import { mosaicId, namespaceId } from '../../src/transactions/NamespaceMosaicId';
-import uint64 from "../../src/coders/uint64";
+import { mosaicId } from '../../src/transactions/NamespaceMosaicId';
+import uint64 from '../../src/coders/uint64';
 
 describe('MosaicCreationTransaction', () => {
 	const keyPair = {
@@ -26,13 +27,14 @@ describe('MosaicCreationTransaction', () => {
 		privateKey: '041e2ce90c31cd65620ed16ab7a5a485e5b335d7e61c75cd9b3a2fed3e091728'
 	};
 
-	it('should create mosaic definition creation transaction', () => {
+	it('should create mosaic definition transaction', () => {
+		const nonce = [0xE6, 0xDE, 0x84, 0xB8];
 		const mosaicCreationTransaction = {
 			deadline: deadline(),
 			duration: uint64.fromUint(10000),
 			divisibility: 4,
-			mosaicNonce: uint64.fromUint(1),
-			mosaicId: uint64.fromUint(1)
+			nonce,
+			mosaicId: mosaicId(nonce, convert.hexToUint8(keyPair.publicKey))
 		};
 
 		const verifiableTransaction = new MosaicCreationTransaction.Builder()
@@ -40,13 +42,13 @@ describe('MosaicCreationTransaction', () => {
 			.addSupplyMutable()
 			.addDivisibility(mosaicCreationTransaction.divisibility)
 			.addDuration(mosaicCreationTransaction.duration)
-			.addNonce(mosaicCreationTransaction.mosaicNonce)
+			.addNonce(mosaicCreationTransaction.nonce)
 			.addMosaicId(mosaicCreationTransaction.mosaicId)
 			.build();
 
 		const transactionPayload = verifiableTransaction.signTransaction(keyPair);
 		expect(transactionPayload.payload.substring(240, transactionPayload.payload.length))
-			.to.be.equal('010000000000000001000000000000000001010400021027000000000000');
+			.to.be.equal('8675F65ED72E4B430101040210270000');
 	});
 });
 
