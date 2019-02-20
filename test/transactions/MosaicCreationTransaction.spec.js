@@ -28,7 +28,7 @@ describe('MosaicCreationTransaction', () => {
 	};
 
 	it('should create mosaic definition transaction', () => {
-		const nonce = [0xE6, 0xDE, 0x84, 0xB8];
+		const nonce = new Uint8Array([0xE6, 0xDE, 0x84, 0xB8]);
 		const mosaicCreationTransaction = {
 			deadline: deadline(),
 			duration: uint64.fromUint(10000),
@@ -47,8 +47,8 @@ describe('MosaicCreationTransaction', () => {
 			.build();
 
 		const transactionPayload = verifiableTransaction.signTransaction(keyPair);
+
 		expect(transactionPayload.payload.substring(240, transactionPayload.payload.length))
-			.to.be.equal('8675F65ED72E4B430101040210270000');
+			.to.be.equal('E6DE84B88675F65ED72E4B43010104021027000000000000');
 	});
 });
-

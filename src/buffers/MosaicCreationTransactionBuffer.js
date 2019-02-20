@@ -188,11 +188,28 @@ Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.deadlineArray = funct
 };
 
 /**
+ * @param {number} index
  * @returns {number}
  */
-Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.mosaicNonce = function () {
+Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.nonce = function (index) {
 	var offset = this.bb.__offset(this.bb_pos, 18);
-	return offset ? this.bb.readUint32(this.bb_pos + offset) : 0;
+	return offset ? this.bb.readUint8(this.bb.__vector(this.bb_pos + offset) + index) : 0;
+};
+
+/**
+ * @returns {number}
+ */
+Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.nonceLength = function () {
+	var offset = this.bb.__offset(this.bb_pos, 18);
+	return offset ? this.bb.__vector_len(this.bb_pos + offset) : 0;
+};
+
+/**
+ * @returns {Uint8Array}
+ */
+Catapult.Buffers.MosaicCreationTransactionBuffer.prototype.nonceArray = function () {
+	var offset = this.bb.__offset(this.bb_pos, 18);
+	return offset ? new Uint8Array(this.bb.bytes().buffer, this.bb.bytes().byteOffset + this.bb.__vector(this.bb_pos + offset), this.bb.__vector_len(this.bb_pos + offset)) : null;
 };
 
 /**
@@ -426,10 +443,32 @@ Catapult.Buffers.MosaicCreationTransactionBuffer.startDeadlineVector = function 
 
 /**
  * @param {flatbuffers.Builder} builder
- * @param {number} mosaicNonce
+ * @param {number} nonce
  */
-Catapult.Buffers.MosaicCreationTransactionBuffer.addMosaicNonce = function (builder, mosaicNonce) {
-	builder.addFieldInt32(7, mosaicNonce, 0);
+Catapult.Buffers.MosaicCreationTransactionBuffer.addNonce = function (builder, nonceOffset) {
+
+	builder.addFieldOffset(7, nonceOffset, 0);
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {Array.<number>} data
+ * @returns {flatbuffers.Offset}
+ */
+Catapult.Buffers.MosaicCreationTransactionBuffer.createNonceVector = function (builder, data) {
+	builder.startVector(1, data.length, 1);
+	for (var i = data.length - 1; i >= 0; i--) {
+		builder.addInt8(data[i]);
+	}
+	return builder.endVector();
+};
+
+/**
+ * @param {flatbuffers.Builder} builder
+ * @param {number} numElems
+ */
+Catapult.Buffers.MosaicCreationTransactionBuffer.startNonceVector = function (builder, numElems) {
+	builder.startVector(1, numElems, 1);
 };
 
 /**

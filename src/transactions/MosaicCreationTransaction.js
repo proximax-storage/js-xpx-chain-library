@@ -51,8 +51,8 @@ export default class MosaicCreationTransaction extends VerifiableTransaction {
 				return this;
 			}
 
-			addNonce(mosaicNonce) {
-				this.nonce = mosaicNonce;
+			addNonce(nonce) {
+				this.nonce = nonce;
 				return this;
 			}
 
@@ -103,6 +103,8 @@ export default class MosaicCreationTransaction extends VerifiableTransaction {
 					.createDeadlineVector(builder, this.deadline);
 				const feeVector = MosaicCreationTransactionBuffer
 					.createFeeVector(builder, this.fee);
+				const nonceVector = MosaicCreationTransactionBuffer
+					.createNonceVector(builder, this.nonce);
 				const mosaicIdVector = MosaicCreationTransactionBuffer
 					.createMosaicIdVector(builder, this.mosaicId);
 
@@ -110,14 +112,14 @@ export default class MosaicCreationTransaction extends VerifiableTransaction {
 					.createDurationVector(builder, this.duration);
 
 				MosaicCreationTransactionBuffer.startMosaicCreationTransactionBuffer(builder);
-				MosaicCreationTransactionBuffer.addSize(builder, 144);
+				MosaicCreationTransactionBuffer.addSize(builder, 232);
 				MosaicCreationTransactionBuffer.addSignature(builder, signatureVector);
 				MosaicCreationTransactionBuffer.addSigner(builder, signerVector);
 				MosaicCreationTransactionBuffer.addVersion(builder, this.version);
 				MosaicCreationTransactionBuffer.addType(builder, this.type);
 				MosaicCreationTransactionBuffer.addFee(builder, feeVector);
 				MosaicCreationTransactionBuffer.addDeadline(builder, deadlineVector);
-				MosaicCreationTransactionBuffer.addMosaicNonce(builder, this.nonce);
+				MosaicCreationTransactionBuffer.addNonce(builder, nonceVector);
 				MosaicCreationTransactionBuffer.addMosaicId(builder, mosaicIdVector);
 				MosaicCreationTransactionBuffer.addNumOptionalProperties(builder, 1);
 				MosaicCreationTransactionBuffer.addFlags(builder, this.flags);
