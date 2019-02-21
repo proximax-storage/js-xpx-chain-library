@@ -31,7 +31,7 @@ export default class SecretProofTransaction extends VerifiableTransaction {
 		class Builder {
 			constructor() {
 				this.fee = [0, 0];
-				this.version = 36867;
+				this.version = 36865;
 				this.type = 0x434C;
 			}
 
