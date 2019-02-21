@@ -31,6 +31,7 @@ export * from './coders/uint64';
 export * from './transactions/AggregateTransaction';
 export * from './transactions/CosignatureTransaction';
 export * from './transactions/HashLockTransaction';
+export * from './transactions/MosaicAliasTransaction';
 export * from './transactions/MosaicCreationTransaction';
 export * from './transactions/MosaicSupplyChangeTransaction';
 export * from './transactions/MultisigModificationTransaction';

@@ -30,8 +30,8 @@ export default class MosaicAliasTransaction extends VerifiableTransaction {
 		class Builder {
 			constructor() {
 				this.fee = [0, 0];
-				this.version = 36867;
-				this.type = 0x424d;
+				this.version = 36865;
+				this.type = 0x434E;
 			}
 
 			addFee(fee) {
@@ -82,13 +82,13 @@ export default class MosaicAliasTransaction extends VerifiableTransaction {
 				const feeVector = MosaicAliasTransactionBuffer
 					.createFeeVector(builder, this.fee);
                 const namespaceIdVector = MosaicAliasTransactionBuffer
-                    .createFeeVector(builder, this.namespaceId);
+                    .createNamespaceIdVector(builder, this.namespaceId);
 				const mosaicIdVector = MosaicAliasTransactionBuffer
-					.createFeeVector(builder, this.mosaicId);
+					.createMosaicIdVector(builder, this.mosaicId);
 
 
 				MosaicAliasTransactionBuffer.startMosaicAliasTransactionBuffer(builder);
-				MosaicAliasTransactionBuffer.addSize(builder, 212);
+				MosaicAliasTransactionBuffer.addSize(builder, 137);
 				MosaicAliasTransactionBuffer.addSignature(builder, signatureVector);
 				MosaicAliasTransactionBuffer.addSigner(builder, signerVector);
 				MosaicAliasTransactionBuffer.addVersion(builder, this.version);
