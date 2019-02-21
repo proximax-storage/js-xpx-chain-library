@@ -112,7 +112,7 @@ export default class MosaicCreationTransaction extends VerifiableTransaction {
 					.createDurationVector(builder, this.duration);
 
 				MosaicCreationTransactionBuffer.startMosaicCreationTransactionBuffer(builder);
-				MosaicCreationTransactionBuffer.addSize(builder, 232);
+				MosaicCreationTransactionBuffer.addSize(builder, 144);
 				MosaicCreationTransactionBuffer.addSignature(builder, signatureVector);
 				MosaicCreationTransactionBuffer.addSigner(builder, signerVector);
 				MosaicCreationTransactionBuffer.addVersion(builder, this.version);
