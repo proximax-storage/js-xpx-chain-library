@@ -17,11 +17,11 @@
 import { array, Schema, TypeSize, ubyte, uint, ushort } from './Schema';
 
 /**
- * @module schema/MosaicAliasTransactionSchema
+ * @module schema/AddressAliasTransactionSchema
  */
 
 /**
- * Mosaic alias transaction schema
+ * Address alias transaction schema
  * @const {module:schema/Schema}
  */
 export default new Schema([
@@ -34,5 +34,5 @@ export default new Schema([
 	array('deadline', TypeSize.INT),
 	ubyte('actionType'),
 	array('namespaceId', TypeSize.INT),
-	array('mosaicId', TypeSize.INT)
+	array('address', TypeSize.BYTE)
 ]);

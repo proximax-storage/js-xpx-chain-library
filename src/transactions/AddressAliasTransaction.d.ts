@@ -14,25 +14,29 @@
  * limitations under the License.
  */
 
-import { array, Schema, TypeSize, ubyte, uint, ushort } from './Schema';
+import {VerifiableTransaction} from "./VerifiableTransaction";
 
-/**
- * @module schema/MosaicAliasTransactionSchema
- */
+export declare class AddressAliasTransaction extends VerifiableTransaction {
+}
 
-/**
- * Mosaic alias transaction schema
- * @const {module:schema/Schema}
- */
-export default new Schema([
-	uint('size'),
-	array('signature'),
-	array('signer'),
-	ushort('version'),
-	ushort('type'),
-	array('fee', TypeSize.INT),
-	array('deadline', TypeSize.INT),
-	ubyte('actionType'),
-	array('namespaceId', TypeSize.INT),
-	array('mosaicId', TypeSize.INT)
-]);
+export declare module AddressAliasTransaction {
+    class Builder {
+
+        addFee(fee): Builder;
+
+        addVersion(version): Builder;
+
+        addType(type): Builder;
+
+        addDeadline(deadline): Builder;
+
+        addActionType(direction): Builder;
+
+        addNamespaceId(namespaceId): Builder;
+
+        addAddress(address): Builder;
+
+        build(): AddressAliasTransaction;
+
+    }
+}

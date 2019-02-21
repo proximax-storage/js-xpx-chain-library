@@ -15,33 +15,34 @@
  */
 
 import expect from 'expect.js';
-import MosaicAliasTransaction from '../../src/transactions/MosaicAliasTransaction';
+import address from '../../src/coders/address';
+import AddressAliasTransaction from '../../src/transactions/AddressAliasTransaction';
 import deadline from '../../src/transactions/Deadline';
-import uint64 from '../../src/coders/uint64';
 
-describe('MosaicAliasTransaction', () => {
+describe('AddressAliasTransaction', () => {
 	const keyPair = {
 		publicKey: '9a49366406aca952b88badf5f1e9be6ce4968141035a60be503273ea65456b24',
 		privateKey: '041e2ce90c31cd65620ed16ab7a5a485e5b335d7e61c75cd9b3a2fed3e091728'
 	};
 
-	it('should create mosaic alias transaction', () => {
-		const mosaicAliasTransaction = {
+	it('should create address alias transaction', () => {
+		const addressAliasTransaction = {
 			deadline: deadline(),
 			actionType: 0, // 0=Link, 1=Unlink
 			namespaceId: [0xBA651B4F, 0xB1497F5F],
-			mosaicId: [0xC0AFC518, 0x3AD842A8]
+			address: address.addressToString(address.publicKeyToAddress(keyPair.publicKey, 0x90))
 		};
- 
-		const transaction = new MosaicAliasTransaction.Builder()
-			.addDeadline(mosaicAliasTransaction.deadline)
-			.addActionType(mosaicAliasTransaction.actionType)
-			.addNamespaceId(mosaicAliasTransaction.namespaceId)
-			.addMosaicId(mosaicAliasTransaction.mosaicId)
+
+		const transaction = new AddressAliasTransaction.Builder()
+			.addDeadline(addressAliasTransaction.deadline)
+			.addActionType(addressAliasTransaction.actionType)
+			.addNamespaceId(addressAliasTransaction.namespaceId)
+			.addAddress(addressAliasTransaction.address)
 			.build();
 
 		const transactionPayload = transaction.signTransaction(keyPair);
+		console.log(transactionPayload);
 		expect(transactionPayload.payload.substring(240, transactionPayload.payload.length))
-			.to.be.equal('004F1B65BA5F7F49B118C5AFC0A842D83A');
+			.to.be.equal('004F1B65BA5F7F49B1907D96D592DE9CB19B6C60905DFA7A5B8B231C9A71323EAF6E');
 	});
 });

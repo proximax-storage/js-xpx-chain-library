@@ -105,14 +105,6 @@ export default class MosaicAliasTransaction extends VerifiableTransaction {
 
                 const bytes = builder.asUint8Array();
 
-                //XXX
-                //XXX Size of buffer must be changed to correct size!
-                //XXX
-                console.log("BYTES LENGTH: ", bytes.length);
-                //XXX
-                //XXX Size of buffer must be changed to correct size!
-                //XXX
-
 				return new MosaicAliasTransaction(bytes, MosaicAliasTransactionSchema);
 			}
 		}
