@@ -13,20 +13,21 @@
 
 
 import ApiClient from '../ApiClient';
+import MerklePathItem from './MerklePathItem';
 
 
 
 
 
 /**
-* The Addresses model module.
-* @module model/Addresses
+* The MerkleProofInfoPayload model module.
+* @module model/MerkleProofInfoPayload
 * @version 1.0.11
 */
-export default class Addresses {
+export default class MerkleProofInfoPayload {
     /**
-    * Constructs a new <code>Addresses</code>.
-    * @alias module:model/Addresses
+    * Constructs a new <code>MerkleProofInfoPayload</code>.
+    * @alias module:model/MerkleProofInfoPayload
     * @class
     */
 
@@ -42,31 +43,31 @@ export default class Addresses {
     }
 
     /**
-    * Constructs a <code>Addresses</code> from a plain JavaScript object, optionally creating a new instance.
+    * Constructs a <code>MerkleProofInfoPayload</code> from a plain JavaScript object, optionally creating a new instance.
     * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
     * @param {Object} data The plain JavaScript object bearing properties of interest.
-    * @param {module:model/Addresses} obj Optional instance to populate.
-    * @return {module:model/Addresses} The populated <code>Addresses</code> instance.
+    * @param {module:model/MerkleProofInfoPayload} obj Optional instance to populate.
+    * @return {module:model/MerkleProofInfoPayload} The populated <code>MerkleProofInfoPayload</code> instance.
     */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new Addresses();
+            obj = obj || new MerkleProofInfoPayload();
 
             
             
             
 
-            if (data.hasOwnProperty('addresses')) {
-                obj['addresses'] = ApiClient.convertToType(data['addresses'], ['String']);
+            if (data.hasOwnProperty('merklePath')) {
+                obj['merklePath'] = ApiClient.convertToType(data['merklePath'], [MerklePathItem]);
             }
         }
         return obj;
     }
 
     /**
-    * @member {Array.<String>} addresses
+    * @member {Array.<module:model/MerklePathItem>} merklePath
     */
-    addresses = undefined;
+    merklePath = undefined;
 
 
 
