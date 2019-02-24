@@ -41,7 +41,6 @@ describe('AddressAliasTransaction', () => {
 			.build();
 
 		const transactionPayload = transaction.signTransaction(keyPair);
-		console.log(transactionPayload);
 		expect(transactionPayload.payload.substring(240, transactionPayload.payload.length))
 			.to.be.equal('004F1B65BA5F7F49B1907D96D592DE9CB19B6C60905DFA7A5B8B231C9A71323EAF6E');
 	});
