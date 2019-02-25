@@ -75,6 +75,8 @@ import CosignatureTransaction from './transactions/CosignatureTransaction';
 import AggregateTransaction from './transactions/AggregateTransaction';
 import HashLockTransaction from './transactions/HashLockTransaction';
 import deadline from './transactions/Deadline';
+import AddressAliasTransaction from './transactions/AddressAliasTransaction';
+import MosaicAliasTransaction from './transactions/MosaicAliasTransaction';
 import MosaicCreationTransaction from './transactions/MosaicCreationTransaction';
 import MosaicSupplyChangeTransaction from './transactions/MosaicSupplyChangeTransaction';
 import MultisigModificationTransaction from './transactions/MultisigModificationTransaction';
@@ -404,6 +406,16 @@ export {
 	 * @property {module:transactions/HashLockTransaction}
 	 */
 		HashLockTransaction,
+
+	/**
+	 * @property {module:transactions/AddressAliasTransaction}
+	 */
+		AddressAliasTransaction,
+
+	/**
+	 * @property {module:transactions/MosaicAliasTransaction}
+	 */
+		MosaicAliasTransaction,
 
 	/**
 	 * @property {module:transactions/MosaicCreationTransaction}
