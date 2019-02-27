@@ -71,6 +71,9 @@ import PartialTransactionsListener from './listeners/PartialTransactionsListener
 import TransactionStatusListener from './listeners/TransactionStatusListener';
 import UnconfirmedTransactionsListener from './listeners/UnconfirmedTransactionsListener';
 import Schema from './schema/Schema';
+import AccountPropertiesAddressTransaction from './transactions/AccountPropertiesAddressTransaction';
+import AccountPropertiesMosaicTransaction from './transactions/AccountPropertiesMosaicTransaction';
+import AccountPropertiesEntityTypeTransaction from './transactions/AccountPropertiesEntityTypeTransaction';
 import CosignatureTransaction from './transactions/CosignatureTransaction';
 import AggregateTransaction from './transactions/AggregateTransaction';
 import HashLockTransaction from './transactions/HashLockTransaction';
@@ -386,6 +389,20 @@ export {
 	 * @property {module:schema/Schema}
 	 */
 		Schema,
+	/**
+	 * @property {module:transactions/AccountPropertiesAddressTransaction}
+	 */
+	AccountPropertiesAddressTransaction,
+
+	/**
+	 * @property {module:transactions/AccountPropertiesMosaicTransaction}
+	 */
+	AccountPropertiesMosaicTransaction,
+
+	/**
+	 * @property {module:transactions/AccountPropertiesEntityTypeTransaction}
+	 */
+	AccountPropertiesEntityTypeTransaction,
 
 	/**
 	 * @property {module:transactions/CosignatureTransaction}
