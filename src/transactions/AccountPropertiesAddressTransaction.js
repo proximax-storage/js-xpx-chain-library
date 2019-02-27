@@ -20,13 +20,13 @@
 import VerifiableTransaction from './VerifiableTransaction';
 import AccountPropertiesAddressModificationTransactionSchema from '../schema/AccountPropertiesAddressModificationTransactionSchema';
 import AccountPropertiesAddressTransactionBufferPackage from '../buffers/AccountPropertiesAddressTransactionBuffer';
-import address from '../../src/coders/address';
 
 const {
 	AccountPropertiesAddressTransactionBuffer,
 	PropertyAddressModificationBuffer
 } = AccountPropertiesAddressTransactionBufferPackage.Buffers;
 
+const address = require('../coders/address').default;
 const { flatbuffers } = require('flatbuffers');
 
 export default class AccountPropertiesAddressTransaction extends VerifiableTransaction {
