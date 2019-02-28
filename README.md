@@ -12,6 +12,17 @@ It is used by [nem2-sdk-typescript-javascript](https://github.com/nemtech/nem2-s
 
 This project is developed and maintained by NEM Foundation. 
 
+## Notes on generation of catapult-rest DTO and API client
+
+Following command can be used to generate DTOs and Api clients for the [nem2-sdk-typescript-javascript](https://github.com/nemtech/nem2-sdk-typescript-javascript) :
+
+```bash
+$ git clone git@github.com:nemtech/nem2-docs
+$ cd nem2-docs && mkdir sdks && cd sdks
+$ cp ../source/resources/collections/swagger.yaml .
+$ docker run --rm -v ${PWD}:/local swaggerapi/swagger-codegen-cli generate -i /local/swagger.yaml -l javascript -o /local/nem2-sdk-typescript-javascript && rm -R nem2-sdk-typescript-javascript/test
+```
+
 ## License
 
 Copyright (c) 2018 NEM
