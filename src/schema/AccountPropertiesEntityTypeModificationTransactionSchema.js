@@ -36,6 +36,6 @@ export default new Schema([
 	ubyte('modificationCount'),
 	tableArray('modifications', [
 		ubyte('modificationType'),
-		array('value', TypeSize.SHORT)
+		ushort('value')
 	])
 ]);

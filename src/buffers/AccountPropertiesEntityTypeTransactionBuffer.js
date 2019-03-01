@@ -75,25 +75,9 @@ Catapult.Buffers.PropertyEntityTypeModificationBuffer.prototype.modificationType
  * @param {number} index
  * @returns {number}
  */
-Catapult.Buffers.PropertyEntityTypeModificationBuffer.prototype.value = function (index) {
+Catapult.Buffers.PropertyEntityTypeModificationBuffer.prototype.value = function () {
 	var offset = this.bb.__offset(this.bb_pos, 6);
-	return offset ? this.bb.readUint16(this.bb.__vector(this.bb_pos + offset) + index) : 0;
-};
-
-/**
- * @returns {number}
- */
-Catapult.Buffers.PropertyEntityTypeModificationBuffer.prototype.valueLength = function () {
-	var offset = this.bb.__offset(this.bb_pos, 6);
-	return offset ? this.bb.__vector_len(this.bb_pos + offset) : 0;
-};
-
-/**
- * @returns {Uint8Array}
- */
-Catapult.Buffers.PropertyEntityTypeModificationBuffer.prototype.valueArray = function () {
-	var offset = this.bb.__offset(this.bb_pos, 6);
-	return offset ? new Uint8Array(this.bb.bytes().buffer, this.bb.bytes().byteOffset + this.bb.__vector(this.bb_pos + offset), this.bb.__vector_len(this.bb_pos + offset)) : null;
+	return offset ? this.bb.readUint16(this.bb_pos + offset) : 0;
 };
 
 /**
@@ -113,31 +97,10 @@ Catapult.Buffers.PropertyEntityTypeModificationBuffer.addModificationType = func
 
 /**
  * @param {flatbuffers.Builder} builder
- * @param {flatbuffers.Offset} valueOffset
+ * @param {number} valueOffset
  */
 Catapult.Buffers.PropertyEntityTypeModificationBuffer.addValue = function (builder, valueOffset) {
-	builder.addFieldOffset(1, valueOffset, 0);
-};
-
-/**
- * @param {flatbuffers.Builder} builder
- * @param {Array.<number>} data
- * @returns {flatbuffers.Offset}
- */
-Catapult.Buffers.PropertyEntityTypeModificationBuffer.createValueVector = function (builder, data) {
-	builder.startVector(2, data.length, 2);
-	for (var i = data.length - 1; i >= 0; i--) {
-		builder.addInt16(data[i]);
-	}
-	return builder.endVector();
-};
-
-/**
- * @param {flatbuffers.Builder} builder
- * @param {number} numElems
- */
-Catapult.Buffers.PropertyEntityTypeModificationBuffer.startValueVector = function (builder, numElems) {
-	builder.startVector(2, numElems, 2);
+	builder.addFieldInt16(1, valueOffset, 0);
 };
 
 /**

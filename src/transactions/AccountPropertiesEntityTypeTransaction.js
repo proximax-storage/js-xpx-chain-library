@@ -18,7 +18,7 @@
  * @module transactions/AccountPropertiesEntityTypeTransaction
  */
 import VerifiableTransaction from './VerifiableTransaction';
-import AccountPropertiesMosaicModificationTransactionSchema from '../schema/AccountPropertiesMosaicModificationTransactionSchema';
+import AccountPropertiesEntityTypeModificationTransactionSchema from '../schema/AccountPropertiesEntityTypeModificationTransactionSchema';
 import AccountPropertiesEntityTypeTransactionBufferPackage from '../buffers/AccountPropertiesEntityTypeTransactionBuffer';
 
 const {
@@ -73,13 +73,9 @@ export default class AccountPropertiesEntityTypeTransaction extends VerifiableTr
 				// Create modifications
 				const modificationsArray = [];
 				this.modifications.forEach(modification => {
-					const uint16 = new Uint16Array(1);
-					uint16[0] = modification.value;
-					const entityTypeModificationVector = PropertyEntityTypeModificationBuffer
-						.createValueVector(builder, uint16);
 					PropertyEntityTypeModificationBuffer.startPropertyEntityTypeModificationBuffer(builder);
 					PropertyEntityTypeModificationBuffer.addModificationType(builder, modification.modificationType);
-					PropertyEntityTypeModificationBuffer.addValue(builder, entityTypeModificationVector);
+					PropertyEntityTypeModificationBuffer.addValue(builder, modification.value);
 					modificationsArray.push(PropertyEntityTypeModificationBuffer.endPropertyEntityTypeModificationBuffer(builder));
 				});
 
@@ -123,7 +119,7 @@ export default class AccountPropertiesEntityTypeTransaction extends VerifiableTr
 				// XXX Size of buffer must be changed to correct size!
 				// XXX
 
-				return new AccountPropertiesEntityTypeTransaction(bytes, AccountPropertiesMosaicModificationTransactionSchema);
+				return new AccountPropertiesEntityTypeTransaction(bytes, AccountPropertiesEntityTypeModificationTransactionSchema);
 			}
 		}
 

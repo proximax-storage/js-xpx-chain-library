@@ -24,10 +24,10 @@ describe('AccountPropertiesEntityTypeTransaction', () => {
 		privateKey: '041e2ce90c31cd65620ed16ab7a5a485e5b335d7e61c75cd9b3a2fed3e091728'
 	};
 
-	it('should create account property mosaic transaction', () => {
+	it('should create account property entity type transaction', () => {
 		const model = {
 			deadline: deadline(),
-			propertyType: 0x03,
+			propertyType: 0x04,
 			modificationCount: 1,
 			modifications: [{ modificationType: 0, value: 0x4148 }]
 		};
@@ -40,6 +40,6 @@ describe('AccountPropertiesEntityTypeTransaction', () => {
 
 		const transactionPayload = transaction.signTransaction(keyPair);
 		expect(transactionPayload.payload.substring(240, transactionPayload.payload.length))
-			.to.be.equal('03010048410000');
+			.to.be.equal('0401004841');
 	});
 });
