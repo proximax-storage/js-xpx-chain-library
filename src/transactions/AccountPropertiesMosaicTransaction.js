@@ -107,8 +107,8 @@ export default class AccountPropertiesMosaicTransaction extends VerifiableTransa
 				AccountPropertiesMosaicTransactionBuffer.addModifications(builder, modificationVector);
 
 				// Calculate size
-				const codedAccountPropertiesAddress = AccountPropertiesMosaicTransactionBuffer.endAccountPropertiesMosaicTransactionBuffer(builder);
-				builder.finish(codedAccountPropertiesAddress);
+				const codedAccountPropertiesMosaic = AccountPropertiesMosaicTransactionBuffer.endAccountPropertiesMosaicTransactionBuffer(builder);
+				builder.finish(codedAccountPropertiesMosaic);
 
 				const bytes = builder.asUint8Array();
 
