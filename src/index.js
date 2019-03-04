@@ -494,21 +494,6 @@ export {
         Schema,
 
     /**
-	 * @property {module:transactions/AccountPropertiesAddressTransaction}
-	 */
-	    AccountPropertiesAddressTransaction,
-
-	/**
-	 * @property {module:transactions/AccountPropertiesMosaicTransaction}
-	 */
-	    AccountPropertiesMosaicTransaction,
-
-	/**
-	 * @property {module:transactions/AccountPropertiesEntityTypeTransaction}
-	 */
-	    AccountPropertiesEntityTypeTransaction,
-
-    /**
      * @property {module:transactions/CosignatureTransaction}
      */
         CosignatureTransaction,
