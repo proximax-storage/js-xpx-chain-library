@@ -103,7 +103,7 @@ export default class SecretLockTransaction extends VerifiableTransaction {
 				const recipientVector = SecretLockTransactionBuffer.createRecipientVector(builder, this.recipient);
 
 				SecretLockTransactionBuffer.startSecretLockTransactionBuffer(builder);
-				SecretLockTransactionBuffer.addSize(builder, 234);
+				SecretLockTransactionBuffer.addSize(builder, 202);
 				SecretLockTransactionBuffer.addSignature(builder, signatureVector);
 				SecretLockTransactionBuffer.addSigner(builder, signerVector);
 				SecretLockTransactionBuffer.addVersion(builder, this.version);
