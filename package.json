@@ -1,6 +1,6 @@
 {
   "name": "nem2-library",
-  "version": "0.9.9",
+  "version": "0.9.10",
   "description": "nem2-library-js",
   "license": "APACHE-2.0",
   "main": "dist/index.js",
