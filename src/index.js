@@ -83,6 +83,7 @@ import PartialTransactionsListener from './listeners/PartialTransactionsListener
 import TransactionStatusListener from './listeners/TransactionStatusListener';
 import UnconfirmedTransactionsListener from './listeners/UnconfirmedTransactionsListener';
 import Schema from './schema/Schema';
+import AccountLinkTransaction from './transactions/AccountLinkTransaction';
 import AccountPropertiesAddressTransaction from './transactions/AccountPropertiesAddressTransaction';
 import AccountPropertiesMosaicTransaction from './transactions/AccountPropertiesMosaicTransaction';
 import AccountPropertiesEntityTypeTransaction from './transactions/AccountPropertiesEntityTypeTransaction';
@@ -110,7 +111,6 @@ import IdGenerator from './coders/idGenerator';
 import uint64 from './coders/uint64';
 import address from './coders/address';
 import { mosaicId, namespaceId, subnamespaceNamespaceId, subnamespaceParentId } from './transactions/NamespaceMosaicId';
-
 
 /**
 * .<br>
@@ -190,7 +190,12 @@ export {
      * The AccountPropertyDTO model constructor.
      * @property {module:model/AccountPropertyDTO}
      */
-	AccountPropertyDTO,
+    AccountPropertyDTO,
+    
+    /**
+     * @property {module:transactions/AccountLinkTransaction}
+     */
+    AccountLinkTransaction,
 	
 	/**
 	 * @property {module:transactions/AccountPropertiesAddressTransaction}

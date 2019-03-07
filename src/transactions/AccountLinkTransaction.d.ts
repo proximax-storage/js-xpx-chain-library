@@ -34,7 +34,7 @@ export declare module AccountLinkTransaction {
 
         addLinkAction(linkAction): Builder;
 
-        build(): TransferTransaction;
+        build(): AccountLinkTransaction;
 
     }
 }
