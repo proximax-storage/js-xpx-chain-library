@@ -18,14 +18,14 @@
  * @module transactions/AccountLinkTransaction
  */
 import VerifiableTransaction from './VerifiableTransaction';
-import * as AccountLinkTransactionBufferPackage from '../buffers/AccountLinkTransactionBuffer';
+import AccountLinkTransactionBufferPackage from '../buffers/AccountLinkTransactionBuffer';
 import AccountLinkTransactionSchema from '../schema/AccountLinkTransactionSchema';
+import convert from '../coders/convert';
 
 const { flatbuffers } = require('flatbuffers');
-const address = require('../coders/address').default;
 
 
-const { AccountLinkTransactionBuffer } = AccountLinkTransactionBufferPackage.default.Buffers;
+const { AccountLinkTransactionBuffer } = AccountLinkTransactionBufferPackage.Buffers;
 
 export default class AccountLinkTransaction extends VerifiableTransaction {
 	static get Builder() {
@@ -33,7 +33,7 @@ export default class AccountLinkTransaction extends VerifiableTransaction {
 			constructor() {
 				this.fee = [0, 0];
 				this.version = 36867;
-				this.type = 0x4154;
+				this.type = 0x414C;
 			}
 
 			addFee(fee) {
@@ -57,7 +57,7 @@ export default class AccountLinkTransaction extends VerifiableTransaction {
 			}
 
 			addRemoteAccountKey(remoteAccountKey) {
-				this.remoteAccountKey = address.stringToAddress(remoteAccountKey);
+				this.remoteAccountKey = convert.hexToUint8(remoteAccountKey);
 				return this;
 			}
 

@@ -27,7 +27,7 @@ describe('AccountLinkTransaction', () => {
 	it('should create transfer transaction', () => {
 		const accountLinkTransaction = {
 			deadline: deadline(),
-			remoteAccountKey: 'SDUP5PLHDXKBX3UU5Q52LAY4WYEKGEWC6IB3VBFM',
+			remoteAccountKey: keyPair.publicKey,
 			linkAction: 0
 		};
 		const verifiableTransaction = new AccountLinkTransaction.Builder()
@@ -41,6 +41,6 @@ describe('AccountLinkTransaction', () => {
 		expect(transactionPayload.payload.substring(
 			240,
 			transactionPayload.payload.length
-		)).to.be.equal('90E8FEBD671DD41BEE94EC3BA5831CB608A312C2F203BA84AC00');
+		)).to.be.equal('9A49366406ACA952B88BADF5F1E9BE6CE4968141035A60BE503273EA65456B2400');
 	});
 });
