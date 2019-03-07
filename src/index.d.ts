@@ -28,6 +28,7 @@ export * from './crypto/sha3Hasher';
 export * from './coders/convert';
 export * from './coders/address';
 export * from './coders/uint64';
+export * from './transactions/AccountLinkTransaction';
 export * from './transactions/AddressAliasTransaction';
 export * from './transactions/AggregateTransaction';
 export * from './transactions/CosignatureTransaction';
