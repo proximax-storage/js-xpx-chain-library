@@ -49,16 +49,18 @@ export default class MosaicDefinitionDTO {
     * @param supply {module:model/UInt64DTO} 
     * @param height {module:model/UInt64DTO} 
     * @param owner {String} 
+    * @param revision {Number} 
     * @param properties {module:model/MosaicPropertiesDTO} 
+    * @param levy {Object} 
     */
 
-    constructor(mosaicId, supply, height, owner, properties) {
+    constructor(mosaicId, supply, height, owner, revision, properties, levy) {
         
 
         
         
 
-        this['mosaicId'] = mosaicId;this['supply'] = supply;this['height'] = height;this['owner'] = owner;this['properties'] = properties;
+        this['mosaicId'] = mosaicId;this['supply'] = supply;this['height'] = height;this['owner'] = owner;this['revision'] = revision;this['properties'] = properties;this['levy'] = levy;
 
         
     }
@@ -90,8 +92,14 @@ export default class MosaicDefinitionDTO {
             if (data.hasOwnProperty('owner')) {
                 obj['owner'] = ApiClient.convertToType(data['owner'], 'String');
             }
+            if (data.hasOwnProperty('revision')) {
+                obj['revision'] = ApiClient.convertToType(data['revision'], 'Number');
+            }
             if (data.hasOwnProperty('properties')) {
                 obj['properties'] = MosaicPropertiesDTO.constructFromObject(data['properties']);
+            }
+            if (data.hasOwnProperty('levy')) {
+                obj['levy'] = ApiClient.convertToType(data['levy'], Object);
             }
         }
         return obj;
@@ -114,9 +122,17 @@ export default class MosaicDefinitionDTO {
     */
     owner = undefined;
     /**
+    * @member {Number} revision
+    */
+    revision = undefined;
+    /**
     * @member {module:model/MosaicPropertiesDTO} properties
     */
     properties = undefined;
+    /**
+    * @member {Object} levy
+    */
+    levy = undefined;
 
 
 

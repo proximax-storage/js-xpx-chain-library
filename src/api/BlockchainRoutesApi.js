@@ -218,7 +218,7 @@ export default class BlockchainRoutesApi {
 
     /**
      * Get the current height of the chain
-     * Returns the current height of the block chain.
+     * Returns the current height of the blockchain.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/HeightDTO} and HTTP response
      */
     getBlockchainHeightWithHttpInfo() {
@@ -248,7 +248,7 @@ export default class BlockchainRoutesApi {
 
     /**
      * Get the current height of the chain
-     * Returns the current height of the block chain.
+     * Returns the current height of the blockchain.
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/HeightDTO}
      */
     getBlockchainHeight() {
@@ -261,7 +261,7 @@ export default class BlockchainRoutesApi {
 
     /**
      * Get the current score of the chain
-     * Gets the current score of the block chain. The higher the score, the better the chain. During synchronization, nodes try to get the best block chain in the network. 
+     * Gets the current score of the blockchain. The higher the score, the better the chain. During synchronization, nodes try to get the best blockchain in the network.  The score for a block is derived from its difficulty and the time (in seconds) that has elapsed since the last block:      block score &#x3D; difficulty − time elasped since last block 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/BlockchainScoreDTO} and HTTP response
      */
     getBlockchainScoreWithHttpInfo() {
@@ -291,7 +291,7 @@ export default class BlockchainRoutesApi {
 
     /**
      * Get the current score of the chain
-     * Gets the current score of the block chain. The higher the score, the better the chain. During synchronization, nodes try to get the best block chain in the network. 
+     * Gets the current score of the blockchain. The higher the score, the better the chain. During synchronization, nodes try to get the best blockchain in the network.  The score for a block is derived from its difficulty and the time (in seconds) that has elapsed since the last block:      block score &#x3D; difficulty − time elasped since last block 
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/BlockchainScoreDTO}
      */
     getBlockchainScore() {

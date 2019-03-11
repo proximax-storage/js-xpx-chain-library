@@ -43,18 +43,16 @@ export default class NamespaceMosaicMetaDTO {
     * Constructs a new <code>NamespaceMosaicMetaDTO</code>.
     * @alias module:model/NamespaceMosaicMetaDTO
     * @class
-    * @param active {Boolean} 
-    * @param index {Number} 
     * @param id {String} 
     */
 
-    constructor(active, index, id) {
+    constructor(id) {
         
 
         
         
 
-        this['active'] = active;this['index'] = index;this['id'] = id;
+        this['id'] = id;
 
         
     }
@@ -74,12 +72,6 @@ export default class NamespaceMosaicMetaDTO {
             
             
 
-            if (data.hasOwnProperty('active')) {
-                obj['active'] = ApiClient.convertToType(data['active'], 'Boolean');
-            }
-            if (data.hasOwnProperty('index')) {
-                obj['index'] = ApiClient.convertToType(data['index'], 'Number');
-            }
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
@@ -87,14 +79,6 @@ export default class NamespaceMosaicMetaDTO {
         return obj;
     }
 
-    /**
-    * @member {Boolean} active
-    */
-    active = undefined;
-    /**
-    * @member {Number} index
-    */
-    index = undefined;
     /**
     * @member {String} id
     */
