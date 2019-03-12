@@ -58,7 +58,13 @@ export default class TransferTransaction extends VerifiableTransaction {
 			}
 
 			addRecipient(recipient) {
-				this.recipient = address.stringToAddress(recipient);
+				if (/^[0-9a-fA-F]+$/.test(recipient)) {
+					// received hexadecimal notation of namespaceId (alias)
+					this.recipient = address.aliasToRecipient(convert.hexToUint8(recipient));
+				} else {
+					// received recipient address
+					this.recipient = address.stringToAddress(recipient);
+				}
 				return this;
 			}
 
