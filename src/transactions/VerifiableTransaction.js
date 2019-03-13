@@ -82,6 +82,13 @@ export default class VerifiableTransaction {
 	}
 
 	/**
+	 * @returns {string} - Serialized Transaction Payload
+	 */
+	serializeUnsignedTransaction() {
+		return convert.uint8ToHex(this.serialize());
+	}
+
+	/**
 	 * @param {KeyPair} keyPair KeyPair instance
 	 * @returns {module:model/TransactionPayload} Returns TransactionPayload instance
 	 */
