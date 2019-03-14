@@ -19,6 +19,8 @@ export declare module address {
 
     function addressToString(decoded: Uint8Array): string;
 
+    function aliasToRecipient(namespaceId: Uint8Array): Uint8Array;
+
     function publicKeyToAddress(publicKey: Uint8Array, networkIdentifier: number): Uint8Array;
 
     function isValidAddress(decoded: Uint8Array): boolean;
