@@ -27,4 +27,6 @@ export declare class VerifiableTransaction {
     public signCosignatoriesTransaction(keyPair: any): {parentHash: string, signature:string, signer: string}
 
     public toAggregateTransaction(signer: any): Array<number>;
+
+    public serializeUnsignedTransaction(): string;
 }
