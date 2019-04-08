@@ -2096,6 +2096,21 @@
 		scalarmult(p, q, s);
 	}
 
+	function crypto_shared_key_hash(shared, pk, sk, hashfunc) {
+		var d = new Uint8Array(64);
+		var p = [gf(), gf(), gf(), gf()];
+
+		hashfunc(d, sk, 32);
+		d[0] &= 248;
+		d[31] &= 127;
+		d[31] |= 64;
+
+		var q = [gf(), gf(), gf(), gf()];
+		unpackneg(q, pk);
+		scalarmult(p, q, d);
+		pack(shared, p);
+	}
+
 	function crypto_sign_keypair(pk, sk, seeded) {
 		var d = new Uint8Array(64);
 		var p = [gf(), gf(), gf(), gf()];
@@ -2295,6 +2310,7 @@
 		crypto_sign: crypto_sign,
 		crypto_sign_keypair: crypto_sign_keypair,
 		crypto_sign_open: crypto_sign_open,
+		crypto_shared_key_hash: crypto_shared_key_hash,
 
 		crypto_secretbox_KEYBYTES: crypto_secretbox_KEYBYTES,
 		crypto_secretbox_NONCEBYTES: crypto_secretbox_NONCEBYTES,
@@ -2575,7 +2591,7 @@
 					for (i = 0; i < n; i++) x[i] = v[i];
 					cleanup(v);
 				});
-			} 
+			}
 			// browser. requires crypto-browserify added as require dependency
 			else if (require('crypto-browserify') !== undefined) {
 				crypto = require('crypto-browserify');
@@ -2585,7 +2601,7 @@
 						for (i = 0; i < n; i++) x[i] = v[i];
 						cleanup(v);
 					});
-				} 
+				}
 			}
 		}
 	})();
