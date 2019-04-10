@@ -36,6 +36,10 @@ $ docker run --rm -v ${PWD}:/local swaggerapi/swagger-codegen-cli generate -i /l
 
 Important versions listed below. Refer to the [Changelog](CHANGELOG.md) for a full history of the project.
 
+- [v0.9.14](CHANGELOG.md#v0914) - **Cow Compatible** - 2019-04-10
+- [v0.9.13](CHANGELOG.md#v0913) - **Cow Compatible** - 2019-03-24
+- [v0.9.12](CHANGELOG.md#v0912) - **Cow Compatible** - 2019-03-10
+- [v0.9.11](CHANGELOG.md#v0911) - **Cow Compatible** - 2019-03-07
 - [v0.9.8](CHANGELOG.md#v098) - **Cow Compatible** - 2019-02-28
 - [v0.9.7](CHANGELOG.md#v097) - **Cow Compatible** - 2019-02-25
 - [v0.9.6](CHANGELOG.md#v096) - **Cow Compatible** - 2019-02-25
