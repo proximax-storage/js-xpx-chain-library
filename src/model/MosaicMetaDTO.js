@@ -34,14 +34,14 @@ import ApiClient from '../ApiClient';
 
 
 /**
-* The NamespaceMosaicMetaDTO model module.
-* @module model/NamespaceMosaicMetaDTO
+* The MosaicMetaDTO model module.
+* @module model/MosaicMetaDTO
 * @version 1.0.12
 */
-export default class NamespaceMosaicMetaDTO {
+export default class MosaicMetaDTO {
     /**
-    * Constructs a new <code>NamespaceMosaicMetaDTO</code>.
-    * @alias module:model/NamespaceMosaicMetaDTO
+    * Constructs a new <code>MosaicMetaDTO</code>.
+    * @alias module:model/MosaicMetaDTO
     * @class
     * @param id {String} 
     */
@@ -58,15 +58,15 @@ export default class NamespaceMosaicMetaDTO {
     }
 
     /**
-    * Constructs a <code>NamespaceMosaicMetaDTO</code> from a plain JavaScript object, optionally creating a new instance.
+    * Constructs a <code>MosaicMetaDTO</code> from a plain JavaScript object, optionally creating a new instance.
     * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
     * @param {Object} data The plain JavaScript object bearing properties of interest.
-    * @param {module:model/NamespaceMosaicMetaDTO} obj Optional instance to populate.
-    * @return {module:model/NamespaceMosaicMetaDTO} The populated <code>NamespaceMosaicMetaDTO</code> instance.
+    * @param {module:model/MosaicMetaDTO} obj Optional instance to populate.
+    * @return {module:model/MosaicMetaDTO} The populated <code>MosaicMetaDTO</code> instance.
     */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new NamespaceMosaicMetaDTO();
+            obj = obj || new MosaicMetaDTO();
 
             
             

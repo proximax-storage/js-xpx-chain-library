@@ -28,71 +28,77 @@
 
 
 import ApiClient from '../ApiClient';
-import MosaicDefinitionDTO from './MosaicDefinitionDTO';
-import MosaicMetaDTO from './MosaicMetaDTO';
 
 
 
 
 
 /**
-* The MosaicInfoDTO model module.
-* @module model/MosaicInfoDTO
+* The NamespaceMetaDTO model module.
+* @module model/NamespaceMetaDTO
 * @version 1.0.12
 */
-export default class MosaicInfoDTO {
+export default class NamespaceMetaDTO {
     /**
-    * Constructs a new <code>MosaicInfoDTO</code>.
-    * @alias module:model/MosaicInfoDTO
+    * Constructs a new <code>NamespaceMetaDTO</code>.
+    * @alias module:model/NamespaceMetaDTO
     * @class
-    * @param meta {module:model/MosaicMetaDTO} 
-    * @param mosaic {module:model/MosaicDefinitionDTO} 
+    * @param id {String} 
+    * @param active {Boolean} 
+    * @param index {Number} 
     */
 
-    constructor(meta, mosaic) {
+    constructor(id, active, index) {
         
 
         
         
 
-        this['meta'] = meta;this['mosaic'] = mosaic;
+        this['id'] = id;this['active'] = active;this['index'] = index;
 
         
     }
 
     /**
-    * Constructs a <code>MosaicInfoDTO</code> from a plain JavaScript object, optionally creating a new instance.
+    * Constructs a <code>NamespaceMetaDTO</code> from a plain JavaScript object, optionally creating a new instance.
     * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
     * @param {Object} data The plain JavaScript object bearing properties of interest.
-    * @param {module:model/MosaicInfoDTO} obj Optional instance to populate.
-    * @return {module:model/MosaicInfoDTO} The populated <code>MosaicInfoDTO</code> instance.
+    * @param {module:model/NamespaceMetaDTO} obj Optional instance to populate.
+    * @return {module:model/NamespaceMetaDTO} The populated <code>NamespaceMetaDTO</code> instance.
     */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new MosaicInfoDTO();
+            obj = obj || new NamespaceMetaDTO();
 
             
             
             
 
-            if (data.hasOwnProperty('meta')) {
-                obj['meta'] = MosaicMetaDTO.constructFromObject(data['meta']);
+            if (data.hasOwnProperty('id')) {
+                obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
-            if (data.hasOwnProperty('mosaic')) {
-                obj['mosaic'] = MosaicDefinitionDTO.constructFromObject(data['mosaic']);
+            if (data.hasOwnProperty('active')) {
+                obj['active'] = ApiClient.convertToType(data['active'], 'Boolean');
+            }
+            if (data.hasOwnProperty('index')) {
+                obj['index'] = ApiClient.convertToType(data['index'], 'Number');
             }
         }
         return obj;
     }
 
     /**
-    * @member {module:model/MosaicMetaDTO} meta
+    * @member {String} id
     */
-    meta = undefined;
+    id = undefined;
     /**
-    * @member {module:model/MosaicDefinitionDTO} mosaic
+    * @member {Boolean} active
     */
-    mosaic = undefined;
+    active = undefined;
+    /**
+    * @member {Number} index
+    */
+    index = undefined;
 
 
 
