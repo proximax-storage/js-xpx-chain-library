@@ -29,7 +29,7 @@
 
 import ApiClient from '../ApiClient';
 import NamespaceDTO from './NamespaceDTO';
-import NamespaceMosaicMetaDTO from './NamespaceMosaicMetaDTO';
+import NamespaceMetaDTO from './NamespaceMetaDTO';
 
 
 
@@ -45,7 +45,7 @@ export default class NamespaceInfoDTO {
     * Constructs a new <code>NamespaceInfoDTO</code>.
     * @alias module:model/NamespaceInfoDTO
     * @class
-    * @param meta {module:model/NamespaceMosaicMetaDTO} 
+    * @param meta {module:model/NamespaceMetaDTO} 
     * @param namespace {module:model/NamespaceDTO} 
     */
 
@@ -76,7 +76,7 @@ export default class NamespaceInfoDTO {
             
 
             if (data.hasOwnProperty('meta')) {
-                obj['meta'] = NamespaceMosaicMetaDTO.constructFromObject(data['meta']);
+                obj['meta'] = NamespaceMetaDTO.constructFromObject(data['meta']);
             }
             if (data.hasOwnProperty('namespace')) {
                 obj['namespace'] = NamespaceDTO.constructFromObject(data['namespace']);
@@ -86,7 +86,7 @@ export default class NamespaceInfoDTO {
     }
 
     /**
-    * @member {module:model/NamespaceMosaicMetaDTO} meta
+    * @member {module:model/NamespaceMetaDTO} meta
     */
     meta = undefined;
     /**
