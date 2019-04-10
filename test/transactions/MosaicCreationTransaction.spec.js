@@ -51,4 +51,34 @@ describe('MosaicCreationTransaction', () => {
 		expect(transactionPayload.payload.substring(240, transactionPayload.payload.length))
 			.to.be.equal('E6DE84B88675F65ED72E4B43010104021027000000000000');
 	});
+
+	it('should create mosaic definition transaction without duration', () => {
+		const nonce = new Uint8Array([0xE6, 0xDE, 0x84, 0xB8]);
+		const mosaicCreationTransaction = {
+			deadline: deadline(),
+			duration: [],
+			divisibility: 4,
+			nonce,
+			mosaicId: mosaicId(nonce, convert.hexToUint8(keyPair.publicKey))
+		};
+
+		const verifiableTransaction = new MosaicCreationTransaction.Builder()
+			.addDeadline(mosaicCreationTransaction.deadline)
+			.addSupplyMutable()
+			.addDivisibility(mosaicCreationTransaction.divisibility)
+			.addDuration(mosaicCreationTransaction.duration)
+			.addNonce(mosaicCreationTransaction.nonce)
+			.addMosaicId(mosaicCreationTransaction.mosaicId)
+			.build();
+
+		const transactionPayload = verifiableTransaction.signTransaction(keyPair);
+
+		/**
+		 * If no duration provided, the new tx size changed to 135.
+		 * as indicatorDuration and Duration attribute get removed from the buffer schema
+		 */
+		expect(transactionPayload.payload.substring(0, 8)).to.be.equal('87000000');
+		expect(transactionPayload.payload.substring(240, transactionPayload.payload.length))
+			.to.be.equal('E6DE84B88675F65ED72E4B43000104');
+	});
 });

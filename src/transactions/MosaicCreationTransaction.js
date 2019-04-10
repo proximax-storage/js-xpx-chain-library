@@ -18,7 +18,8 @@
  * @module transactions/MosaicCreationTransaction
  */
 import VerifiableTransaction from './VerifiableTransaction';
-import MosaicCreationTransactionSchema from '../schema/MosaicCreationTransactionSchema';
+import { schema as MosaicCreationTransactionSchema,
+	schemaNoDuration as MosaicCreationTransactionSchemaNoDuration } from '../schema/MosaicCreationTransactionSchema';
 import MosaicCreationTransactionBufferPackage from '../buffers/MosaicCreationTransactionBuffer';
 
 const { flatbuffers } = require('flatbuffers');
@@ -111,8 +112,10 @@ export default class MosaicCreationTransaction extends VerifiableTransaction {
 				const durationVector = MosaicCreationTransactionBuffer
 					.createDurationVector(builder, this.duration);
 
+				const durationProvided = 0 < this.duration.length;
+
 				MosaicCreationTransactionBuffer.startMosaicCreationTransactionBuffer(builder);
-				MosaicCreationTransactionBuffer.addSize(builder, 144);
+				MosaicCreationTransactionBuffer.addSize(builder, durationProvided ? 144 : 135);
 				MosaicCreationTransactionBuffer.addSignature(builder, signatureVector);
 				MosaicCreationTransactionBuffer.addSigner(builder, signerVector);
 				MosaicCreationTransactionBuffer.addVersion(builder, this.version);
@@ -121,14 +124,15 @@ export default class MosaicCreationTransaction extends VerifiableTransaction {
 				MosaicCreationTransactionBuffer.addDeadline(builder, deadlineVector);
 				MosaicCreationTransactionBuffer.addNonce(builder, nonceVector);
 				MosaicCreationTransactionBuffer.addMosaicId(builder, mosaicIdVector);
-				MosaicCreationTransactionBuffer.addNumOptionalProperties(builder, 1);
+				MosaicCreationTransactionBuffer.addNumOptionalProperties(builder, durationProvided ? 1 : 0);
 				MosaicCreationTransactionBuffer.addFlags(builder, this.flags);
 
 				MosaicCreationTransactionBuffer.addDivisibility(builder, this.divisibility);
 
-				MosaicCreationTransactionBuffer.addIndicateDuration(builder, 2);
-				MosaicCreationTransactionBuffer.addDuration(builder, durationVector);
-
+				if (durationProvided) {
+					MosaicCreationTransactionBuffer.addIndicateDuration(builder, 2);
+					MosaicCreationTransactionBuffer.addDuration(builder, durationVector);
+				}
 
 				// Calculate size
 
@@ -136,7 +140,9 @@ export default class MosaicCreationTransaction extends VerifiableTransaction {
 				builder.finish(codedMosaicCreation);
 
 				const bytes = builder.asUint8Array();
-				return new MosaicCreationTransaction(bytes, MosaicCreationTransactionSchema);
+
+				const schema = durationProvided ? MosaicCreationTransactionSchema : MosaicCreationTransactionSchemaNoDuration;
+				return new MosaicCreationTransaction(bytes, schema);
 			}
 		}
 
