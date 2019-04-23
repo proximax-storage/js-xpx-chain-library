@@ -45,7 +45,7 @@ describe('NamespaceCreationTransaction', () => {
 
 		const transactionPayload = verifiableTransaction.signTransaction(keyPair);
 		expect(transactionPayload.payload.substring(240, transactionPayload.payload.length))
-			.to.be.equal('0010270000000000007EE9B3B8AFDF53400C6E65776E616D657370616365');
+			.to.be.equal('0010270000000000007EE9B3B8AFDF53C00C6E65776E616D657370616365');
 	});
 
 	it('should create provision subnamespace transaction', () => {
@@ -69,6 +69,6 @@ describe('NamespaceCreationTransaction', () => {
 		const transactionPayload = verifiableTransaction.signTransaction(keyPair);
 
 		expect(transactionPayload.payload.substring(240, transactionPayload.payload.length))
-			.to.be.equal('017EE9B3B8AFDF5340AB31A2FF762DD6060473756232');
+			.to.be.equal('017EE9B3B8AFDF53C028ED7825B972AC9D0473756232');
 	});
 });

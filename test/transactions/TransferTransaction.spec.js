@@ -95,4 +95,40 @@ describe('TransferTransaction', () => {
 			'0FA0DEDD9086400000000000000443F6D806C05543A640000000000000029CF5FD941AD25D' +
 			'56400000000000000');
 	});
+
+	it('should create transfer transaction with alias recipient padded on 25 bytes', () => {
+		const transferTransaction = {
+			deadline: deadline(),
+			recipient: '85bbea6cc462b244',
+			message: {
+				type: 0,
+				payload: '00'
+			},
+			mosaics: [{
+				id: [3646934825, 3576016193],
+				amount: [100, 0]
+			}, {
+				id: [4194316032, 148499725],
+				amount: [100, 0]
+			}, {
+				id: [2154643268, 978584940],
+				amount: [100, 0]
+			}]
+		};
+		const verifiableTransaction = new TransferTransaction.Builder()
+			.addDeadline(transferTransaction.deadline)
+			.addRecipient(transferTransaction.recipient)
+			.addMessage(transferTransaction.message)
+			.addMosaics(transferTransaction.mosaics)
+			.build();
+
+		const transactionPayload = verifiableTransaction.signTransaction(keyPair);
+
+		expect(transactionPayload.payload.substring(
+			240,
+			transactionPayload.payload.length
+		)).to.be.equal('9144B262C46CEABB8500000000000000000000000000000000030003003030002F00FA' +
+			'0DEDD9086400000000000000443F6D806C05543A640000000000000029CF5FD941AD25' +
+			'D56400000000000000');
+	});
 });

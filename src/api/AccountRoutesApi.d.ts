@@ -26,6 +26,10 @@ export declare class AccountRoutesApi {
     getAccountMultisig(accountId: string): Promise<any>;
 
     getAccountMultisigGraph(accountId: string): Promise<any>;
+    
+    getAccountPropertiesFromAccounts(addresses: string[]): Promise<any[]>;
+
+    getAccountProperties(accountId: string): Promise<any>; 
 
     incomingTransactions(accountPublicKey: string, queryParams: any): Promise<any[]>;
 

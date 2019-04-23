@@ -15,10 +15,11 @@
  */
 
 import expect from 'expect.js';
+import convert from '../../src/coders/convert';
 import MosaicCreationTransaction from '../../src/transactions/MosaicCreationTransaction';
 import deadline from '../../src/transactions/Deadline';
-import { mosaicId, namespaceId } from '../../src/transactions/NamespaceMosaicId';
-import uint64 from "../../src/coders/uint64";
+import { mosaicId } from '../../src/transactions/NamespaceMosaicId';
+import uint64 from '../../src/coders/uint64';
 
 describe('MosaicCreationTransaction', () => {
 	const keyPair = {
@@ -26,14 +27,14 @@ describe('MosaicCreationTransaction', () => {
 		privateKey: '041e2ce90c31cd65620ed16ab7a5a485e5b335d7e61c75cd9b3a2fed3e091728'
 	};
 
-	it('should create mosaic definition creation transaction', () => {
+	it('should create mosaic definition transaction', () => {
+		const nonce = new Uint8Array([0xE6, 0xDE, 0x84, 0xB8]);
 		const mosaicCreationTransaction = {
 			deadline: deadline(),
 			duration: uint64.fromUint(10000),
 			divisibility: 4,
-			parentId: namespaceId('sname'),
-			mosaicId: mosaicId('sname','mosaics'),
-			mosaicName: 'mosaics'
+			nonce,
+			mosaicId: mosaicId(nonce, convert.hexToUint8(keyPair.publicKey))
 		};
 
 		const verifiableTransaction = new MosaicCreationTransaction.Builder()
@@ -41,14 +42,43 @@ describe('MosaicCreationTransaction', () => {
 			.addSupplyMutable()
 			.addDivisibility(mosaicCreationTransaction.divisibility)
 			.addDuration(mosaicCreationTransaction.duration)
-			.addParentId(mosaicCreationTransaction.parentId)
+			.addNonce(mosaicCreationTransaction.nonce)
 			.addMosaicId(mosaicCreationTransaction.mosaicId)
-			.addMosaicName(mosaicCreationTransaction.mosaicName)
 			.build();
 
 		const transactionPayload = verifiableTransaction.signTransaction(keyPair);
+
 		expect(transactionPayload.payload.substring(240, transactionPayload.payload.length))
-			.to.be.equal('9B8A161CF5092390159911AEA72EBD3C070101046D6F7361696373021027000000000000');
+			.to.be.equal('E6DE84B88675F65ED72E4B43010104021027000000000000');
+	});
+
+	it('should create mosaic definition transaction without duration', () => {
+		const nonce = new Uint8Array([0xE6, 0xDE, 0x84, 0xB8]);
+		const mosaicCreationTransaction = {
+			deadline: deadline(),
+			duration: [],
+			divisibility: 4,
+			nonce,
+			mosaicId: mosaicId(nonce, convert.hexToUint8(keyPair.publicKey))
+		};
+
+		const verifiableTransaction = new MosaicCreationTransaction.Builder()
+			.addDeadline(mosaicCreationTransaction.deadline)
+			.addSupplyMutable()
+			.addDivisibility(mosaicCreationTransaction.divisibility)
+			.addDuration(mosaicCreationTransaction.duration)
+			.addNonce(mosaicCreationTransaction.nonce)
+			.addMosaicId(mosaicCreationTransaction.mosaicId)
+			.build();
+
+		const transactionPayload = verifiableTransaction.signTransaction(keyPair);
+
+		/**
+		 * If no duration provided, the new tx size changed to 135.
+		 * as indicatorDuration and Duration attribute get removed from the buffer schema
+		 */
+		expect(transactionPayload.payload.substring(0, 8)).to.be.equal('87000000');
+		expect(transactionPayload.payload.substring(240, transactionPayload.payload.length))
+			.to.be.equal('E6DE84B88675F65ED72E4B43000104');
 	});
 });
-

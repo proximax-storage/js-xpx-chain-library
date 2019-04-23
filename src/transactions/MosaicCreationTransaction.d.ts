@@ -40,11 +40,9 @@ export declare module MosaicCreationTransaction {
 
         addDuration(duration): Builder;
 
-        addParentId(parentId): Builder;
+        addNonce(mosaicNonce): Builder;
 
         addMosaicId(mosaicId): Builder;
-
-        addMosaicName(mosaicName): Builder;
 
         build(): MosaicCreationTransaction;
 

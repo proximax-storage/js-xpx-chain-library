@@ -89,7 +89,7 @@ describe('AggregateTransaction E2E', () => {
 				payload: '00'
 			})
 			.addMosaics([{
-				id: IdGenerator.generateMosaicId(`${namespaceName}:${mosaicName}`),
+				id: [0xC0AFC518, 0x3AD842A8],
 				amount: [40000, 0]
 			}])
 			.build()

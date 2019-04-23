@@ -31,7 +31,7 @@ export default class SecretProofTransaction extends VerifiableTransaction {
 		class Builder {
 			constructor() {
 				this.fee = [0, 0];
-				this.version = 36867;
+				this.version = 36865;
 				this.type = 0x434C;
 			}
 
@@ -85,7 +85,7 @@ export default class SecretProofTransaction extends VerifiableTransaction {
 				const proofVector = SecretProofTransactionBuffer.createProofVector(builder, byteProof);
 
 				SecretProofTransactionBuffer.startSecretProofTransactionBuffer(builder);
-				SecretProofTransactionBuffer.addSize(builder, 187 + byteProof.length);
+				SecretProofTransactionBuffer.addSize(builder, 155 + byteProof.length);
 				SecretProofTransactionBuffer.addSignature(builder, signatureVector);
 				SecretProofTransactionBuffer.addSigner(builder, signerVector);
 				SecretProofTransactionBuffer.addVersion(builder, this.version);
