@@ -28,70 +28,60 @@
 
 
 import ApiClient from '../ApiClient';
-import UInt64DTO from './UInt64DTO';
 
 
 
 
 
 /**
-* The MosaicDTO model module.
-* @module model/MosaicDTO
+* The MetadataIds model module.
+* @module model/MetadataIds
 * @version 1.0.13
 */
-export default class MosaicDTO {
+export default class MetadataIds {
     /**
-    * Constructs a new <code>MosaicDTO</code>.
-    * @alias module:model/MosaicDTO
+    * Constructs a new <code>MetadataIds</code>.
+    * @alias module:model/MetadataIds
     * @class
-    * @param id {module:model/UInt64DTO} 
-    * @param amount {module:model/UInt64DTO} 
     */
 
-    constructor(id, amount) {
+    constructor() {
         
 
         
         
 
-        this['id'] = id;this['amount'] = amount;
+        
 
         
     }
 
     /**
-    * Constructs a <code>MosaicDTO</code> from a plain JavaScript object, optionally creating a new instance.
+    * Constructs a <code>MetadataIds</code> from a plain JavaScript object, optionally creating a new instance.
     * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
     * @param {Object} data The plain JavaScript object bearing properties of interest.
-    * @param {module:model/MosaicDTO} obj Optional instance to populate.
-    * @return {module:model/MosaicDTO} The populated <code>MosaicDTO</code> instance.
+    * @param {module:model/MetadataIds} obj Optional instance to populate.
+    * @return {module:model/MetadataIds} The populated <code>MetadataIds</code> instance.
     */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new MosaicDTO();
+            obj = obj || new MetadataIds();
 
             
             
             
 
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = UInt64DTO.constructFromObject(data['id']);
-            }
-            if (data.hasOwnProperty('amount')) {
-                obj['amount'] = UInt64DTO.constructFromObject(data['amount']);
+            if (data.hasOwnProperty('metadataIds')) {
+                obj['metadataIds'] = ApiClient.convertToType(data['metadataIds'], ['String']);
             }
         }
         return obj;
     }
 
     /**
-    * @member {module:model/UInt64DTO} id
+    * @member {Array.<String>} metadataIds
     */
-    id = undefined;
-    /**
-    * @member {module:model/UInt64DTO} amount
-    */
-    amount = undefined;
+    metadataIds = undefined;
 
 
 

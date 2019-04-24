@@ -28,70 +28,62 @@
 
 
 import ApiClient from '../ApiClient';
-import UInt64DTO from './UInt64DTO';
+import ContractDTO from './ContractDTO';
 
 
 
 
 
 /**
-* The MosaicDTO model module.
-* @module model/MosaicDTO
+* The ContractInfoDTO model module.
+* @module model/ContractInfoDTO
 * @version 1.0.13
 */
-export default class MosaicDTO {
+export default class ContractInfoDTO {
     /**
-    * Constructs a new <code>MosaicDTO</code>.
-    * @alias module:model/MosaicDTO
+    * Constructs a new <code>ContractInfoDTO</code>.
+    * @alias module:model/ContractInfoDTO
     * @class
-    * @param id {module:model/UInt64DTO} 
-    * @param amount {module:model/UInt64DTO} 
+    * @param contract {module:model/ContractDTO} 
     */
 
-    constructor(id, amount) {
+    constructor(contract) {
         
 
         
         
 
-        this['id'] = id;this['amount'] = amount;
+        this['contract'] = contract;
 
         
     }
 
     /**
-    * Constructs a <code>MosaicDTO</code> from a plain JavaScript object, optionally creating a new instance.
+    * Constructs a <code>ContractInfoDTO</code> from a plain JavaScript object, optionally creating a new instance.
     * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
     * @param {Object} data The plain JavaScript object bearing properties of interest.
-    * @param {module:model/MosaicDTO} obj Optional instance to populate.
-    * @return {module:model/MosaicDTO} The populated <code>MosaicDTO</code> instance.
+    * @param {module:model/ContractInfoDTO} obj Optional instance to populate.
+    * @return {module:model/ContractInfoDTO} The populated <code>ContractInfoDTO</code> instance.
     */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new MosaicDTO();
+            obj = obj || new ContractInfoDTO();
 
             
             
             
 
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = UInt64DTO.constructFromObject(data['id']);
-            }
-            if (data.hasOwnProperty('amount')) {
-                obj['amount'] = UInt64DTO.constructFromObject(data['amount']);
+            if (data.hasOwnProperty('contract')) {
+                obj['contract'] = ContractDTO.constructFromObject(data['contract']);
             }
         }
         return obj;
     }
 
     /**
-    * @member {module:model/UInt64DTO} id
+    * @member {module:model/ContractDTO} contract
     */
-    id = undefined;
-    /**
-    * @member {module:model/UInt64DTO} amount
-    */
-    amount = undefined;
+    contract = undefined;
 
 
 

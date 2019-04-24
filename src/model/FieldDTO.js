@@ -28,70 +28,69 @@
 
 
 import ApiClient from '../ApiClient';
-import UInt64DTO from './UInt64DTO';
 
 
 
 
 
 /**
-* The MosaicDTO model module.
-* @module model/MosaicDTO
+* The FieldDTO model module.
+* @module model/FieldDTO
 * @version 1.0.13
 */
-export default class MosaicDTO {
+export default class FieldDTO {
     /**
-    * Constructs a new <code>MosaicDTO</code>.
-    * @alias module:model/MosaicDTO
+    * Constructs a new <code>FieldDTO</code>.
+    * @alias module:model/FieldDTO
     * @class
-    * @param id {module:model/UInt64DTO} 
-    * @param amount {module:model/UInt64DTO} 
+    * @param key {Number} 
+    * @param value {Number} 
     */
 
-    constructor(id, amount) {
+    constructor(key, value) {
         
 
         
         
 
-        this['id'] = id;this['amount'] = amount;
+        this['key'] = key;this['value'] = value;
 
         
     }
 
     /**
-    * Constructs a <code>MosaicDTO</code> from a plain JavaScript object, optionally creating a new instance.
+    * Constructs a <code>FieldDTO</code> from a plain JavaScript object, optionally creating a new instance.
     * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
     * @param {Object} data The plain JavaScript object bearing properties of interest.
-    * @param {module:model/MosaicDTO} obj Optional instance to populate.
-    * @return {module:model/MosaicDTO} The populated <code>MosaicDTO</code> instance.
+    * @param {module:model/FieldDTO} obj Optional instance to populate.
+    * @return {module:model/FieldDTO} The populated <code>FieldDTO</code> instance.
     */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new MosaicDTO();
+            obj = obj || new FieldDTO();
 
             
             
             
 
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = UInt64DTO.constructFromObject(data['id']);
+            if (data.hasOwnProperty('key')) {
+                obj['key'] = ApiClient.convertToType(data['key'], 'Number');
             }
-            if (data.hasOwnProperty('amount')) {
-                obj['amount'] = UInt64DTO.constructFromObject(data['amount']);
+            if (data.hasOwnProperty('value')) {
+                obj['value'] = ApiClient.convertToType(data['value'], 'Number');
             }
         }
         return obj;
     }
 
     /**
-    * @member {module:model/UInt64DTO} id
+    * @member {Number} key
     */
-    id = undefined;
+    key = undefined;
     /**
-    * @member {module:model/UInt64DTO} amount
+    * @member {Number} value
     */
-    amount = undefined;
+    value = undefined;
 
 
 

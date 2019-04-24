@@ -28,70 +28,60 @@
 
 
 import ApiClient from '../ApiClient';
-import UInt64DTO from './UInt64DTO';
 
 
 
 
 
 /**
-* The MosaicDTO model module.
-* @module model/MosaicDTO
+* The PublicKeys model module.
+* @module model/PublicKeys
 * @version 1.0.13
 */
-export default class MosaicDTO {
+export default class PublicKeys {
     /**
-    * Constructs a new <code>MosaicDTO</code>.
-    * @alias module:model/MosaicDTO
+    * Constructs a new <code>PublicKeys</code>.
+    * @alias module:model/PublicKeys
     * @class
-    * @param id {module:model/UInt64DTO} 
-    * @param amount {module:model/UInt64DTO} 
     */
 
-    constructor(id, amount) {
+    constructor() {
         
 
         
         
 
-        this['id'] = id;this['amount'] = amount;
+        
 
         
     }
 
     /**
-    * Constructs a <code>MosaicDTO</code> from a plain JavaScript object, optionally creating a new instance.
+    * Constructs a <code>PublicKeys</code> from a plain JavaScript object, optionally creating a new instance.
     * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
     * @param {Object} data The plain JavaScript object bearing properties of interest.
-    * @param {module:model/MosaicDTO} obj Optional instance to populate.
-    * @return {module:model/MosaicDTO} The populated <code>MosaicDTO</code> instance.
+    * @param {module:model/PublicKeys} obj Optional instance to populate.
+    * @return {module:model/PublicKeys} The populated <code>PublicKeys</code> instance.
     */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new MosaicDTO();
+            obj = obj || new PublicKeys();
 
             
             
             
 
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = UInt64DTO.constructFromObject(data['id']);
-            }
-            if (data.hasOwnProperty('amount')) {
-                obj['amount'] = UInt64DTO.constructFromObject(data['amount']);
+            if (data.hasOwnProperty('publicKeys')) {
+                obj['publicKeys'] = ApiClient.convertToType(data['publicKeys'], ['String']);
             }
         }
         return obj;
     }
 
     /**
-    * @member {module:model/UInt64DTO} id
+    * @member {Array.<String>} publicKeys
     */
-    id = undefined;
-    /**
-    * @member {module:model/UInt64DTO} amount
-    */
-    amount = undefined;
+    publicKeys = undefined;
 
 
 

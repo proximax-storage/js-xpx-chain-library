@@ -28,70 +28,62 @@
 
 
 import ApiClient from '../ApiClient';
-import UInt64DTO from './UInt64DTO';
+import AddressMetadataDTO from './AddressMetadataDTO';
 
 
 
 
 
 /**
-* The MosaicDTO model module.
-* @module model/MosaicDTO
+* The AddressMetadataInfoDTO model module.
+* @module model/AddressMetadataInfoDTO
 * @version 1.0.13
 */
-export default class MosaicDTO {
+export default class AddressMetadataInfoDTO {
     /**
-    * Constructs a new <code>MosaicDTO</code>.
-    * @alias module:model/MosaicDTO
+    * Constructs a new <code>AddressMetadataInfoDTO</code>.
+    * @alias module:model/AddressMetadataInfoDTO
     * @class
-    * @param id {module:model/UInt64DTO} 
-    * @param amount {module:model/UInt64DTO} 
+    * @param metadata {module:model/AddressMetadataDTO} 
     */
 
-    constructor(id, amount) {
+    constructor(metadata) {
         
 
         
         
 
-        this['id'] = id;this['amount'] = amount;
+        this['metadata'] = metadata;
 
         
     }
 
     /**
-    * Constructs a <code>MosaicDTO</code> from a plain JavaScript object, optionally creating a new instance.
+    * Constructs a <code>AddressMetadataInfoDTO</code> from a plain JavaScript object, optionally creating a new instance.
     * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
     * @param {Object} data The plain JavaScript object bearing properties of interest.
-    * @param {module:model/MosaicDTO} obj Optional instance to populate.
-    * @return {module:model/MosaicDTO} The populated <code>MosaicDTO</code> instance.
+    * @param {module:model/AddressMetadataInfoDTO} obj Optional instance to populate.
+    * @return {module:model/AddressMetadataInfoDTO} The populated <code>AddressMetadataInfoDTO</code> instance.
     */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new MosaicDTO();
+            obj = obj || new AddressMetadataInfoDTO();
 
             
             
             
 
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = UInt64DTO.constructFromObject(data['id']);
-            }
-            if (data.hasOwnProperty('amount')) {
-                obj['amount'] = UInt64DTO.constructFromObject(data['amount']);
+            if (data.hasOwnProperty('metadata')) {
+                obj['metadata'] = AddressMetadataDTO.constructFromObject(data['metadata']);
             }
         }
         return obj;
     }
 
     /**
-    * @member {module:model/UInt64DTO} id
+    * @member {module:model/AddressMetadataDTO} metadata
     */
-    id = undefined;
-    /**
-    * @member {module:model/UInt64DTO} amount
-    */
-    amount = undefined;
+    metadata = undefined;
 
 
 

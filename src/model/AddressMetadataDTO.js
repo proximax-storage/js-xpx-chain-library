@@ -28,71 +28,77 @@
 
 
 import ApiClient from '../ApiClient';
-import UInt64DTO from './UInt64DTO';
+import FieldDTO from './FieldDTO';
+import MetadataDTO from './MetadataDTO';
 
 
 
 
 
 /**
-* The MosaicDTO model module.
-* @module model/MosaicDTO
+* The AddressMetadataDTO model module.
+* @module model/AddressMetadataDTO
 * @version 1.0.13
 */
-export default class MosaicDTO {
+export default class AddressMetadataDTO {
     /**
-    * Constructs a new <code>MosaicDTO</code>.
-    * @alias module:model/MosaicDTO
+    * Constructs a new <code>AddressMetadataDTO</code>.
+    * @alias module:model/AddressMetadataDTO
     * @class
-    * @param id {module:model/UInt64DTO} 
-    * @param amount {module:model/UInt64DTO} 
+    * @implements module:model/MetadataDTO
+    * @param metadataType {Number} 
+    * @param fields {Array.<module:model/FieldDTO>} 
+    * @param metadataId {String} 
     */
 
-    constructor(id, amount) {
+    constructor(metadataType, fields, metadataId) {
         
 
         
-        
+        MetadataDTO.call(this, metadataType, fields);
 
-        this['id'] = id;this['amount'] = amount;
+        this['metadataId'] = metadataId;
 
         
     }
 
     /**
-    * Constructs a <code>MosaicDTO</code> from a plain JavaScript object, optionally creating a new instance.
+    * Constructs a <code>AddressMetadataDTO</code> from a plain JavaScript object, optionally creating a new instance.
     * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
     * @param {Object} data The plain JavaScript object bearing properties of interest.
-    * @param {module:model/MosaicDTO} obj Optional instance to populate.
-    * @return {module:model/MosaicDTO} The populated <code>MosaicDTO</code> instance.
+    * @param {module:model/AddressMetadataDTO} obj Optional instance to populate.
+    * @return {module:model/AddressMetadataDTO} The populated <code>AddressMetadataDTO</code> instance.
     */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new MosaicDTO();
+            obj = obj || new AddressMetadataDTO();
 
             
             
-            
+            MetadataDTO.constructFromObject(data, obj);
 
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = UInt64DTO.constructFromObject(data['id']);
-            }
-            if (data.hasOwnProperty('amount')) {
-                obj['amount'] = UInt64DTO.constructFromObject(data['amount']);
+            if (data.hasOwnProperty('metadataId')) {
+                obj['metadataId'] = ApiClient.convertToType(data['metadataId'], 'String');
             }
         }
         return obj;
     }
 
     /**
-    * @member {module:model/UInt64DTO} id
+    * @member {String} metadataId
     */
-    id = undefined;
-    /**
-    * @member {module:model/UInt64DTO} amount
-    */
-    amount = undefined;
+    metadataId = undefined;
 
+
+    // Implement MetadataDTO interface:
+    /**
+    * @member {Number} metadataType
+    */
+    metadataType = undefined;
+/**
+    * @member {Array.<module:model/FieldDTO>} fields
+    */
+    fields = undefined;
 
 
 
