@@ -119,4 +119,21 @@ export default class AggregateTransaction extends VerifiableTransaction {
 
 		return signedTransaction;
 	}
+
+	signTransactionWithCosignedTransactions(initializer, cosignedSignedTransactions) {
+		const signedTransaction = this.signTransaction(initializer);
+		cosignedSignedTransactions.forEach(cosignedTransaction => {
+			signedTransaction.payload = signedTransaction.payload + cosignedTransaction.signer + cosignedTransaction.signature;
+		});
+
+		// Calculate new size
+		const size = `00000000${(signedTransaction.payload.length / 2).toString(16)}`;
+		const formatedSize = size.substr(size.length - 8, size.length);
+		const littleIndianSize = formatedSize.substr(6, 2) + formatedSize.substr(4, 2) + formatedSize.substr(2, 2) + formatedSize.substr(0, 2);
+
+		signedTransaction.payload = littleIndianSize +
+			signedTransaction.payload.substr(8, signedTransaction.payload.length - 8);
+
+		return signedTransaction;
+	}
 }
