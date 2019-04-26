@@ -301,7 +301,7 @@ export default class AccountRoutesApi {
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/AccountPropertiesInfoDTO>}
      */
     getAccountPropertiesFromAccounts(addresses) {
-      return this.getAccountPropertiesFromAccountsWithHttpInfo(addresses)
+      return this.getAccountPropertiesFromAccountsWithHttpInfo({ addresses })
         .then(function(response_and_data) {
           return response_and_data.data;
         });
