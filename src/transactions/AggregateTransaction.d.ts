@@ -18,7 +18,7 @@ import {VerifiableTransaction} from "./VerifiableTransaction";
 
 export declare class AggregateTransaction extends VerifiableTransaction {
     public signTransactionWithCosigners(initializer, cosigners): {payload: string, hash:string}
-    public signTransactionWithCosignedTransactions(initializer, cosignedSignedTransactions): {payload: string, hash:string}
+    public signTransactionGivenSignatures(initializer, cosignedSignedTransactions): {payload: string, hash:string}
 }
 
 export declare module AggregateTransaction {

@@ -120,7 +120,7 @@ export default class AggregateTransaction extends VerifiableTransaction {
 		return signedTransaction;
 	}
 
-	signTransactionWithCosignedTransactions(initializer, cosignedSignedTransactions) {
+	signTransactionGivenSignatures(initializer, cosignedSignedTransactions) {
 		const signedTransaction = this.signTransaction(initializer);
 		cosignedSignedTransactions.forEach(cosignedTransaction => {
 			signedTransaction.payload = signedTransaction.payload + cosignedTransaction.signer + cosignedTransaction.signature;
