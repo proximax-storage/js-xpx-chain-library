@@ -148,17 +148,6 @@ function hashfunc(dest, data, dataLength) {
     words2ua(dest, hash);
 }
 
-function key_derive(shared, salt, sk, pk) {
-    nacl.lowlevel.crypto_shared_key_hash(shared, pk, sk, hashfunc);
-    for (let i = 0; i < salt.length; i++) {
-        shared[i] ^= salt[i];
-    }
-    let hash = CryptoJS.SHA3(ua2words(shared, 32), {
-        outputLength: 256
-    });
-    return hash;
-}
-
 /**
  * Generate a random key
  *
