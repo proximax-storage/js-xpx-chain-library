@@ -17,6 +17,7 @@
 import convert from '../coders/convert';
 import nacl from './nacl_catapult';
 import CryptoJS from 'crypto-js';
+import { createKeyPairFromPrivateKeyString, deriveSharedKey } from './keyPair';
 
 /**
  * Encrypt a private key for mobile apps (AES_PBKF2)
@@ -249,14 +250,10 @@ let encodePrivKey = function(privateKey, password) {
 let _encode = function(senderPriv, recipientPub, msg, iv, salt) {
     // Errors
     if (!senderPriv || !recipientPub || !msg || !iv || !salt) throw new Error('Missing argument !');
-    //if (!Helpers.isPrivateKeyValid(senderPriv)) throw new Error('Private key is not valid !');
-    //if (!Helpers.isPublicKeyValid(recipientPub)) throw new Error('Public key is not valid !');
     // Processing
-    let sk = convert.hexToUint8Reverse(senderPriv);
+    let keyPair = createKeyPairFromPrivateKeyString(senderPriv);
     let pk = convert.hexToUint8(recipientPub);
-    let shared = new Uint8Array(32);
-    let r = key_derive(shared, salt, sk, pk);
-    let encKey = r;
+    let encKey = deriveSharedKey(keyPair, pk, salt);
     let encIv = {
         iv: ua2words(iv, 16)
     };
@@ -301,18 +298,15 @@ let encode = function(senderPriv, recipientPub, msg) {
 let decode = function(recipientPrivate, senderPublic, _payload) {
     // Errorsp
     if(!recipientPrivate || !senderPublic || !_payload) throw new Error('Missing argument !');
-    //if (!Helpers.isPrivateKeyValid(recipientPrivate)) throw new Error('Private key is not valid !');
-    //if (!Helpers.isPublicKeyValid(senderPublic)) throw new Error('Public key is not valid !');
     // Processing
     let binPayload = convert.hexToUint8(_payload);
     let salt = new Uint8Array(binPayload.buffer, 0, 32);
     let iv = new Uint8Array(binPayload.buffer, 32, 16);
     let payload = new Uint8Array(binPayload.buffer, 48);
-    let sk = convert.hexToUint8Reverse(recipientPrivate);
+
+    let keyPair = createKeyPairFromPrivateKeyString(recipientPrivate);
     let pk = convert.hexToUint8(senderPublic);
-    let shared = new Uint8Array(32);
-    let r = key_derive(shared, salt, sk, pk);
-    let encKey = r;
+    let encKey = deriveSharedKey(keyPair, pk, salt);
     let encIv = {
         iv: ua2words(iv, 16)
     };
