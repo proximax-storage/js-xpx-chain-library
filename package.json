@@ -9,8 +9,7 @@
     "test": "mocha --compilers js:babel-core/register --recursive --timeout 10000",
     "test:cov": "nyc --reporter=lcov --reporter=text-lcov npm t && nyc report --reporter=text-lcov",
     "test:coveralls": "npm run test:cov | coveralls",
-    "build": "babel ./src -d ./dist --source-maps --copy-files",
-    "install": "cd node_modules/js-xpx-catapult-library && npm install && run build"
+    "build": "babel ./src -d ./dist --source-maps --copy-files"
   },
   "contributors": [
     "Aleix <aleix@nemeurope.eu>",
