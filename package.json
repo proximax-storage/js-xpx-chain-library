@@ -1,7 +1,7 @@
 {
-  "name": "proximax-nem2-library",
+  "name": "js-xpx-catapult-library",
   "version": "0.9.14",
-  "description": "proximax-nem2-library-js",
+  "description": "js-xpx-catapult-library",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
