@@ -238,7 +238,7 @@ export default class AccountRoutesApi {
       let returnType = AccountPropertiesInfoDTO;
 
       return this.apiClient.callApi(
-        '/account/properties/{accountId}', 'GET',
+        '/account/{accountId}/properties', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType
       );
