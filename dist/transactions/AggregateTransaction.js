@@ -78,9 +78,26 @@ var AggregateTransaction = function (_VerifiableTransactio) {
 			// Calculate new size
 			var size = '00000000' + (signedTransaction.payload.length / 2).toString(16);
 			var formatedSize = size.substr(size.length - 8, size.length);
-			var littleIndianSize = formatedSize.substr(6, 2) + formatedSize.substr(4, 2) + formatedSize.substr(2, 2) + formatedSize.substr(0, 2);
+			var littleEndianSize = formatedSize.substr(6, 2) + formatedSize.substr(4, 2) + formatedSize.substr(2, 2) + formatedSize.substr(0, 2);
 
-			signedTransaction.payload = littleIndianSize + signedTransaction.payload.substr(8, signedTransaction.payload.length - 8);
+			signedTransaction.payload = littleEndianSize + signedTransaction.payload.substr(8, signedTransaction.payload.length - 8);
+
+			return signedTransaction;
+		}
+	}, {
+		key: 'signTransactionGivenSignatures',
+		value: function signTransactionGivenSignatures(initializer, cosignedSignedTransactions) {
+			var signedTransaction = this.signTransaction(initializer);
+			cosignedSignedTransactions.forEach(function (cosignedTransaction) {
+				signedTransaction.payload = signedTransaction.payload + cosignedTransaction.signer + cosignedTransaction.signature;
+			});
+
+			// Calculate new size
+			var size = '00000000' + (signedTransaction.payload.length / 2).toString(16);
+			var formatedSize = size.substr(size.length - 8, size.length);
+			var littleEndianSize = formatedSize.substr(6, 2) + formatedSize.substr(4, 2) + formatedSize.substr(2, 2) + formatedSize.substr(0, 2);
+
+			signedTransaction.payload = littleEndianSize + signedTransaction.payload.substr(8, signedTransaction.payload.length - 8);
 
 			return signedTransaction;
 		}

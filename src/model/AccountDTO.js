@@ -49,18 +49,18 @@ export default class AccountDTO {
     * @param addressHeight {module:model/UInt64DTO} 
     * @param publicKey {String} 
     * @param publicKeyHeight {module:model/UInt64DTO} 
+    * @param accountType {Number} 
+    * @param linkedAccountKey {String} 
     * @param mosaics {Array.<module:model/MosaicDTO>} 
-    * @param importance {module:model/UInt64DTO} 
-    * @param importanceHeight {module:model/UInt64DTO} 
     */
 
-    constructor(address, addressHeight, publicKey, publicKeyHeight, mosaics, importance, importanceHeight) {
+    constructor(address, addressHeight, publicKey, publicKeyHeight, accountType, linkedAccountKey, mosaics) {
         
 
         
         
 
-        this['address'] = address;this['addressHeight'] = addressHeight;this['publicKey'] = publicKey;this['publicKeyHeight'] = publicKeyHeight;this['mosaics'] = mosaics;this['importance'] = importance;this['importanceHeight'] = importanceHeight;
+        this['address'] = address;this['addressHeight'] = addressHeight;this['publicKey'] = publicKey;this['publicKeyHeight'] = publicKeyHeight;this['accountType'] = accountType;this['linkedAccountKey'] = linkedAccountKey;this['mosaics'] = mosaics;
 
         
     }
@@ -92,14 +92,14 @@ export default class AccountDTO {
             if (data.hasOwnProperty('publicKeyHeight')) {
                 obj['publicKeyHeight'] = UInt64DTO.constructFromObject(data['publicKeyHeight']);
             }
+            if (data.hasOwnProperty('accountType')) {
+                obj['accountType'] = ApiClient.convertToType(data['accountType'], 'Number');
+            }
+            if (data.hasOwnProperty('linkedAccountKey')) {
+                obj['linkedAccountKey'] = ApiClient.convertToType(data['linkedAccountKey'], 'String');
+            }
             if (data.hasOwnProperty('mosaics')) {
                 obj['mosaics'] = ApiClient.convertToType(data['mosaics'], [MosaicDTO]);
-            }
-            if (data.hasOwnProperty('importance')) {
-                obj['importance'] = UInt64DTO.constructFromObject(data['importance']);
-            }
-            if (data.hasOwnProperty('importanceHeight')) {
-                obj['importanceHeight'] = UInt64DTO.constructFromObject(data['importanceHeight']);
             }
         }
         return obj;
@@ -122,17 +122,17 @@ export default class AccountDTO {
     */
     publicKeyHeight = undefined;
     /**
+    * @member {Number} accountType
+    */
+    accountType = undefined;
+    /**
+    * @member {String} linkedAccountKey
+    */
+    linkedAccountKey = undefined;
+    /**
     * @member {Array.<module:model/MosaicDTO>} mosaics
     */
     mosaics = undefined;
-    /**
-    * @member {module:model/UInt64DTO} importance
-    */
-    importance = undefined;
-    /**
-    * @member {module:model/UInt64DTO} importanceHeight
-    */
-    importanceHeight = undefined;
 
 
 

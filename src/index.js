@@ -208,24 +208,10 @@ export {
     AccountPropertyDTO,
 
     /**
-     * @property {module:transactions/AccountLinkTransaction}
+     * The AddressMetadataInfoDTO model constructor.
+     * @property {module:model/AddressMetadataInfoDTO}
      */
-    AccountLinkTransaction,
-	
-	/**
-	 * @property {module:transactions/AccountPropertiesAddressTransaction}
-	 */
-	AccountPropertiesAddressTransaction,
-
-	/**
-	 * @property {module:transactions/AccountPropertiesMosaicTransaction}
-	 */
-	AccountPropertiesMosaicTransaction,
-
-	/**
-	 * @property {module:transactions/AccountPropertiesEntityTypeTransaction}
-	 */
-	AccountPropertiesEntityTypeTransaction,
+    AddressMetadataInfoDTO,
 
     /**
      * The Addresses model constructor.

@@ -16,6 +16,8 @@ var _sha3Hasher = require('./sha3Hasher');
 
 var _sha3Hasher2 = _interopRequireDefault(_sha3Hasher);
 
+var _keyPair = require('./keyPair');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -26,22 +28,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * @return {object} - The encrypted data
  */
-/*
- * Copyright 2018 NEM
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 var toMobileKey = function toMobileKey(password, privateKey) {
     // Errors
     if (!password || !privateKey) throw new Error('Missing argument !');
@@ -72,6 +58,22 @@ var toMobileKey = function toMobileKey(password, privateKey) {
  *
  * @return {object} - The derived private key
  */
+/*
+ * Copyright 2018 NEM
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 var derivePassSha = function derivePassSha(password, count) {
     // Errors
     if (!password) throw new Error('Missing argument !');
@@ -283,14 +285,10 @@ var encodePrivKey = function encodePrivKey(privateKey, password) {
 var _encode = function _encode(senderPriv, recipientPub, msg, iv, salt) {
     // Errors
     if (!senderPriv || !recipientPub || !msg || !iv || !salt) throw new Error('Missing argument !');
-    //if (!Helpers.isPrivateKeyValid(senderPriv)) throw new Error('Private key is not valid !');
-    //if (!Helpers.isPublicKeyValid(recipientPub)) throw new Error('Public key is not valid !');
     // Processing
-    var sk = _convert2.default.hexToUint8Reverse(senderPriv);
+    var keyPair = (0, _keyPair.createKeyPairFromPrivateKeyString)(senderPriv);
     var pk = _convert2.default.hexToUint8(recipientPub);
-    var shared = new Uint8Array(32);
-    var r = key_derive(shared, salt, sk, pk);
-    var encKey = r;
+    var encKey = (0, _keyPair.deriveSharedKey)(keyPair, pk, salt);
     var encIv = {
         iv: ua2words(iv, 16)
     };
@@ -450,18 +448,15 @@ var encode = function encode(senderPriv, recipientPub, msg) {
 var decode = function decode(recipientPrivate, senderPublic, _payload) {
     // Errorsp
     if (!recipientPrivate || !senderPublic || !_payload) throw new Error('Missing argument !');
-    //if (!Helpers.isPrivateKeyValid(recipientPrivate)) throw new Error('Private key is not valid !');
-    //if (!Helpers.isPublicKeyValid(senderPublic)) throw new Error('Public key is not valid !');
     // Processing
     var binPayload = _convert2.default.hexToUint8(_payload);
     var salt = new Uint8Array(binPayload.buffer, 0, 32);
     var iv = new Uint8Array(binPayload.buffer, 32, 16);
     var payload = new Uint8Array(binPayload.buffer, 48);
-    var sk = _convert2.default.hexToUint8Reverse(recipientPrivate);
+
+    var keyPair = (0, _keyPair.createKeyPairFromPrivateKeyString)(recipientPrivate);
     var pk = _convert2.default.hexToUint8(senderPublic);
-    var shared = new Uint8Array(32);
-    var r = key_derive(shared, salt, sk, pk);
-    var encKey = r;
+    var encKey = (0, _keyPair.deriveSharedKey)(keyPair, pk, salt);
     var encIv = {
         iv: ua2words(iv, 16)
     };

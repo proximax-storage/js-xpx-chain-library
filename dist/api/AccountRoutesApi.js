@@ -251,7 +251,7 @@ var AccountRoutesApi = function () {
       var accepts = ['application/json'];
       var returnType = _AccountPropertiesInfoDTO2.default;
 
-      return this.apiClient.callApi('/account/properties/{accountId}', 'GET', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType);
+      return this.apiClient.callApi('/account/{accountId}/properties', 'GET', pathParams, queryParams, headerParams, formParams, postBody, authNames, contentTypes, accepts, returnType);
     }
 
     /**

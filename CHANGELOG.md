@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v0.9.16
+
+- Version fix
+
+## v0.9.15
+
+- Fixed message encryption to use sha3
+- Added signTransactionGivenSignatures
+
 ## v0.9.14
 
 - Fixed MosaicDefinition schema, added `schemaNoDuration` for optional duration

@@ -62,24 +62,24 @@ var AccountDTO = function () {
     * @param addressHeight {module:model/UInt64DTO} 
     * @param publicKey {String} 
     * @param publicKeyHeight {module:model/UInt64DTO} 
+    * @param accountType {Number} 
+    * @param linkedAccountKey {String} 
     * @param mosaics {Array.<module:model/MosaicDTO>} 
-    * @param importance {module:model/UInt64DTO} 
-    * @param importanceHeight {module:model/UInt64DTO} 
     */
 
-    function AccountDTO(address, addressHeight, publicKey, publicKeyHeight, mosaics, importance, importanceHeight) {
+    function AccountDTO(address, addressHeight, publicKey, publicKeyHeight, accountType, linkedAccountKey, mosaics) {
         _classCallCheck(this, AccountDTO);
 
         this.address = undefined;
         this.addressHeight = undefined;
         this.publicKey = undefined;
         this.publicKeyHeight = undefined;
+        this.accountType = undefined;
+        this.linkedAccountKey = undefined;
         this.mosaics = undefined;
-        this.importance = undefined;
-        this.importanceHeight = undefined;
 
 
-        this['address'] = address;this['addressHeight'] = addressHeight;this['publicKey'] = publicKey;this['publicKeyHeight'] = publicKeyHeight;this['mosaics'] = mosaics;this['importance'] = importance;this['importanceHeight'] = importanceHeight;
+        this['address'] = address;this['addressHeight'] = addressHeight;this['publicKey'] = publicKey;this['publicKeyHeight'] = publicKeyHeight;this['accountType'] = accountType;this['linkedAccountKey'] = linkedAccountKey;this['mosaics'] = mosaics;
     }
 
     /**
@@ -109,14 +109,14 @@ var AccountDTO = function () {
                 if (data.hasOwnProperty('publicKeyHeight')) {
                     obj['publicKeyHeight'] = _UInt64DTO2.default.constructFromObject(data['publicKeyHeight']);
                 }
+                if (data.hasOwnProperty('accountType')) {
+                    obj['accountType'] = _ApiClient2.default.convertToType(data['accountType'], 'Number');
+                }
+                if (data.hasOwnProperty('linkedAccountKey')) {
+                    obj['linkedAccountKey'] = _ApiClient2.default.convertToType(data['linkedAccountKey'], 'String');
+                }
                 if (data.hasOwnProperty('mosaics')) {
                     obj['mosaics'] = _ApiClient2.default.convertToType(data['mosaics'], [_MosaicDTO2.default]);
-                }
-                if (data.hasOwnProperty('importance')) {
-                    obj['importance'] = _UInt64DTO2.default.constructFromObject(data['importance']);
-                }
-                if (data.hasOwnProperty('importanceHeight')) {
-                    obj['importanceHeight'] = _UInt64DTO2.default.constructFromObject(data['importanceHeight']);
                 }
             }
             return obj;
@@ -139,15 +139,15 @@ var AccountDTO = function () {
         */
 
         /**
+        * @member {Number} accountType
+        */
+
+        /**
+        * @member {String} linkedAccountKey
+        */
+
+        /**
         * @member {Array.<module:model/MosaicDTO>} mosaics
-        */
-
-        /**
-        * @member {module:model/UInt64DTO} importance
-        */
-
-        /**
-        * @member {module:model/UInt64DTO} importanceHeight
         */
 
     }]);
