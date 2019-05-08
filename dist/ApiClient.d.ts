@@ -16,8 +16,8 @@
 
 export declare class ApiClient {
     basePath: string;
-    authentications: Array<String>;
-    defaultHeaders: Array<String>;
+    authentications: {};
+    defaultHeaders: {};
     timeout: string;
     cache: boolean;
     enableCookies: boolean;

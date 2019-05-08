@@ -311,18 +311,18 @@ export default class ApiClient {
             var auth = this.authentications[authName];
             switch (auth.type) {
                 case 'basic':
-                    if (auth.username || auth.password) {
-                        request.auth(auth.username || '', auth.password || '');
+                    if (auth.value.username || auth.value.password) {
+                        request.auth(auth.value.username || '', auth.value.password || '');
                     }
 
                     break;
                 case 'apiKey':
-                    if (auth.apiKey) {
+                    if (auth.value.apiKey) {
                         var data = {};
-                        if (auth.apiKeyPrefix) {
-                            data[auth.name] = auth.apiKeyPrefix + ' ' + auth.apiKey;
+                        if (auth.value.apiKeyPrefix) {
+                            data[auth.value.name] = auth.value.apiKeyPrefix + ' ' + auth.value.apiKey;
                         } else {
-                            data[auth.name] = auth.apiKey;
+                            data[auth.value.name] = auth.value.apiKey;
                         }
 
                         if (auth['in'] === 'header') {
@@ -334,8 +334,8 @@ export default class ApiClient {
 
                     break;
                 case 'oauth2':
-                    if (auth.accessToken) {
-                        request.set({'Authorization': 'Bearer ' + auth.accessToken});
+                    if (auth.value.accessToken) {
+                        request.set({'Authorization': 'Bearer ' + auth.value.accessToken});
                     }
 
                     break;
