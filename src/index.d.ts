@@ -17,6 +17,8 @@
 export * from './ApiClient';
 export * from './api/AccountRoutesApi';
 export * from './api/BlockchainRoutesApi';
+export * from './api/ContractRoutesApi';
+export * from './api/MetadataRoutesApi';
 export * from './api/MosaicRoutesApi';
 export * from './api/NamespaceRoutesApi';
 export * from './api/TransactionRoutesApi';
@@ -36,6 +38,7 @@ export * from './transactions/AccountPropertiesEntityTypeTransaction';
 export * from './transactions/AggregateTransaction';
 export * from './transactions/CosignatureTransaction';
 export * from './transactions/HashLockTransaction';
+export * from './transactions/ModifyMetadataTransaction';
 export * from './transactions/MosaicAliasTransaction';
 export * from './transactions/MosaicCreationTransaction';
 export * from './transactions/MosaicSupplyChangeTransaction';

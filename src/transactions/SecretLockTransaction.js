@@ -98,12 +98,12 @@ export default class SecretLockTransaction extends VerifiableTransaction {
 				const mosaicIdVector = SecretLockTransactionBuffer.createMosaicIdVector(builder, this.mosaicId);
 				const mosaicAmountVector = SecretLockTransactionBuffer.createMosaicAmountVector(builder, this.mosaicAmount);
 				const durationVector = SecretLockTransactionBuffer.createDurationVector(builder, this.duration);
-				const byteSecret = convert.hexToUint8(this.secret.length < 64 ? this.secret + '0'.repeat(64-this.secret.length) : this.secret.substring(0, 64)); // pad to 64 hex chars
+				const byteSecret = convert.hexToUint8(this.secret.length < 64 ? this.secret + '0'.repeat(64-this.secret.length) : this.secret); // pad to 64 hex chars/32 bytes minimum
 				const secretVector = SecretLockTransactionBuffer.createSecretVector(builder, byteSecret);
 				const recipientVector = SecretLockTransactionBuffer.createRecipientVector(builder, this.recipient);
 
 				SecretLockTransactionBuffer.startSecretLockTransactionBuffer(builder);
-				SecretLockTransactionBuffer.addSize(builder, 202);
+				SecretLockTransactionBuffer.addSize(builder, 170 + byteSecret.length);
 				SecretLockTransactionBuffer.addSignature(builder, signatureVector);
 				SecretLockTransactionBuffer.addSigner(builder, signerVector);
 				SecretLockTransactionBuffer.addVersion(builder, this.version);

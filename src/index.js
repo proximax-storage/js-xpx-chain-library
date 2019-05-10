@@ -54,6 +54,7 @@ import MerkleProofInfoDTO from './model/MerkleProofInfoDTO';
 import MerkleProofInfoPayload from './model/MerkleProofInfoPayload';
 import MetadataDTO from './model/MetadataDTO';
 import MetadataIds from './model/MetadataIds';
+import ModifyMetadataTransaction from './transactions/ModifyMetadataTransaction';
 import MosaicDTO from './model/MosaicDTO';
 import MosaicDefinitionDTO from './model/MosaicDefinitionDTO';
 import MosaicIds from './model/MosaicIds';
@@ -206,12 +207,32 @@ export {
      * @property {module:model/AccountPropertyDTO}
      */
     AccountPropertyDTO,
-
+    
     /**
      * The AddressMetadataInfoDTO model constructor.
      * @property {module:model/AddressMetadataInfoDTO}
      */
     AddressMetadataInfoDTO,
+    
+    /**
+     * @property {module:transactions/AccountLinkTransaction}
+     */
+    AccountLinkTransaction,
+	
+	/**
+	 * @property {module:transactions/AccountPropertiesAddressTransaction}
+	 */
+	AccountPropertiesAddressTransaction,
+
+	/**
+	 * @property {module:transactions/AccountPropertiesMosaicTransaction}
+	 */
+	AccountPropertiesMosaicTransaction,
+
+	/**
+	 * @property {module:transactions/AccountPropertiesEntityTypeTransaction}
+	 */
+	AccountPropertiesEntityTypeTransaction,
 
     /**
      * The Addresses model constructor.
@@ -607,11 +628,16 @@ export {
      * @property {module:transactions/AddressAliasTransaction}
      */
         AddressAliasTransaction,
- 
+
     /**
+     * @property {module:transactions/ModifyMetadataTransaction}
+     */
+     ModifyMetadataTransaction,
+
+     /**
      * @property {module:transactions/MosaicAliasTransaction}
      */
-        MosaicAliasTransaction,
+     MosaicAliasTransaction,
  
     /**
      * @property {module:transactions/MosaicCreationTransaction}
