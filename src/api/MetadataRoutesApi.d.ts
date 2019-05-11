@@ -9,7 +9,6 @@ import MetadataDTO from "../model/MetadataDTO";
 import AddressMetadataInfoDTO from "../model/AddressMetadataInfoDTO";
 import MosaicMetadataInfoDTO from "../model/MosaicMetadataInfoDTO";
 import NamespaceMetadataInfoDTO from "../model/NamespaceMetadataInfoDTO";
-import MetadataInfoDTO from "../model/MetadataInfoDTO";
 
 export declare class MetadataRoutesApi {
   constructor(apiClient: any);
@@ -20,11 +19,11 @@ export declare class MetadataRoutesApi {
 
   getMetadata(metadataId: any): Promise<MetadataDTO>;
 
-  getMetadataWithHttpInfo(metadataId: any): Promise<MetadataInfoDTO>;
+  getMetadataWithHttpInfo(metadataId: any): Promise<MetadataDTO>;
 
   getMetadatas(metadataIds: any): Promise<MetadataDTO[]>;
 
-  getMetadatasWithHttpInfo(metadataIds: any): Promise<MetadataInfoDTO[]>;
+  getMetadatasWithHttpInfo(metadataIds: any): Promise<MetadataDTO[]>;
 
   getMosaicMetadata(mosaicId: any): Promise<MosaicMetadataDTO>;
 
