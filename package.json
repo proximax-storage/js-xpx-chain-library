@@ -1,7 +1,7 @@
 {
-  "name": "proximax-nem2-library",
-  "version": "0.9.17",
-  "description": "proximax-nem2-library-js",
+  "name": "js-xpx-catapult-library",
+  "version": "0.1.0",
+  "description": "Proximax catapult library for javascript",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -14,14 +14,15 @@
   "contributors": [
     "Aleix <aleix@nemeurope.eu>",
     "Guillem <guillem@nemeurope.eu>",
-    "Thomas Tran <tldinteractive@gmail.com>"
+    "Thomas Tran <tldinteractive@gmail.com>",
+    "Yaaccount <tnuoccaay@gmail.com>"
   ],
   "bugs": {
-    "url": "https://github.com/proximax-storage/proximax-nem2-library-js/issues"
+    "url": "https://github.com/proximax-storage/js-xpx-catapult-library/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/proximax-storage/proximax-nem2-library-js.git"
+    "url": "git+https://github.com/proximax-storage/js-xpx-catapult-library.git"
   },
   "publishConfig": {
     "registry": "https://nexus.internal.proximax.io/repository/npm-private/"
@@ -64,13 +65,14 @@
       "**/*.spec.js"
     ]
   },
-  "homepage": "https://github.com/proximax-storage/proximax-nem2-library-js#readme",
+  "homepage": "https://github.com/proximax-storage/js-xpx-catapult-library#readme",
   "directories": {
     "test": "test"
   },
   "keywords": [
-    "nem2",
+    "xpx",
+    "proximax",
     "library"
   ],
-  "author": "Nem"
+  "author": "Proximax"
 }

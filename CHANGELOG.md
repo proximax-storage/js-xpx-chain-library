@@ -1,4 +1,13 @@
-# CHANGELOG
+# Proximax CHANGELOG
+## v0.1.0
+
+- Initial Proximax version
+- renamed to js-xpx-catapult-library
+- reset versioning
+- Cow compatible
+- Support for metadata added
+
+# NEM CHANGELOG
 
 ## v0.9.16
 

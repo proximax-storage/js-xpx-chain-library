@@ -1,16 +1,14 @@
-# nem2-library-js
+# js-xpx-catapult-library
 
 [![npm version](https://badge.fury.io/js/nem2-library.svg)](https://badge.fury.io/js/nem2-library)
 [![Build Status](https://api.travis-ci.org/nemtech/nem2-library-js.svg?branch=master)](https://travis-ci.org/nemtech/nem2-library-js)
 [![Coverage Status](https://coveralls.io/repos/github/nemtech/nem2-library-js/badge.svg?branch=travis-ci)](https://coveralls.io/github/nemtech/nem2-library-js?branch=travis-ci)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-:warning:️ nem2-library-js is not meant to be used in NEM2 Tools/Applications. 
-It is used by [nem2-sdk-typescript-javascript](https://github.com/nemtech/nem2-sdk-typescript-javascript).
+:warning:️ js-xpx-catapult-library is not meant to be used in Proximax Tools/Applications. 
+It is used by [tsjs-xpx-catapult-sdk](https://github.com/proximax-storge/tsjs-xpx-catapult-sdk).
 
-:information_source: nem2-library-js is not related to nem-library of NIS1.
-
-This project is developed and maintained by NEM Foundation. 
+This project is developed and maintained by Proximax. 
 
 FIX SOME NEM ISSUES
 - Added crypto_shared_key_hash
@@ -28,7 +26,7 @@ Other versions like [version v0.9.5-2](https://github.com/nemtech/nem2-library-j
 
 ## Notes on generation of catapult-rest DTO and API client
 
-Following command can be used to generate DTOs and Api clients for the [nem2-sdk-typescript-javascript](https://github.com/nemtech/nem2-sdk-typescript-javascript) :
+Following command can be used to generate DTOs and Api clients for the [tsjs-xpx-catapult-sdk](https://github.com/proximax-storage/tsjs-xpx-catapult-sdk) :
 
 ```bash
 $ git clone git@github.com:nemtech/nem2-docs
@@ -54,5 +52,5 @@ Important versions listed below. Refer to the [Changelog](CHANGELOG.md) for a fu
 
 ## License
 
-Copyright (c) 2018 NEM
+Copyright (c) 2019 NEM, Proximax
 Licensed under the [Apache License 2.0](LICENSE)
