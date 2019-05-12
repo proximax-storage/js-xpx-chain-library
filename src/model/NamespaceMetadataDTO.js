@@ -30,7 +30,7 @@ import UInt64DTO from './UInt64DTO';
 * @module model/NamespaceMetadataDTO
 * @version 1.0.13
 */
-export default class NamespaceMetadataDTO {
+export default class NamespaceMetadataDTO extends MetadataDTO {
     /**
     * Constructs a new <code>NamespaceMetadataDTO</code>.
     * @alias module:model/NamespaceMetadataDTO
@@ -45,7 +45,7 @@ export default class NamespaceMetadataDTO {
         
 
         
-        MetadataDTO.call(this, metadataType, fields);
+        super(metadataType, fields);
 
         this['metadataId'] = metadataId;
 

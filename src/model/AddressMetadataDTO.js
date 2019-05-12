@@ -29,7 +29,7 @@ import MetadataDTO from './MetadataDTO';
 * @module model/AddressMetadataDTO
 * @version 1.0.13
 */
-export default class AddressMetadataDTO {
+export default class AddressMetadataDTO extends MetadataDTO {
     /**
     * Constructs a new <code>AddressMetadataDTO</code>.
     * @alias module:model/AddressMetadataDTO
@@ -44,7 +44,7 @@ export default class AddressMetadataDTO {
         
 
         
-        MetadataDTO.call(this, metadataType, fields);
+        super(metadataType, fields);
 
         this['metadataId'] = metadataId;
 

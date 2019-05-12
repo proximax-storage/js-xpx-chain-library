@@ -30,7 +30,7 @@ import UInt64DTO from './UInt64DTO';
 * @module model/MosaicMetadataDTO
 * @version 1.0.13
 */
-export default class MosaicMetadataDTO {
+export default class MosaicMetadataDTO extends MetadataDTO {
     /**
     * Constructs a new <code>MosaicMetadataDTO</code>.
     * @alias module:model/MosaicMetadataDTO
@@ -45,7 +45,7 @@ export default class MosaicMetadataDTO {
         
 
         
-        MetadataDTO.call(this, metadataType, fields);
+        super(metadataType, fields);
 
         this['metadataId'] = metadataId;
 
