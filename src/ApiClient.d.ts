@@ -21,4 +21,6 @@ export declare class ApiClient {
     timeout: string;
     cache: boolean;
     enableCookies: boolean;
+
+    constructor(basePath: string, authentications: object, defaultHeaders: object);
 }

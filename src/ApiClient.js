@@ -43,27 +43,26 @@ import querystring from "querystring";
 * @class
 */
 export default class ApiClient {
-    constructor() {
+    constructor(basePath, authentications, defaultHeaders) {
         /**
          * The base URL against which to resolve every API call's (relative) path.
          * @type {String}
          * @default http://localhost:3000
          */
-        this.basePath = 'http://localhost:3000'.replace(/\/+$/, '');
+        this.basePath = basePath || 'http://localhost:3000'.replace(/\/+$/, '');
 
         /**
          * The authentication methods to be included for all API calls.
          * @type {Array.<String>}
          */
-        this.authentications = {
-        }
+        this.authentications = authentications || {};
 
         /**
          * The default HTTP headers to be included for all API calls.
          * @type {Array.<String>}
          * @default {}
          */
-        this.defaultHeaders = {};
+        this.defaultHeaders = defaultHeaders || {};
 
         /**
          * The default HTTP timeout for all API calls.
@@ -583,3 +582,9 @@ export default class ApiClient {
         }
     };
 }
+
+/**
+* The default API client implementation.
+* @type {module:ApiClient}
+*/
+ApiClient.instance = new ApiClient();
