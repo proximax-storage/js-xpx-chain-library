@@ -121,4 +121,7 @@ typings/
 # Output folder
 dist/
 
+# VSCode
+.vscode
+
 # End of https://www.gitignore.io/api/node,intellij+all
