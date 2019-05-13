@@ -1,6 +1,6 @@
 {
   "name": "js-xpx-catapult-library",
-  "version": "0.9.15",
+  "version": "0.9.16",
   "description": "js-xpx-catapult-library",
   "license": "Apache-2.0",
   "main": "dist/index.js",

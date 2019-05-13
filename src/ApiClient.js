@@ -583,9 +583,3 @@ export default class ApiClient {
         }
     };
 }
-
-/**
-* The default API client implementation.
-* @type {module:ApiClient}
-*/
-ApiClient.instance = new ApiClient();
