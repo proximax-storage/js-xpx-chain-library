@@ -71,9 +71,9 @@ var ApiClient = function () {
 
         /**
          * The authentication methods to be included for all API calls.
-         * @type {Array.<String>}
+         * @type {Array.<Object>}
          */
-        this.authentications = {};
+        this.authentications = [];
 
         /**
          * The default HTTP headers to be included for all API calls.
@@ -320,10 +320,7 @@ var ApiClient = function () {
     }, {
         key: "applyAuthToRequest",
         value: function applyAuthToRequest(request, authNames) {
-            var _this2 = this;
-
-            authNames.forEach(function (authName) {
-                var auth = _this2.authentications[authName];
+            this.authentications.forEach(function (auth) {
                 switch (auth.type) {
                     case 'basic':
                         if (auth.value.username || auth.value.password) {
@@ -408,7 +405,7 @@ var ApiClient = function () {
     }, {
         key: "callApi",
         value: function callApi(path, httpMethod, pathParams, queryParams, headerParams, formParams, bodyParam, authNames, contentTypes, accepts, returnType) {
-            var _this3 = this;
+            var _this2 = this;
 
             var url = this.buildUrl(path, pathParams);
             var request = (0, _superagent2.default)(httpMethod, url);
@@ -488,9 +485,9 @@ var ApiClient = function () {
                         reject(error);
                     } else {
                         try {
-                            var data = _this3.deserialize(response, returnType);
-                            if (_this3.enableCookies && typeof window === 'undefined') {
-                                _this3.agent.saveCookies(response);
+                            var data = _this2.deserialize(response, returnType);
+                            if (_this2.enableCookies && typeof window === 'undefined') {
+                                _this2.agent.saveCookies(response);
                             }
 
                             resolve({ data: data, response: response });

@@ -142,7 +142,7 @@ var TransferTransaction = function (_VerifiableTransactio) {
 						// Constants
 
 						// Create message
-						var bytePayload = _convert2.default.hexToUint8(this.message.hexEncodedPayload || _convert2.default.utf8ToHex(this.message.payload));
+						var bytePayload = _convert2.default.hexToUint8(this.message.type === 0 ? _convert2.default.utf8ToHex(this.message.payload) : this.message.payload);
 						var payload = MessageBuffer.createPayloadVector(builder, bytePayload);
 						MessageBuffer.startMessageBuffer(builder);
 						MessageBuffer.addType(builder, this.message.type);

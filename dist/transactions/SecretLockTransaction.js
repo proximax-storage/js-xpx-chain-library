@@ -156,12 +156,12 @@ var SecretLockTransaction = function (_VerifiableTransactio) {
 						var mosaicIdVector = SecretLockTransactionBuffer.createMosaicIdVector(builder, this.mosaicId);
 						var mosaicAmountVector = SecretLockTransactionBuffer.createMosaicAmountVector(builder, this.mosaicAmount);
 						var durationVector = SecretLockTransactionBuffer.createDurationVector(builder, this.duration);
-						var byteSecret = _convert2.default.hexToUint8(this.secret.length < 64 ? this.secret + '0'.repeat(64 - this.secret.length) : this.secret.substring(0, 64)); // pad to 64 hex chars
+						var byteSecret = _convert2.default.hexToUint8(this.secret.length < 64 ? this.secret + '0'.repeat(64 - this.secret.length) : this.secret); // pad to 64 hex chars/32 bytes minimum
 						var secretVector = SecretLockTransactionBuffer.createSecretVector(builder, byteSecret);
 						var recipientVector = SecretLockTransactionBuffer.createRecipientVector(builder, this.recipient);
 
 						SecretLockTransactionBuffer.startSecretLockTransactionBuffer(builder);
-						SecretLockTransactionBuffer.addSize(builder, 202);
+						SecretLockTransactionBuffer.addSize(builder, 170 + byteSecret.length);
 						SecretLockTransactionBuffer.addSignature(builder, signatureVector);
 						SecretLockTransactionBuffer.addSigner(builder, signerVector);
 						SecretLockTransactionBuffer.addVersion(builder, this.version);

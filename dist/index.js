@@ -3,7 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.subnamespaceNamespaceId = exports.subnamespaceParentId = exports.namespaceId = exports.mosaicId = exports.address = exports.uint64 = exports.IdGenerator = exports.sha3Hasher = exports.convert = exports.nacl_catapult = exports.crypto = exports.KeyPair = exports.VerifiableTransactionBuilder = exports.VerifiableTransaction = exports.TransferTransaction = exports.SecretProofTransaction = exports.SecretLockTransaction = exports.NamespaceCreationTransaction = exports.MultisigModificationTransaction = exports.MosaicSupplyChangeTransaction = exports.MosaicCreationTransaction = exports.MosaicAliasTransaction = exports.AddressAliasTransaction = exports.HashLockTransaction = exports.deadline = exports.AggregateTransaction = exports.CosignatureTransaction = exports.Schema = exports.UnconfirmedTransactionsListener = exports.TransactionStatusListener = exports.PartialTransactionsListener = exports.ConfirmedTransactionsListener = exports.BlockListener = exports.TransactionRoutesApi = exports.NodeRoutesApi = exports.NetworkRoutesApi = exports.NamespaceRoutesApi = exports.MosaicRoutesApi = exports.MetadataRoutesApi = exports.ContractRoutesApi = exports.BlockchainRoutesApi = exports.AccountRoutesApi = exports.NamespaceMetadataDTO = exports.MosaicMetadataDTO = exports.AddressMetadataDTO = exports.UInt64DTO = exports.TransactionStatusDTO = exports.TransactionPayload = exports.TransactionIds = exports.TransactionHashes = exports.PublicKeys = exports.NodeTimeDTO = exports.NodeInfoDTO = exports.NetworkTypeDTO = exports.NamespaceNameDTO = exports.NamespaceMetadataInfoDTO = exports.NamespaceMetaDTO = exports.NamespaceInfoDTO = exports.NamespaceIds = exports.NamespaceDTO = exports.MultisigDTO = exports.MultisigAccountInfoDTO = exports.MultisigAccountGraphInfoDTO = exports.MosaicPropertiesDTO = exports.MosaicNameDTO = exports.MosaicMetadataInfoDTO = exports.MosaicMetaDTO = exports.MosaicInfoDTO = exports.MosaicIds = exports.MosaicDefinitionDTO = exports.MosaicDTO = exports.MetadataIds = exports.MetadataDTO = exports.MerkleProofInfoPayload = exports.MerkleProofInfoDTO = exports.MerklePathItem = exports.HeightDTO = exports.FieldDTO = exports.ContractInfoDTO = exports.ContractDTO = exports.CommunicationTimestamps = exports.BlockchainStorageInfoDTO = exports.BlockchainScoreDTO = exports.BlockMetaDTO = exports.BlockInfoDTO = exports.BlockDTO = exports.AnnounceTransactionInfoDTO = exports.AliasDTO = exports.Addresses = exports.AddressMetadataInfoDTO = exports.AccountPropertyDTO = exports.AccountPropertiesMetaDTO = exports.AccountPropertiesInfoDTO = exports.AccountPropertiesDTO = exports.AccountMetaDTO = exports.AccountInfoDTO = exports.AccountDTO = exports.ApiClient = undefined;
+exports.subnamespaceNamespaceId = exports.subnamespaceParentId = exports.namespaceId = undefined;
+exports.mosaicId = exports.address = exports.uint64 = exports.IdGenerator = exports.sha3Hasher = exports.convert = exports.nacl_catapult = exports.crypto = exports.KeyPair = exports.VerifiableTransactionBuilder = exports.VerifiableTransaction = exports.TransferTransaction = exports.SecretProofTransaction = exports.SecretLockTransaction = exports.NamespaceCreationTransaction = exports.MultisigModificationTransaction = exports.MosaicSupplyChangeTransaction = exports.MosaicCreationTransaction = exports.MosaicAliasTransaction = exports.ModifyMetadataTransaction = exports.AddressAliasTransaction = exports.HashLockTransaction = exports.deadline = exports.AggregateTransaction = exports.CosignatureTransaction = exports.Schema = exports.UnconfirmedTransactionsListener = exports.TransactionStatusListener = exports.PartialTransactionsListener = exports.ConfirmedTransactionsListener = exports.BlockListener = exports.TransactionRoutesApi = exports.NodeRoutesApi = exports.NetworkRoutesApi = exports.NamespaceRoutesApi = exports.MosaicRoutesApi = exports.MetadataRoutesApi = exports.ContractRoutesApi = exports.BlockchainRoutesApi = exports.AccountRoutesApi = exports.NamespaceMetadataDTO = exports.MosaicMetadataDTO = exports.AddressMetadataDTO = exports.UInt64DTO = exports.TransactionStatusDTO = exports.TransactionPayload = exports.TransactionIds = exports.TransactionHashes = exports.PublicKeys = exports.NodeTimeDTO = exports.NodeInfoDTO = exports.NetworkTypeDTO = exports.NamespaceNameDTO = exports.NamespaceMetadataInfoDTO = exports.NamespaceMetaDTO = exports.NamespaceInfoDTO = exports.NamespaceIds = exports.NamespaceDTO = exports.MultisigDTO = exports.MultisigAccountInfoDTO = exports.MultisigAccountGraphInfoDTO = exports.MosaicPropertiesDTO = exports.MosaicNameDTO = exports.MosaicMetadataInfoDTO = exports.MosaicMetaDTO = exports.MosaicInfoDTO = exports.MosaicIds = exports.MosaicDefinitionDTO = exports.MosaicDTO = exports.MetadataIds = exports.MetadataDTO = exports.MerkleProofInfoPayload = exports.MerkleProofInfoDTO = exports.MerklePathItem = exports.HeightDTO = exports.FieldDTO = exports.ContractInfoDTO = exports.ContractDTO = exports.CommunicationTimestamps = exports.BlockchainStorageInfoDTO = exports.BlockchainScoreDTO = exports.BlockMetaDTO = exports.BlockInfoDTO = exports.BlockDTO = exports.AnnounceTransactionInfoDTO = exports.AliasDTO = exports.Addresses = exports.AccountPropertiesEntityTypeTransaction = exports.AccountPropertiesMosaicTransaction = exports.AccountPropertiesAddressTransaction = exports.AccountLinkTransaction = exports.AddressMetadataInfoDTO = exports.AccountPropertyDTO = exports.AccountPropertiesMetaDTO = exports.AccountPropertiesInfoDTO = exports.AccountPropertiesDTO = exports.AccountMetaDTO = exports.AccountInfoDTO = exports.AccountDTO = exports.ApiClient = undefined;
 
 var _ApiClient = require('./ApiClient');
 
@@ -112,6 +113,10 @@ var _MetadataDTO2 = _interopRequireDefault(_MetadataDTO);
 var _MetadataIds = require('./model/MetadataIds');
 
 var _MetadataIds2 = _interopRequireDefault(_MetadataIds);
+
+var _ModifyMetadataTransaction = require('./transactions/ModifyMetadataTransaction');
+
+var _ModifyMetadataTransaction2 = _interopRequireDefault(_ModifyMetadataTransaction);
 
 var _MosaicDTO = require('./model/MosaicDTO');
 
@@ -434,6 +439,34 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 * @module index
 * @version 1.0.13
 */
+/*
+ * Copyright 2019 NEM
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+ * Catapult REST API Reference
+ * No description provided (generated by Swagger Codegen https://github.com/swagger-api/swagger-codegen)
+ *
+ * OpenAPI spec version: 1.0.13
+ * 
+ *
+ * NOTE: This class is auto generated by the swagger code generator program.
+ * https://github.com/swagger-api/swagger-codegen.git
+ * Do not edit the class manually.
+ *
+ */
+
 exports.ApiClient = _ApiClient2.default;
 exports.AccountDTO = _AccountDTO2.default;
 exports.AccountInfoDTO = _AccountInfoDTO2.default;
@@ -443,6 +476,10 @@ exports.AccountPropertiesInfoDTO = _AccountPropertiesInfoDTO2.default;
 exports.AccountPropertiesMetaDTO = _AccountPropertiesMetaDTO2.default;
 exports.AccountPropertyDTO = _AccountPropertyDTO2.default;
 exports.AddressMetadataInfoDTO = _AddressMetadataInfoDTO2.default;
+exports.AccountLinkTransaction = _AccountLinkTransaction2.default;
+exports.AccountPropertiesAddressTransaction = _AccountPropertiesAddressTransaction2.default;
+exports.AccountPropertiesMosaicTransaction = _AccountPropertiesMosaicTransaction2.default;
+exports.AccountPropertiesEntityTypeTransaction = _AccountPropertiesEntityTypeTransaction2.default;
 exports.Addresses = _Addresses2.default;
 exports.AliasDTO = _AliasDTO2.default;
 exports.AnnounceTransactionInfoDTO = _AnnounceTransactionInfoDTO2.default;
@@ -510,6 +547,7 @@ exports.AggregateTransaction = _AggregateTransaction2.default;
 exports.deadline = _Deadline2.default;
 exports.HashLockTransaction = _HashLockTransaction2.default;
 exports.AddressAliasTransaction = _AddressAliasTransaction2.default;
+exports.ModifyMetadataTransaction = _ModifyMetadataTransaction2.default;
 exports.MosaicAliasTransaction = _MosaicAliasTransaction2.default;
 exports.MosaicCreationTransaction = _MosaicCreationTransaction2.default;
 exports.MosaicSupplyChangeTransaction = _MosaicSupplyChangeTransaction2.default;
@@ -531,31 +569,5 @@ exports.address = _address2.default;
 exports.mosaicId = _NamespaceMosaicId.mosaicId;
 exports.namespaceId = _NamespaceMosaicId.namespaceId;
 exports.subnamespaceParentId = _NamespaceMosaicId.subnamespaceParentId;
-exports.subnamespaceNamespaceId = _NamespaceMosaicId.subnamespaceNamespaceId; /*
-                                                                               * Copyright 2019 NEM
-                                                                               *
-                                                                               * Licensed under the Apache License, Version 2.0 (the "License");
-                                                                               * you may not use this file except in compliance with the License.
-                                                                               * You may obtain a copy of the License at
-                                                                               *
-                                                                               *     http://www.apache.org/licenses/LICENSE-2.0
-                                                                               *
-                                                                               * Unless required by applicable law or agreed to in writing, software
-                                                                               * distributed under the License is distributed on an "AS IS" BASIS,
-                                                                               * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-                                                                               * See the License for the specific language governing permissions and
-                                                                               * limitations under the License.
-                                                                               */
-/**
- * Catapult REST API Reference
- * No description provided (generated by Swagger Codegen https://github.com/swagger-api/swagger-codegen)
- *
- * OpenAPI spec version: 1.0.13
- * 
- *
- * NOTE: This class is auto generated by the swagger code generator program.
- * https://github.com/swagger-api/swagger-codegen.git
- * Do not edit the class manually.
- *
- */
+exports.subnamespaceNamespaceId = _NamespaceMosaicId.subnamespaceNamespaceId;
 //# sourceMappingURL=index.js.map
