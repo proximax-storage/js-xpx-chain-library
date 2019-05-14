@@ -44,18 +44,17 @@ export default class MosaicNameDTO {
     * Constructs a new <code>MosaicNameDTO</code>.
     * @alias module:model/MosaicNameDTO
     * @class
-    * @param parentId {module:model/UInt64DTO} 
     * @param mosaicId {module:model/UInt64DTO} 
-    * @param name {String} 
+    * @param names {Array.<String>}
     */
 
-    constructor(parentId, mosaicId, name) {
+    constructor(mosaicId, names) {
         
 
         
         
 
-        this['parentId'] = parentId;this['mosaicId'] = mosaicId;this['name'] = name;
+        this['mosaicId'] = mosaicId;this['names'] = names;
 
         
     }
@@ -75,31 +74,24 @@ export default class MosaicNameDTO {
             
             
 
-            if (data.hasOwnProperty('parentId')) {
-                obj['parentId'] = UInt64DTO.constructFromObject(data['parentId']);
-            }
             if (data.hasOwnProperty('mosaicId')) {
                 obj['mosaicId'] = UInt64DTO.constructFromObject(data['mosaicId']);
             }
-            if (data.hasOwnProperty('name')) {
-                obj['name'] = ApiClient.convertToType(data['name'], 'String');
+            if (data.hasOwnProperty('names')) {
+                obj['names'] = ApiClient.convertToType(data['names'], ['String']);
             }
         }
         return obj;
     }
 
     /**
-    * @member {module:model/UInt64DTO} parentId
-    */
-    parentId = undefined;
-    /**
     * @member {module:model/UInt64DTO} mosaicId
     */
     mosaicId = undefined;
     /**
-    * @member {String} name
+    * @member {Array.<String>} names
     */
-    name = undefined;
+    names = undefined;
 
 
 
