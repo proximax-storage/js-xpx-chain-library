@@ -28,7 +28,11 @@ describe('AccountRoutesApi', () => {
 	const accountPublicKey = '1026d70e1954775749c6811084d6450a3184d977383f0e4282cd47118af37755';
 	const multisigAddress = 'SBCPGZ3S2SCC3YHBBTYDCUZV4ZZEPHM2KGCP4QXX';
 	const multisig = 'B694186EE4AB0558CA4AFCFDD43B42114AE71094F5A1FC4A913FE9971CACD21D';
-
+	const propertiesAddress =  'SBCPGZ3S2SCC3YHBBTYDCUZV4ZZEPHM2KGCP4QXX';
+	const properties = 'B694186EE4AB0558CA4AFCFDD43B42114AE71094F5A1FC4A913FE9971CACD21D';
+	const accountPropertiesIdsBody = {
+		accountIds: ['SBCPGZ3S2SCC3YHBBTYDCUZV4ZZEPHM2KGCP4QXX']
+	};
 	beforeEach(() => {
 		accountRoutesApi = new AccountRoutesApi(CONF.SERVER);
 	});
@@ -140,6 +144,23 @@ describe('AccountRoutesApi', () => {
 				});
 				done();
 			}));
+	});
+	describe('getAccountProperties', () => {
+		it('should call getAccountProperties successfully', done => {
+			return accountRoutesApi.getAccountProperties(propertiesAddress).then(accountPropertiesInfo => {
+				expect(accountPropertiesInfo.account).to.be.equal(properties);
+				done();
+			});
+		});
+	});
+	describe('getAccountPropertiesFromAccounts', () => {
+		it('should call getAccountPropertiesFromAccounts successfully', done => {
+			return accountRoutesApi.getAccountPropertiesFromAccounts(accountPropertiesIdsBody).then(accountPropertiesInfo => {
+				expect(accountPropertiesInfo.length).to.be.equal(1);
+				checkAccountInfo(accountPropertiesInfo);
+				done();
+			});
+		});
 	});
 });
 

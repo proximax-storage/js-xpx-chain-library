@@ -25,7 +25,7 @@ describe('SecretProofTransaction', () => {
 		privateKey: '041e2ce90c31cd65620ed16ab7a5a485e5b335d7e61c75cd9b3a2fed3e091728'
 	};
 
-	it('should create secret lock transaction', () => {
+	it('should create secret proof transaction', () => {
 		const hash = sha3_512.create();
 		hash.update('secret');
 		const secretProofTransaction = {

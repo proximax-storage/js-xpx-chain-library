@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { array, Schema, string, TypeSize, ubyte, uint, ushort } from './Schema';
+import { array, Schema, TypeSize, ubyte, uint, ushort } from './Schema';
 
 /**
  * @module schema/MosaicCreationTransactionSchema
@@ -24,7 +24,7 @@ import { array, Schema, string, TypeSize, ubyte, uint, ushort } from './Schema';
  * Mosaic definition creation transaction schema
  * @const {module:schema/Schema}
  */
-export default new Schema([
+export const schema = new Schema([
 	uint('size'),
 	array('signature'),
 	array('signer'),
@@ -32,13 +32,26 @@ export default new Schema([
 	ushort('type'),
 	array('fee', TypeSize.INT),
 	array('deadline', TypeSize.INT),
-	array('parentId', TypeSize.INT),
+	array('nonce', TypeSize.BYTE),
 	array('mosaicId', TypeSize.INT),
-	ubyte('mosaicNameLength'),
 	ubyte('numOptionalProperties'),
 	ubyte('flags'),
 	ubyte('divisibility'),
-	string('mosaicName'),
 	ubyte('indicateDuration'),
 	array('duration', TypeSize.INT)
+]);
+
+export const schemaNoDuration = new Schema([
+	uint('size'),
+	array('signature'),
+	array('signer'),
+	ushort('version'),
+	ushort('type'),
+	array('fee', TypeSize.INT),
+	array('deadline', TypeSize.INT),
+	array('nonce', TypeSize.BYTE),
+	array('mosaicId', TypeSize.INT),
+	ubyte('numOptionalProperties'),
+	ubyte('flags'),
+	ubyte('divisibility')
 ]);
