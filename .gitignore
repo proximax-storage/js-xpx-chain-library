@@ -120,6 +120,7 @@ typings/
 
 # Output folder
 dist/
+dist/**/*.*
 
 # VSCode
 .vscode
