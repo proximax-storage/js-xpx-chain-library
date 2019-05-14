@@ -43,26 +43,26 @@ import querystring from "querystring";
 * @class
 */
 export default class ApiClient {
-    constructor(basePath, authentications, defaultHeaders) {
+    constructor() {
         /**
          * The base URL against which to resolve every API call's (relative) path.
          * @type {String}
          * @default http://localhost:3000
          */
-        this.basePath = basePath || 'http://localhost:3000'.replace(/\/+$/, '');
+        this.basePath = 'http://localhost:3000'.replace(/\/+$/, '');
 
         /**
          * The authentication methods to be included for all API calls.
-         * @type {Array.<String>}
+         * @type {Array.<Object>}
          */
-        this.authentications = authentications || {};
+        this.authentications = [];
 
         /**
          * The default HTTP headers to be included for all API calls.
          * @type {Array.<String>}
          * @default {}
          */
-        this.defaultHeaders = defaultHeaders || {};
+        this.defaultHeaders = {};
 
         /**
          * The default HTTP timeout for all API calls.
@@ -306,8 +306,7 @@ export default class ApiClient {
     * @param {Array.<String>} authNames An array of authentication method names.
     */
     applyAuthToRequest(request, authNames) {
-        authNames.forEach((authName) => {
-            var auth = this.authentications[authName];
+        this.authentications.forEach((auth) => {
             switch (auth.type) {
                 case 'basic':
                     if (auth.value.username || auth.value.password) {
