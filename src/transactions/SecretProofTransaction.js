@@ -79,7 +79,7 @@ export default class SecretProofTransaction extends VerifiableTransaction {
 				const signerVector = SecretProofTransactionBuffer.createSignerVector(builder, Array(...Array(32)).map(Number.prototype.valueOf, 0));
 				const deadlineVector = SecretProofTransactionBuffer.createDeadlineVector(builder, this.deadline);
 				const feeVector = SecretProofTransactionBuffer.createFeeVector(builder, this.fee);
-				const byteSecret = convert.hexToUint8(this.secret);
+				const byteSecret = convert.hexToUint8(this.secret.length < 64 ? this.secret + '0'.repeat(64-this.secret.length) : this.secret); // pad to 64 hex chars/32 bytes minimum
 				const secretVector = SecretProofTransactionBuffer.createSecretVector(builder, byteSecret);
 				const byteProof = convert.hexToUint8(this.proof);
 				const proofVector = SecretProofTransactionBuffer.createProofVector(builder, byteProof);
