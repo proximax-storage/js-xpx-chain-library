@@ -1,6 +1,6 @@
 {
   "name": "js-xpx-catapult-library",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ProximaX Sirius Blockchain Library for Javascript",
   "license": "Apache-2.0",
   "main": "dist/index.js",
@@ -25,6 +25,9 @@
   "publishConfig": {
     "registry": "https://nexus.internal.proximax.io/repository/npm-private/"
   },
+  "files": [
+    "/dist"
+  ],
   "dependencies": {
     "bufferutil": "^3.0.5",
     "crypto-js": "^3.1.9-1",

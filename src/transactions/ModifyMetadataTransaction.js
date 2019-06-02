@@ -70,7 +70,7 @@ export default class ModifyMetadataTransaction extends VerifiableTransaction {
 					const modificationKey = modification.key ? convert.hexToUint8(convert.utf8ToHex(modification.key)) : [];
 					const modificationValue = modification.value ? convert.hexToUint8(convert.utf8ToHex(modification.value)) : [];
 					// check zero value size here (see go for details)
-					const valueSizeOffset = MetadataModificationBuffer.createValueSizeVector(builder, [modificationValue.length & 0xff, modificationValue.length & 0xff00]);
+					const valueSizeOffset = MetadataModificationBuffer.createValueSizeVector(builder, [modificationValue.length & 0xff, (modificationValue.length & 0xff00) >> 8]);
 					const keyOffset = MetadataModificationBuffer.createKeyVector(builder, modificationKey);
 					const valueOffset = MetadataModificationBuffer.createValueVector(builder, modificationValue);
 					const size = 4 + 1 + 1 + 2 + modificationKey.length + modificationValue.length
