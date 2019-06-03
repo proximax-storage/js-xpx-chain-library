@@ -34,10 +34,4 @@ export declare module crypto {
     function encode(senderPriv: any, recipientPub: any, msg: any): any;
 
     function decode(recipientPrivate: any, senderPublic: any, _payload: any): any;
-
-    function _nemencode(senderPriv: any, recipientPub: any, bytes: any, iv: any, salt: any): any;
-
-    function nemencrypt(senderPriv: any, recipientPub: any, bytes: Uint8Array): Uint8Array;
-
-    function nemdecrypt(recipientPrivate: any, senderPublic: any, _payload: Uint8Array): Uint8Array;
 }
