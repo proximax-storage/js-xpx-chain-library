@@ -171,7 +171,8 @@ catapult.crypto = (function () {
 			const q = [c.gf(), c.gf(), c.gf(), c.gf()];
 			const p = [c.gf(), c.gf(), c.gf(), c.gf()];
 			const sharedKey = new Uint8Array(Key_Size);
-			c.unpackneg(q, pk);
+			// c.unpackneg(q, pk);
+			c.unpack(q, pk); // this is the only difference between xpx and nem regarding encode/decode; this way we have cross-sdk (java) compatibility
 			c.scalarmult(p, q, d);
 			c.pack(sharedKey, p);
 

@@ -349,21 +349,21 @@ describe('crypto tests', function() {
 
 	});
 
-    /*it("Can encode message with sender private key", function() {
+    it("Can encode message with sender private key", function() {
         // Arrange:
         let senderPriv = "2a91e1d5c110a8d0105aad4683f962c2a56663a3cad46666b16d243174673d90";
-        let recipientPublic = "5aae0b521c59cfc8c2114dc74d2f652359a68e377657c3f6bd6091f16f72e1ec";
-        let message = "NEM is awesome !";
+        let recipientPublic = "1671038B892F9FCCA2122CD455A6C084BF3451A126BAD1F6001E26D38735751A";
+        let message = "ProximaX is awesome !";
         let iv = "f396cf605ee7cb0e7618df82aa48c684";
         let salt = "5f8d37e8116b6dc9171ffeb7617b0988bfd8abe0e611c2c34cc127b637d8192a";
-        let expectedHex = "5f8d37e8116b6dc9171ffeb7617b0988bfd8abe0e611c2c34cc127b637d8192af396cf605ee7cb0e7618df82aa48c684eb60d26923a2672758f7df7b1430a026e88fea1f4bb3171ab213a5679b9fb9d9";
+        let expectedHex = "5F8D37E8116B6DC9171FFEB7617B0988BFD8ABE0E611C2C34CC127B637D8192AF396CF605EE7CB0E7618DF82AA48C68460afb8873d3d3954a1528f2c70b11890f5d078c1fe345bb4f84c24f87bdbe652";
 
         // Act:
         let encryptedHex = Crypto._encode(senderPriv, recipientPublic, message, convert.hexToUint8(iv), convert.hexToUint8(salt));
 
         // Assert:
         expect(encryptedHex).equal(expectedHex);
-	});*/
+	});
 
 	it('Can encode decode data with sender private key and recipient public key', () => {
 	  // Arrange:
@@ -371,20 +371,13 @@ describe('crypto tests', function() {
 		const recipientPriv = '2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9';
 		const recipient = createKeyPairFromPrivateKeyString(recipientPriv);
 
-		const expectedMsg = 'NEM is awesome !';
-		const msgBuffer = Buffer.from(expectedMsg);
-		const msgBytes = new Uint8Array(msgBuffer);
+		const expectedMsg = 'ProximaX is awesome !';
 
 		// Act:
-		const encrypted = Crypto.nemencrypt(senderPriv, convert.uint8ToHex(recipient.publicKey), msgBytes);
-		const decrypted = Crypto.nemdecrypt(senderPriv, convert.uint8ToHex(recipient.publicKey), encrypted);
-
-		const secureMsg = convert.ab2str(encrypted);
-		const plainMsg = convert.ab2str(decrypted);
-
+		const encrypted = Crypto.encode(senderPriv, convert.uint8ToHex(recipient.publicKey), expectedMsg);
+		const decrypted = Crypto.decode(senderPriv, convert.uint8ToHex(recipient.publicKey), encrypted);
 		// Assert:
-		expect(secureMsg).not.equal(expectedMsg);
-		expect(plainMsg).equal(expectedMsg);
+		expect(decrypted).equal(expectedMsg);
 	});
 
 	it('Can encode decode data with receiver private key and sender public key', () => {
@@ -394,21 +387,14 @@ describe('crypto tests', function() {
 		const recipientPriv = '2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9';
 		const recipient = createKeyPairFromPrivateKeyString(recipientPriv);
 
-		const expectedMsg = 'NEM is awesome !';
-		const msgBuffer = Buffer.from(expectedMsg);
-		const msgBytes = new Uint8Array(msgBuffer);
-		// console.log('Input bytes ' + arrayMessage);
+		const expectedMsg = 'ProximaX is awesome !';
 
 		// Act:
-		const encrypted = Crypto.nemencrypt(senderPriv, convert.uint8ToHex(recipient.publicKey), msgBytes);
-		const decrypted = Crypto.nemdecrypt(recipientPriv, convert.uint8ToHex(sender.publicKey), encrypted);
-
-		const secureMsg = convert.ab2str(encrypted);
-		const plainMsg = convert.ab2str(decrypted);
+		const encrypted = Crypto.encode(senderPriv, convert.uint8ToHex(recipient.publicKey), expectedMsg);
+		const decrypted = Crypto.decode(recipientPriv, convert.uint8ToHex(sender.publicKey), encrypted);
 
 		// Assert:
-		expect(secureMsg).not.equal(expectedMsg);
-		expect(plainMsg).equal(expectedMsg);
+		expect(decrypted).equal(expectedMsg);
 	});
 
 	it('Error when decoding with different private key', () => {
@@ -419,15 +405,12 @@ describe('crypto tests', function() {
 		const recipient = createKeyPairFromPrivateKeyString(recipientPriv);
 		const otherPriv = 'd19edbf7c5f4665bbb168f8bff3dc1ca85766080b10aabd60dde5d6d7e893d5b';
 
-		const msg = 'NEM is awesome !';
-		const msgBuffer = Buffer.from(msg);
-		const msgBytes = new Uint8Array(msgBuffer);
+		const msg = 'ProximaX is awesome !';
 
 		// Act:
-		const encrypted = Crypto.nemencrypt(senderPriv, convert.uint8ToHex(recipient.publicKey), msgBytes);
+		const encrypted = Crypto.encode(senderPriv, convert.uint8ToHex(recipient.publicKey), msg);
 		const decryptedMsg = () => {
-			const decrypted = Crypto.nemdecrypt(otherPriv, convert.uint8ToHex(sender.publicKey), encrypted);
-			return convert.ab2str(decrypted);
+			return Crypto.decode(otherPriv, convert.uint8ToHex(sender.publicKey), encrypted);
 		};
 
 		// Assert:
@@ -442,90 +425,75 @@ describe('crypto tests', function() {
 		const otherPriv = 'd19edbf7c5f4665bbb168f8bff3dc1ca85766080b10aabd60dde5d6d7e893d5b';
 		const other = createKeyPairFromPrivateKeyString(otherPriv);
 
-		const msg = 'NEM is awesome !';
-		const msgBuffer = Buffer.from(msg);
-		const msgBytes = new Uint8Array(msgBuffer);
+		const msg = 'ProximaX is awesome !';
 
 		// Act:
-		const encrypted = Crypto.nemencrypt(senderPriv, convert.uint8ToHex(recipient.publicKey), msgBytes);
+		const encrypted = Crypto.encode(senderPriv, convert.uint8ToHex(recipient.publicKey), msg);
 		const decryptedMsg = () => {
-			const decrypted = Crypto.nemdecrypt(senderPriv, convert.uint8ToHex(other.publicKey), encrypted);
-			return convert.ab2str(decrypted);
+			return Crypto.decode(senderPriv, convert.uint8ToHex(other.publicKey), encrypted);
 		};
 
 		// Assert:
 	  	expect(decryptedMsg).to.satisfy(decrypted => decrypted === Error || decrypted !== msg);
 	});
 
-/*
     it("Can decode message with recipient private key", function() {
         // Arrange:
-        let senderPublic = "9291abb3c52134be9d20ef21a796743497df7776d2661237bda9cadade34e44c";
+        let senderPublic = "2D04DFC0418A1A2893AA56CB651AE2F3FBE3884F77E64476984E9A6BFB1B7B46";
         let recipientPriv = "2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9";
-        let expectedMessage = "NEM is awesome !";
-        let encryptedMessage = "dd31d6b4111c1023bae6533399e74f73a29c6e6b48ab550f8a7bea127e27dddb4fd3fe4fad3c835307c0da52d9c268f56237d1810e07912e6a6568cba09d9a9176ee6b1ade9569c2e1e273e9675bd4ff";
+        let expectedMessage = "ProximaX is awesome !";
+        let encryptedMessage = "5F8D37E8116B6DC9171FFEB7617B0988BFD8ABE0E611C2C34CC127B637D8192AF396CF605EE7CB0E7618DF82AA48C68460afb8873d3d3954a1528f2c70b11890f5d078c1fe345bb4f84c24f87bdbe652";
 
         // Act:
-        let decrypted = {
-            'type': 1,
-            'payload': Crypto.decode(recipientPriv, senderPublic, encryptedMessage)
-        };
-        let decryptedMessage = convert.utf8ToHex(decrypted);
+		let decrypted = Crypto.decode(recipientPriv, senderPublic, encryptedMessage);
 
         // Assert:
-        expect(decryptedMessage).equal(expectedMessage);
+        expect(decrypted).equal(expectedMessage);
     });
 
     it("Roundtrip decode encode", function() {
         // Arrange:
         let senderPriv = "2a91e1d5c110a8d0105aad4683f962c2a56663a3cad46666b16d243174673d90";
-        let sender = KeyPair.create(senderPriv);
-        let recipientPriv = "2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9";
-        let recipient = KeyPair.create(recipientPriv);
-        let message = "NEM is awesome !";
-        let encryptedMessage = "dd31d6b4111c1023bae6533399e74f73a29c6e6b48ab550f8a7bea127e27dddb4fd3fe4fad3c835307c0da52d9c268f56237d1810e07912e6a6568cba09d9a9176ee6b1ade9569c2e1e273e9675bd4ff";
+        let sender = createKeyPairFromPrivateKeyString(senderPriv);
+		let recipientPriv = "2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9";
+        let recipient = createKeyPairFromPrivateKeyString(recipientPriv);
+		let recipientPublic = convert.uint8ToHex(recipient.publicKey)
+		let message = "ProximaX is awesome !";
+        let encryptedMessage = "5F8D37E8116B6DC9171FFEB7617B0988BFD8ABE0E611C2C34CC127B637D8192AF396CF605EE7CB0E7618DF82AA48C68460afb8873d3d3954a1528f2c70b11890f5d078c1fe345bb4f84c24f87bdbe652";
 
         // Act:
-        let decrypted = {
-            'type': 1,
-            'payload': Crypto.decode(recipientPriv, sender.publicKey.toString(), encryptedMessage)
-        };
-        let decryptedMessage = convert.utf8ToHex(decrypted);
+		let decrypted = Crypto.decode(recipientPriv, convert.uint8ToHex(sender.publicKey), encryptedMessage);
 
-        let encrypted = Crypto.encode(recipientPriv, sender.publicKey.toString(), decryptedMessage);
+		let encrypted = Crypto.encode(recipientPriv, convert.uint8ToHex(sender.publicKey), decrypted);
 
         // Assert:
-        expect(decryptedMessage).equal(message);
+        expect(decrypted).equal(message);
         expect(encrypted.length).equal(80 * 2);
     });
 
     it("Roundtrip encode decode", function() {
         // Arrange:
         let senderPriv = "2a91e1d5c110a8d0105aad4683f962c2a56663a3cad46666b16d243174673d90";
-        let sender = KeyPair.create(senderPriv);
+        let sender = createKeyPairFromPrivateKeyString(senderPriv);
         let recipientPriv = "2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9";
-        let recipient = KeyPair.create(recipientPriv);
-        let message = "NEM is awesome !";
+        let recipient = createKeyPairFromPrivateKeyString(recipientPriv);
+        let message = "ProximaXは素晴らしいです";
 
         // Act:
-        let encrypted = Crypto.encode(senderPriv, recipient.publicKey.toString(), message);
-        let decrypted = {
-            'type': 1,
-            'payload': Crypto.decode(recipientPriv, sender.publicKey.toString(), encrypted)
-        };
-        let decryptedMessage = convert.utf8ToHex(decrypted);
+        let encrypted = Crypto.encode(senderPriv, convert.uint8ToHex(recipient.publicKey), message);
+		let decrypted = Crypto.decode(recipientPriv, convert.uint8ToHex(sender.publicKey), encrypted);
 
         // Assert:
-        expect(decryptedMessage).equal(message);
+        expect(decrypted).equal(message);
     });
-*/
+
 	describe('Encode & decode message edge-cases', function() {
 
 		it("Message encoding throw error if no sender private key", function() {
 			// Arrange:
 			let senderPriv = "";
 			let recipientPublic = "2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9";
-			let message = "NEM is awesome !";
+			let message = "ProximaX is awesome !";
 
 			// Act:
 			let result = Crypto.encode.bind(null, senderPriv, recipientPublic, message);
@@ -538,7 +506,7 @@ describe('crypto tests', function() {
 			// Arrange:
 			let senderPriv = "2a91e1d5c110a8d0105aad4683f962c2a56663a3cad46666b16d243174673d90";
 			let recipientPublic = "";
-			let message = "NEM is awesome !";
+			let message = "ProximaX is awesome !";
 
 			// Act:
 			let result = Crypto.encode.bind(null, senderPriv, recipientPublic, message);
@@ -563,10 +531,10 @@ describe('crypto tests', function() {
 
 		it("Message decoding throw error if no recipient private key", function() {
 			// Arrange:
-			let senderPublic = "9291abb3c52134be9d20ef21a796743497df7776d2661237bda9cadade34e44c";
+			let senderPublic = "2D04DFC0418A1A2893AA56CB651AE2F3FBE3884F77E64476984E9A6BFB1B7B46";
 			let recipientPriv = "";
-			let message = "NEM is awesome !";
-			let encryptedMessage = "dd31d6b4111c1023bae6533399e74f73a29c6e6b48ab550f8a7bea127e27dddb4fd3fe4fad3c835307c0da52d9c268f56237d1810e07912e6a6568cba09d9a9176ee6b1ade9569c2e1e273e9675bd4ff";
+			let message = "ProximaX is awesome !";
+			let encryptedMessage = "5F8D37E8116B6DC9171FFEB7617B0988BFD8ABE0E611C2C34CC127B637D8192AF396CF605EE7CB0E7618DF82AA48C68460afb8873d3d3954a1528f2c70b11890f5d078c1fe345bb4f84c24f87bdbe652";
 
 			// Act:
 			let result = Crypto.decode.bind(null, recipientPriv, senderPublic, encryptedMessage);
@@ -579,8 +547,8 @@ describe('crypto tests', function() {
 			// Arrange:
 			let senderPublic = "";
 			let recipientPriv = "2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9";
-			let message = "NEM is awesome !";
-			let encryptedMessage = "dd31d6b4111c1023bae6533399e74f73a29c6e6b48ab550f8a7bea127e27dddb4fd3fe4fad3c835307c0da52d9c268f56237d1810e07912e6a6568cba09d9a9176ee6b1ade9569c2e1e273e9675bd4ff";
+			let message = "ProximaX is awesome !";
+			let encryptedMessage = "5F8D37E8116B6DC9171FFEB7617B0988BFD8ABE0E611C2C34CC127B637D8192AF396CF605EE7CB0E7618DF82AA48C68460afb8873d3d3954a1528f2c70b11890f5d078c1fe345bb4f84c24f87bdbe652";
 
 			// Act:
 			let result = Crypto.decode.bind(null, recipientPriv, senderPublic, encryptedMessage);
@@ -592,9 +560,9 @@ describe('crypto tests', function() {
 
 		it("Message decoding throw error if no payload", function() {
 			// Arrange:
-			let senderPublic = "9291abb3c52134be9d20ef21a796743497df7776d2661237bda9cadade34e44c";
+			let senderPublic = "2D04DFC0418A1A2893AA56CB651AE2F3FBE3884F77E64476984E9A6BFB1B7B46";
 			let recipientPriv = "2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9";
-			let message = "NEM is awesome !";
+			let message = "ProximaX is awesome !";
 			let encryptedMessage = "";
 
 			// Act:
