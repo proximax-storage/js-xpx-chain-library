@@ -353,10 +353,10 @@ describe('crypto tests', function() {
         // Arrange:
         let senderPriv = "2a91e1d5c110a8d0105aad4683f962c2a56663a3cad46666b16d243174673d90";
         let recipientPublic = "1671038B892F9FCCA2122CD455A6C084BF3451A126BAD1F6001E26D38735751A";
-        let message = "NEM is awesome !";
+        let message = "ProximaX is awesome !";
         let iv = "f396cf605ee7cb0e7618df82aa48c684";
         let salt = "5f8d37e8116b6dc9171ffeb7617b0988bfd8abe0e611c2c34cc127b637d8192a";
-        let expectedHex = "5F8D37E8116B6DC9171FFEB7617B0988BFD8ABE0E611C2C34CC127B637D8192AF396CF605EE7CB0E7618DF82AA48C68469b72b2a9a66f311a8db2e9f7066a17dd97e8361550d11f64c83318bb120c96d";
+        let expectedHex = "5F8D37E8116B6DC9171FFEB7617B0988BFD8ABE0E611C2C34CC127B637D8192AF396CF605EE7CB0E7618DF82AA48C68460afb8873d3d3954a1528f2c70b11890f5d078c1fe345bb4f84c24f87bdbe652";
 
         // Act:
         let encryptedHex = Crypto._encode(senderPriv, recipientPublic, message, convert.hexToUint8(iv), convert.hexToUint8(salt));
@@ -371,7 +371,7 @@ describe('crypto tests', function() {
 		const recipientPriv = '2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9';
 		const recipient = createKeyPairFromPrivateKeyString(recipientPriv);
 
-		const expectedMsg = 'NEM is awesome !';
+		const expectedMsg = 'ProximaX is awesome !';
 
 		// Act:
 		const encrypted = Crypto.encode(senderPriv, convert.uint8ToHex(recipient.publicKey), expectedMsg);
@@ -387,7 +387,7 @@ describe('crypto tests', function() {
 		const recipientPriv = '2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9';
 		const recipient = createKeyPairFromPrivateKeyString(recipientPriv);
 
-		const expectedMsg = 'NEM is awesome !';
+		const expectedMsg = 'ProximaX is awesome !';
 
 		// Act:
 		const encrypted = Crypto.encode(senderPriv, convert.uint8ToHex(recipient.publicKey), expectedMsg);
@@ -405,7 +405,7 @@ describe('crypto tests', function() {
 		const recipient = createKeyPairFromPrivateKeyString(recipientPriv);
 		const otherPriv = 'd19edbf7c5f4665bbb168f8bff3dc1ca85766080b10aabd60dde5d6d7e893d5b';
 
-		const msg = 'NEM is awesome !';
+		const msg = 'ProximaX is awesome !';
 
 		// Act:
 		const encrypted = Crypto.encode(senderPriv, convert.uint8ToHex(recipient.publicKey), msg);
@@ -425,7 +425,7 @@ describe('crypto tests', function() {
 		const otherPriv = 'd19edbf7c5f4665bbb168f8bff3dc1ca85766080b10aabd60dde5d6d7e893d5b';
 		const other = createKeyPairFromPrivateKeyString(otherPriv);
 
-		const msg = 'NEM is awesome !';
+		const msg = 'ProximaX is awesome !';
 
 		// Act:
 		const encrypted = Crypto.encode(senderPriv, convert.uint8ToHex(recipient.publicKey), msg);
@@ -441,8 +441,8 @@ describe('crypto tests', function() {
         // Arrange:
         let senderPublic = "2D04DFC0418A1A2893AA56CB651AE2F3FBE3884F77E64476984E9A6BFB1B7B46";
         let recipientPriv = "2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9";
-        let expectedMessage = "NEM is awesome !";
-        let encryptedMessage = "5F8D37E8116B6DC9171FFEB7617B0988BFD8ABE0E611C2C34CC127B637D8192AF396CF605EE7CB0E7618DF82AA48C68469b72b2a9a66f311a8db2e9f7066a17dd97e8361550d11f64c83318bb120c96d";
+        let expectedMessage = "ProximaX is awesome !";
+        let encryptedMessage = "5F8D37E8116B6DC9171FFEB7617B0988BFD8ABE0E611C2C34CC127B637D8192AF396CF605EE7CB0E7618DF82AA48C68460afb8873d3d3954a1528f2c70b11890f5d078c1fe345bb4f84c24f87bdbe652";
 
         // Act:
 		let decrypted = Crypto.decode(recipientPriv, senderPublic, encryptedMessage);
@@ -458,8 +458,8 @@ describe('crypto tests', function() {
 		let recipientPriv = "2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9";
         let recipient = createKeyPairFromPrivateKeyString(recipientPriv);
 		let recipientPublic = convert.uint8ToHex(recipient.publicKey)
-		let message = "NEM is awesome !";
-        let encryptedMessage = "5F8D37E8116B6DC9171FFEB7617B0988BFD8ABE0E611C2C34CC127B637D8192AF396CF605EE7CB0E7618DF82AA48C68469b72b2a9a66f311a8db2e9f7066a17dd97e8361550d11f64c83318bb120c96d";
+		let message = "ProximaX is awesome !";
+        let encryptedMessage = "5F8D37E8116B6DC9171FFEB7617B0988BFD8ABE0E611C2C34CC127B637D8192AF396CF605EE7CB0E7618DF82AA48C68460afb8873d3d3954a1528f2c70b11890f5d078c1fe345bb4f84c24f87bdbe652";
 
         // Act:
 		let decrypted = Crypto.decode(recipientPriv, convert.uint8ToHex(sender.publicKey), encryptedMessage);
@@ -477,7 +477,7 @@ describe('crypto tests', function() {
         let sender = createKeyPairFromPrivateKeyString(senderPriv);
         let recipientPriv = "2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9";
         let recipient = createKeyPairFromPrivateKeyString(recipientPriv);
-        let message = "NEMは素晴らしいです";
+        let message = "ProximaXは素晴らしいです";
 
         // Act:
         let encrypted = Crypto.encode(senderPriv, convert.uint8ToHex(recipient.publicKey), message);
@@ -493,7 +493,7 @@ describe('crypto tests', function() {
 			// Arrange:
 			let senderPriv = "";
 			let recipientPublic = "2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9";
-			let message = "NEM is awesome !";
+			let message = "ProximaX is awesome !";
 
 			// Act:
 			let result = Crypto.encode.bind(null, senderPriv, recipientPublic, message);
@@ -506,7 +506,7 @@ describe('crypto tests', function() {
 			// Arrange:
 			let senderPriv = "2a91e1d5c110a8d0105aad4683f962c2a56663a3cad46666b16d243174673d90";
 			let recipientPublic = "";
-			let message = "NEM is awesome !";
+			let message = "ProximaX is awesome !";
 
 			// Act:
 			let result = Crypto.encode.bind(null, senderPriv, recipientPublic, message);
@@ -533,8 +533,8 @@ describe('crypto tests', function() {
 			// Arrange:
 			let senderPublic = "2D04DFC0418A1A2893AA56CB651AE2F3FBE3884F77E64476984E9A6BFB1B7B46";
 			let recipientPriv = "";
-			let message = "NEM is awesome !";
-			let encryptedMessage = "5F8D37E8116B6DC9171FFEB7617B0988BFD8ABE0E611C2C34CC127B637D8192AF396CF605EE7CB0E7618DF82AA48C68469b72b2a9a66f311a8db2e9f7066a17dd97e8361550d11f64c83318bb120c96d";
+			let message = "ProximaX is awesome !";
+			let encryptedMessage = "5F8D37E8116B6DC9171FFEB7617B0988BFD8ABE0E611C2C34CC127B637D8192AF396CF605EE7CB0E7618DF82AA48C68460afb8873d3d3954a1528f2c70b11890f5d078c1fe345bb4f84c24f87bdbe652";
 
 			// Act:
 			let result = Crypto.decode.bind(null, recipientPriv, senderPublic, encryptedMessage);
@@ -547,8 +547,8 @@ describe('crypto tests', function() {
 			// Arrange:
 			let senderPublic = "";
 			let recipientPriv = "2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9";
-			let message = "NEM is awesome !";
-			let encryptedMessage = "5F8D37E8116B6DC9171FFEB7617B0988BFD8ABE0E611C2C34CC127B637D8192AF396CF605EE7CB0E7618DF82AA48C68469b72b2a9a66f311a8db2e9f7066a17dd97e8361550d11f64c83318bb120c96d";
+			let message = "ProximaX is awesome !";
+			let encryptedMessage = "5F8D37E8116B6DC9171FFEB7617B0988BFD8ABE0E611C2C34CC127B637D8192AF396CF605EE7CB0E7618DF82AA48C68460afb8873d3d3954a1528f2c70b11890f5d078c1fe345bb4f84c24f87bdbe652";
 
 			// Act:
 			let result = Crypto.decode.bind(null, recipientPriv, senderPublic, encryptedMessage);
@@ -562,7 +562,7 @@ describe('crypto tests', function() {
 			// Arrange:
 			let senderPublic = "2D04DFC0418A1A2893AA56CB651AE2F3FBE3884F77E64476984E9A6BFB1B7B46";
 			let recipientPriv = "2618090794e9c9682f2ac6504369a2f4fb9fe7ee7746f9560aca228d355b1cb9";
-			let message = "NEM is awesome !";
+			let message = "ProximaX is awesome !";
 			let encryptedMessage = "";
 
 			// Act:
