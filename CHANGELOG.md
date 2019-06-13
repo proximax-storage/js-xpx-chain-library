@@ -1,4 +1,13 @@
 # Proximax CHANGELOG
+
+## v0.3.0
+
+- renamed to js-xpx-chain-library
+
+## v0.2.0
+
+- fix cross-sdk message encrypt/decrypt
+
 ## v0.1.0
 
 - Initial Proximax version
@@ -48,7 +57,7 @@
 
 ## v0.9.10
 
-- updated buffers AccountProperties 
+- updated buffers AccountProperties
 
 ## v0.9.9
 

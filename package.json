@@ -1,12 +1,12 @@
 {
-  "name": "js-xpx-catapult-library",
-  "version": "0.2.0",
+  "name": "js-xpx-chain-library",
+  "version": "0.3.0",
   "description": "ProximaX Sirius Blockchain Library for Javascript",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --recursive --timeout 10000",
+    "test": "mocha --require babel-core/register --recursive --timeout 10000",
     "test:cov": "nyc --reporter=lcov --reporter=text-lcov npm t && nyc report --reporter=text-lcov",
     "test:coveralls": "npm run test:cov | coveralls",
     "build": "babel ./src -d ./dist --source-maps --copy-files"
@@ -16,11 +16,11 @@
     "Yaaccount <tnuoccaay@gmail.com>"
   ],
   "bugs": {
-    "url": "https://github.com/proximax-storage/js-xpx-catapult-library/issues"
+    "url": "https://github.com/proximax-storage/js-xpx-chain-library/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/proximax-storage/js-xpx-catapult-library.git"
+    "url": "git+https://github.com/proximax-storage/js-xpx-chain-library.git"
   },
   "publishConfig": {
     "registry": "https://nexus.internal.proximax.io/repository/npm-private/"
@@ -53,9 +53,9 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
     "expect.js": "~0.3.1",
-    "mocha": "~2.3.4",
+    "mocha": "^6.1.4",
     "mocha-lcov-reporter": "^1.3.0",
-    "nyc": "^11.6.0",
+    "nyc": "^14.1.1",
     "sinon": "1.17.3"
   },
   "optionalDependencies": {
@@ -66,7 +66,7 @@
       "**/*.spec.js"
     ]
   },
-  "homepage": "https://github.com/proximax-storage/js-xpx-catapult-library#readme",
+  "homepage": "https://github.com/proximax-storage/js-xpx-chain-library#readme",
   "directories": {
     "test": "test"
   },
