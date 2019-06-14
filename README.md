@@ -1,7 +1,7 @@
 # js-xpx-chain-library
 
 :warning:️ js-xpx-chain-library is not meant to be used in Proximax Tools/Applications.
-It is used by [tsjs-xpx-chain-sdk](https://github.com/proximax-storge/tsjs-xpx-chain-sdk).
+It is used by [tsjs-xpx-chain-sdk](https://github.com/proximax-storage/tsjs-xpx-chain-sdk).
 
 Check out the [SDK](https://github.com/proximax-storage/tsjs-xpx-chain-sdk) and [Wiki](https://github.com/proximax-storage/tsjs-xpx-chain-sdk/wiki) with [Examples](https://github.com/proximax-storage/tsjs-xpx-chain-sdk/wiki/Examples)
 
