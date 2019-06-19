@@ -264,6 +264,19 @@ describe('convert', () => {
 			// Assert:
 			expect(actual).to.equal('e58588e7a7a6e585a9e6bca2');
 		});
+
+		it('control characters to hex', () => {
+			let msg = '';
+			for (let i = 0; i<=16;i++) {
+				msg += String.fromCodePoint(i);
+			}
+
+			// Act:
+			const actual = convert.utf8ToHex(msg);
+
+			// Assert:
+			expect(actual).to.equal('000102030405060708090a0b0c0d0e0f10');
+		})
 	});
 
 	describe('signed <-> unsigned byte', () => {

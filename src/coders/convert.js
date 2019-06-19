@@ -190,7 +190,7 @@ const convert = {
 		const rawString = convert.rstr2utf8(str);
 		let result = '';
 		for (let i = 0; i < rawString.length; i++)
-			result += rawString.charCodeAt(i).toString(16);
+			result += ('0' + rawString.charCodeAt(i).toString(16)).slice(-2);
 
 
 		return result;
